@@ -5,9 +5,9 @@
 * @since 1.0.0
 */
 function stripHTMLtags(str) {
-    var map = {
-        '<': '',
-        '>': ''
-    };
-    return str.replace(/[<>]/g, function(m) { return map[m]; });
+		var map = {
+				'<': '',
+				'>': ''
+		};
+		return str.replace(/[<>]/g, function(m) { return map[m]; });
 }

@@ -21,7 +21,7 @@
 
 //Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+		exit;
 }
 
 
@@ -47,13 +47,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0.0
 **/
 const STRCPV_OPT_NAME = [
-        // Dashboard widget
-        "total_visits"          => "strcpv_total_visits",
-        "visits_by_page"        => "strcpv_visits_by_page",
-        "hidden_page_reports"   => "strcpv_hidden_page_reports",
-        // Settings page
-        "count_refresh"         => "strcpv_count_refresh",
-        "delete_plugin_data"    => "strcpv_delete_plugin_data"
+				// Dashboard widget
+				"total_visits"          => "strcpv_total_visits",
+				"visits_by_page"        => "strcpv_visits_by_page",
+				"hidden_page_reports"   => "strcpv_hidden_page_reports",
+				// Settings page
+				"count_refresh"         => "strcpv_count_refresh",
+				"delete_plugin_data"    => "strcpv_delete_plugin_data"
 ];
 
 
@@ -63,7 +63,7 @@ const STRCPV_OPT_NAME = [
  * Include files
 **/
 if( file_exists( dirname( __FILE__ ) . '/Inc/include.php' ) ) {
-    require_once dirname(__FILE__) . '/Inc/include.php';
+		require_once dirname(__FILE__) . '/Inc/include.php';
 }
 
 if( file_exists( dirname( __FILE__ ) . '/templates/include.php' ) ) {
@@ -78,7 +78,7 @@ require_once dirname(__FILE__) . '/templates/include.php';
  * The code that runs during plugin activation
 **/
 function activate_StrCPVisits() {
-    StrCPVisits_Inc\Base\Activate::activate();  // No need to use the "use" expression.
+		StrCPVisits_Inc\Base\Activate::activate();  // No need to use the "use" expression.
 }
 register_activation_hook( __FILE__, 'activate_StrCPVisits');
 
@@ -86,7 +86,7 @@ register_activation_hook( __FILE__, 'activate_StrCPVisits');
  * The code that runs during plugin deactivation
 **/
 function deactivate_StrCPVisits() {
-    StrCPVisits_Inc\Base\Deactivate::deactivate();  // No need to use the "use" expression.
+		StrCPVisits_Inc\Base\Deactivate::deactivate();  // No need to use the "use" expression.
 }
 register_deactivation_hook( __FILE__, 'deactivate_StrCPVisits');
 
@@ -97,5 +97,5 @@ register_deactivation_hook( __FILE__, 'deactivate_StrCPVisits');
  * Invoke Counter
 **/
 if(class_exists( 'StrCPVisits_Inc\\Init' )) {
-    StrCPVisits_Inc\Init::register_services(); // Call static methode in Init class
+		StrCPVisits_Inc\Init::register_services(); // Call static methode in Init class
 }

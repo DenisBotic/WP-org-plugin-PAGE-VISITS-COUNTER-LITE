@@ -7,34 +7,34 @@
 */
 const StrCPVevents = {
 
-    events: {},
+		events: {},
 
-    //Subsribe or ON
-    subscribe: function (eventName, fn) {
-      this.events[eventName] = this.events[eventName] || [];
-      this.events[eventName].push(fn);
-    },
+		//Subsribe or ON
+		subscribe: function (eventName, fn) {
+			this.events[eventName] = this.events[eventName] || [];
+			this.events[eventName].push(fn);
+		},
 
 
-    //Unsubscribe or OFF
-    unsubscribe: function(eventName, fn) {
-      if (this.events[eventName]) {
-        for (let i = 0; i < this.events[eventName].length; i++) {
-          if (this.events[eventName][i] === fn) {
-            this.events[eventName].splice(i, 1);
-            break;
-          }
-        }
-      }
-    },
+		//Unsubscribe or OFF
+		unsubscribe: function(eventName, fn) {
+			if (this.events[eventName]) {
+				for (let i = 0; i < this.events[eventName].length; i++) {
+					if (this.events[eventName][i] === fn) {
+						this.events[eventName].splice(i, 1);
+						break;
+					}
+				}
+			}
+		},
 
-    //Publish or emit
-    publish: function (eventName, data) {
-      if (this.events[eventName]) {
-        this.events[eventName].forEach(function(fn) {
-          fn(data);
-        });
-      }
-    }
+		//Publish or emit
+		publish: function (eventName, data) {
+			if (this.events[eventName]) {
+				this.events[eventName].forEach(function(fn) {
+					fn(data);
+				});
+			}
+		}
 
 };

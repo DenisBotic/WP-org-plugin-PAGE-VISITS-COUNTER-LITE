@@ -11,10 +11,10 @@ By using Page visits counter lite, you acknowledge and agree that:
 1. The author(s) of this plugin make no representations or warranties about the accuracy, completeness, or reliability of the plugin's functionality.
 
 2. The author(s) of this plugin disclaim all warranties, whether express, implied, or statutory, including but not limited to any warranties of merchantability,
-   fitness for a particular purpose, and non-infringement.
+	 fitness for a particular purpose, and non-infringement.
 
 3. The author(s) of this plugin shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages,
-  or any other damages whatsoever, arising out of or in connection with the use or performance of Page visits counter lite.
+	 or any other damages whatsoever, arising out of or in connection with the use or performance of Page visits counter lite.
 
 
 

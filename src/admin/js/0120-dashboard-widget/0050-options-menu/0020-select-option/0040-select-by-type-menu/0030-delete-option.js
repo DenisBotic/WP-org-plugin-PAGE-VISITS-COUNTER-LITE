@@ -10,20 +10,20 @@ const SelectByTypeOption =(function(){
 
 
 
-    function remove( page_type_name ){
-        // Get and remove Select-By-Type Option
-        let option = $('#StrCPVisits_js_db_page_type_menu > ul').find("li.StrCPVisits-select-" + page_type_name);
-        option.fadeOut(400, function(){
-            option.remove();
-        });
-    }
+		function remove( page_type_name ){
+				// Get and remove Select-By-Type Option
+				let option = $('#StrCPVisits_js_db_page_type_menu > ul').find("li.StrCPVisits-select-" + page_type_name);
+				option.fadeOut(400, function(){
+						option.remove();
+				});
+		}
 
 
 
 
-    return {
-        delete : remove
-    };
+		return {
+				delete : remove
+		};
 
 
 })();

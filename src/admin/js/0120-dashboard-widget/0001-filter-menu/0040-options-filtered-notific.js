@@ -9,40 +9,40 @@
 const OptionsFilteredNotific =(function(){
 
 
-    function checkAndDisplayNr(){
-        let checkboxes = $("#StrCPVisits_js_db_filter_menu_options_wrapper input[type='checkbox']");
-        let checkboxes_checked = $("#StrCPVisits_js_db_filter_menu_options_wrapper input[type='checkbox']:checked");
+		function checkAndDisplayNr(){
+				let checkboxes = $("#StrCPVisits_js_db_filter_menu_options_wrapper input[type='checkbox']");
+				let checkboxes_checked = $("#StrCPVisits_js_db_filter_menu_options_wrapper input[type='checkbox']:checked");
 
-        if ( checkboxes.length != checkboxes_checked.length ) {
-            // There is at least one filtered option after filter menu closed
-            displayNotificVisitsNr();
-        }
-    }
-
-
-
-
-    function displayNotificVisitsNr(){
-        $('#StrCPVisits_js_db_filter_menu_notific_visits_wrapper').fadeIn();
-    }
-
-
-
-    /**
-    * HIDE NOTIFICATION VISITS NR
-    * INFO: Invoked from toggle-menu.js only
-    * @since 1.0.0
-    */
-    function hideNotificVisitsNr(){
-        $('#StrCPVisits_js_db_filter_menu_notific_visits_wrapper').hide();
-    }
+				if ( checkboxes.length != checkboxes_checked.length ) {
+						// There is at least one filtered option after filter menu closed
+						displayNotificVisitsNr();
+				}
+		}
 
 
 
 
-    return {
-        checkAndDisplayNr : checkAndDisplayNr,
-        hideNotificVisitsNr : hideNotificVisitsNr
-    };
+		function displayNotificVisitsNr(){
+				$('#StrCPVisits_js_db_filter_menu_notific_visits_wrapper').fadeIn();
+		}
+
+
+
+		/**
+		* HIDE NOTIFICATION VISITS NR
+		* INFO: Invoked from toggle-menu.js only
+		* @since 1.0.0
+		*/
+		function hideNotificVisitsNr(){
+				$('#StrCPVisits_js_db_filter_menu_notific_visits_wrapper').hide();
+		}
+
+
+
+
+		return {
+				checkAndDisplayNr : checkAndDisplayNr,
+				hideNotificVisitsNr : hideNotificVisitsNr
+		};
 
 })();

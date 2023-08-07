@@ -10,16 +10,16 @@ const ResetOption =(function(){
 
 
 
-    function remove( page_type_name ){
-        // Get and remove filter Option
-        let reset_option = $('#StrCPVisits_js_db_reset_menu_options_wrapper').find("li.StrCPVisits-reset-" + page_type_name);
-        reset_option.fadeOut();
-        // reset_option.remove();
-    }
+		function remove( page_type_name ){
+				// Get and remove filter Option
+				let reset_option = $('#StrCPVisits_js_db_reset_menu_options_wrapper').find("li.StrCPVisits-reset-" + page_type_name);
+				reset_option.fadeOut();
+				// reset_option.remove();
+		}
 
 
-    return {
-        delete : remove
-    };
+		return {
+				delete : remove
+		};
 
 })();

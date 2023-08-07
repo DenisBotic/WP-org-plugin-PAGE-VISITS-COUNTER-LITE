@@ -9,85 +9,85 @@
 const IsEverythingDeletedInList = (function(){
 
 
-    // Properties
-    let list_type_obj;
+		// Properties
+		let list_type_obj;
 
 
 
 
-    // Listen to ajax delete responses
-    StrCPVevents.subscribe("StrCPVisEverythingDeletedInList", init);
+		// Listen to ajax delete responses
+		StrCPVevents.subscribe("StrCPVisEverythingDeletedInList", init);
 
 
 
 
-    function init() {
-        setProperties();
-        detectListType();
-    }
+		function init() {
+				setProperties();
+				detectListType();
+		}
 
 
 
 
-    function setProperties(){
-        // Get list type obj - {current_list_type: "list-hidden", open_list_type: "list-visible"}
-        list_type_obj = ToggleHiddenReports.getListType();
-    }
+		function setProperties(){
+				// Get list type obj - {current_list_type: "list-hidden", open_list_type: "list-visible"}
+				list_type_obj = ToggleHiddenReports.getListType();
+		}
 
 
 
 
-    function detectListType(){
+		function detectListType(){
 
-        if ( list_type_obj.open_list_type === "list-hidden" ) {
-            // LIST HIDDEN
-            HiddenListCountAllHiddenReports();
-        } else if( list_type_obj.open_list_type === "list-visible" ) {
-            // LIST VISIBLE
-            VisibleListCountAllReports();
-        } else {
-            // Page is loaded - default list type is LIST-VISIBLE
-            // console.log('default list type');
-            VisibleListCountAllReports();
-        }
+				if ( list_type_obj.open_list_type === "list-hidden" ) {
+						// LIST HIDDEN
+						HiddenListCountAllHiddenReports();
+				} else if( list_type_obj.open_list_type === "list-visible" ) {
+						// LIST VISIBLE
+						VisibleListCountAllReports();
+				} else {
+						// Page is loaded - default list type is LIST-VISIBLE
+						// console.log('default list type');
+						VisibleListCountAllReports();
+				}
 
-    }
-
-
-
-
-    function VisibleListCountAllReports(){
-        let visible_reports_nr = $(".StrCPVisits_db_list_row:not('.StrCPVisits-hidden-indicator')").length;
-        // console.log( visible_reports_nr );
-        checkNrAndHideDisableSelectAll( visible_reports_nr );
-    }
+		}
 
 
 
 
-    function HiddenListCountAllHiddenReports(){
-        let hidden_reports_nr = $(".StrCPVisits_db_list_row.StrCPVisits-hidden-indicator").length;
-        // console.log( hidden_reports_nr );
-        checkNrAndHideDisableSelectAll( hidden_reports_nr );
-    }
+		function VisibleListCountAllReports(){
+				let visible_reports_nr = $(".StrCPVisits_db_list_row:not('.StrCPVisits-hidden-indicator')").length;
+				// console.log( visible_reports_nr );
+				checkNrAndHideDisableSelectAll( visible_reports_nr );
+		}
 
 
 
 
-    function checkNrAndHideDisableSelectAll( list_reports_nr ) {
-        if ( list_reports_nr == 0 ) {
-            SelectAllToggle.disable();
-        } else {
-            SelectAllToggle.enable();
-        }
-    }
+		function HiddenListCountAllHiddenReports(){
+				let hidden_reports_nr = $(".StrCPVisits_db_list_row.StrCPVisits-hidden-indicator").length;
+				// console.log( hidden_reports_nr );
+				checkNrAndHideDisableSelectAll( hidden_reports_nr );
+		}
 
 
 
 
-    return {
-        init : init
-    };
+		function checkNrAndHideDisableSelectAll( list_reports_nr ) {
+				if ( list_reports_nr == 0 ) {
+						SelectAllToggle.disable();
+				} else {
+						SelectAllToggle.enable();
+				}
+		}
+
+
+
+
+		return {
+				init : init
+		};
 
 
 })();

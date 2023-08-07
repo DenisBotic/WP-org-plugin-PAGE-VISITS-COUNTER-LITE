@@ -6,22 +6,22 @@
 */
 const SelectReport = (function(){
 
-    // Properties
-    let reports_chkboxes = $('.StrCPVisits_db_list_chkbox');
+		// Properties
+		let reports_chkboxes = $('.StrCPVisits_db_list_chkbox');
 
 
 
 
-    function uncheckAllCheckboxes(){
-        reports_chkboxes.prop('checked', false); // Disable
-    }
+		function uncheckAllCheckboxes(){
+				reports_chkboxes.prop('checked', false); // Disable
+		}
 
 
 
 
-    return {
-            reset : uncheckAllCheckboxes
-    };
+		return {
+						reset : uncheckAllCheckboxes
+		};
 
 
 })();

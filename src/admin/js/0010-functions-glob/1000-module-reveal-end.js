@@ -5,8 +5,8 @@
 */
 
 return {
-    stripHTMLtags: stripHTMLtags,
-    countOccurrences: countOccurrences,
+		stripHTMLtags: stripHTMLtags,
+		countOccurrences: countOccurrences,
 
 };
 

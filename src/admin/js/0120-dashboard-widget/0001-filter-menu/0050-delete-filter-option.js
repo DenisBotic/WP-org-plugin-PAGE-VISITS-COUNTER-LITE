@@ -10,16 +10,16 @@ const FilterOption =(function(){
 
 
 
-    function remove( page_type_name ){
-        // Get and remove filter Option
-        let filter_option = $('#StrCPVisits_js_db_filter_menu_options_wrapper').find("li.StrCPVisits-" + page_type_name);
-        filter_option.fadeOut();
-        // $filter_option.remove();
-    }
+		function remove( page_type_name ){
+				// Get and remove filter Option
+				let filter_option = $('#StrCPVisits_js_db_filter_menu_options_wrapper').find("li.StrCPVisits-" + page_type_name);
+				filter_option.fadeOut();
+				// $filter_option.remove();
+		}
 
 
-    return {
-        delete : remove
-    };
+		return {
+				delete : remove
+		};
 
 })();
