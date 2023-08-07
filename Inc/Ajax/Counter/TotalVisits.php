@@ -115,21 +115,24 @@ class TotalVisits extends Options {
 
         /**
         * GET REAL USER IP ADDRESS
-        * INFO: The purpose of getting the us user ip address is only for checking if page is refreshed.
-        *       User IP address is going to be cashed in memory for up to one hour.
+        * INFO: The purpose of getting the user ip address is only for checking if page is refreshed.
+        *       User IP address is going to be HASHED and cashed in memory for up to one hour.
         * @since 1.0.0
         */
         if( !empty( $_SERVER['HTTP_CLIENT_IP'] ) ){
-            //ip from share internet
+            // IP from share internet
             $ip = $_SERVER['HTTP_CLIENT_IP'];
         } else if ( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-            //ip pass from proxy
+            // IP pass from proxy
             $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
         } else {
             $ip = $_SERVER['REMOTE_ADDR'];
         }
 
-
+        /**
+        * HASH IP ADDRESS
+        */
+        $ip = hash( 'sha256', $ip );
 
 
         /**
