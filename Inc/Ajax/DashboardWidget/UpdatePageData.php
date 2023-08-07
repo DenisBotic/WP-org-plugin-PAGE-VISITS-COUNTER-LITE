@@ -30,48 +30,54 @@ class UpdatePageData extends Options {
 		public function StrCPVisits_update_page_data() {
 
 
-				// Check if data are submited from coresponding form (by using wp_nonce)
+				// Check if data are submitted from corresponding form by using wp_nonce.
 				if( !check_ajax_referer( 'StrCPVisits_settings', 'security' ) ) {
 						return;
 				}
 
 
-				// Prevent form data submision for none admin users
+				// Prevent form data submission for none admin users.
 				if( !current_user_can( 'manage_options' ) ) {
 						return;
 				}
 
-
-				// WP AJAX uses data as object and becasue of that serializes data twice.
-				// Therefore we need to parse data once more, so we can access them.
+				/**
+				 * WP AJAX uses data as object and because of that it serializes data twice.
+				 * For that reason we need to parse data once more, so we can access them.
+				 */
 				if( isset( $_POST[ 'settings_data' ] ) ) {
 						parse_str( $_POST[ 'settings_data' ], $settings_data );
 				}
 
 
-				// NEW NUMBER OF VISTIS
+				// NEW NUMBER OF VISITS.
 				if( isset( $settings_data['StrCPVisits-dblist-page-visits-nr'] ) ){
 
-						// Is numeric
+						// Is numeric.
 						if ( is_numeric( $settings_data['StrCPVisits-dblist-page-visits-nr'] ) ) {
 								$new_number = sanitize_text_field( $settings_data['StrCPVisits-dblist-page-visits-nr'] );
 
-								// Throw error if number > 1bil.
-								if ( $new_number > 1000000000) {
-										wp_send_json_error( esc_html__('Error - number too big!', "page-visits-counter-lite") );
+								// Throw error if number > 9bil.
+								if ( $new_number > 9000000000) {
+										wp_send_json_error( esc_html__('Error - number too big!', "page-visits-counter-lite") ); // Abort.
 								}
 
 						} else {
-								wp_send_json_error( esc_html__('Error - not a number!', "page-visits-counter-lite") ); // Abort
+								wp_send_json_error( esc_html__('Error - not a number!', "page-visits-counter-lite") ); // Abort.
 						}
 
 				} else {
-						wp_send_json_error( esc_html__('Error - no data set!', "page-visits-counter-lite") ); // Abort
+						wp_send_json_error( esc_html__('Error - no data set!', "page-visits-counter-lite") ); // Abort.
 				}
 
 
-				// PAGE NAME - it should be set - else return error message.
-				// INFO: No need for hard core security becasue it is going to be compared with another data.
+				/**
+				 * PAGE NAME - it should be set - else return error message.
+				 *
+				 * INFO: No need for hard core security because it is going to be compared with another data.
+				 *
+				 * @since 1.0.0.
+				 */
 				if( isset( $settings_data['StrCPVisits-dblist-page-name'] ) ) {
 						$page_name = $settings_data['StrCPVisits-dblist-page-name'];
 				} else {
