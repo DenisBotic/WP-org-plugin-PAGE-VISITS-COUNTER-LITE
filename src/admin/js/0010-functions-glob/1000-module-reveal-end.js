@@ -1,0 +1,14 @@
+/**
+* FUNCTIONS GLOB MODULE - END
+* DESC: return property and/or method name to make it publically available.
+* @since 1.0.0
+*/
+
+return {
+    stripHTMLtags: stripHTMLtags,
+    countOccurrences: countOccurrences,
+
+};
+
+
+})();// functions-gob - module end
