@@ -1,20 +1,18 @@
 <?php
 /**
-* @package Strongetic - count page visits
-*/
+ * INCLUDE ALL
+ *
+ * DESC: include all include.php files found in Inc/sub-folders.
+ *
+ * @package Strongetic - count page visits
+ */
 
-//Exit if accessed directly.
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 		exit;
 }
 
 
-
-
-/**
-* INCLUDE ALL include.php files found in Inc sub-folders
-* @since 1.0.0
-*/
 
 
 if( file_exists( dirname( __FILE__ ) . '/Base/include.php' ) ) {

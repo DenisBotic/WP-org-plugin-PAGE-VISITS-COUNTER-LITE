@@ -1,22 +1,24 @@
 /**
-* AJAX - SET AS HIDDEN
-* DESC: Set page reports as hidden reports.
-*       They can be displayed in the hidden list only.
-* @since 1.0.0
-*/
+ * AJAX - SET AS HIDDEN
+ *
+ * DESC: Set page reports as hidden reports.
+ *       They can be displayed in the hidden list only.
+ *
+ * @since 1.0.0
+ */
 const AjaxSetAsHidden = (function(){
 
 
-		// Base Properties
+		// Base Properties.
 		let BaseProperties = AjaxSelectMenuBase.getProperties();
 		let spinner = BaseProperties.spinner;
-		let response_box = BaseProperties.response_box; // Master reset is set in JS
+		let response_box = BaseProperties.response_box; // Master reset is set in JS.
 		let pages_list_wrapper = BaseProperties.pages_list_wrapper;
 		let all_list_checkboxes = BaseProperties.all_list_checkboxes;
 		let report_options_sub_tabs = BaseProperties.report_options_sub_tabs;
 
 
-		// Properties
+		// Properties.
 		let set_hidden_button = $("#StrCPVisits_js_db_select_set_hidden_btn");
 		let selected_reports_checkboxes;
 		let page_names_arr = [];
@@ -24,21 +26,21 @@ const AjaxSetAsHidden = (function(){
 
 
 
-		// CLICK LISTENER
+		// CLICK LISTENER.
 		set_hidden_button.click( function(e){
 				e.preventDefault();
 
 
-				// If Buton disabled -> ABORT
+				// If Button is disabled -> ABORT.
 				if ( $(this).hasClass('StrCPVisits_icon_btn_disabled') ) {
-						return; // Abort
+						return; // Abort.
 				}
 
 
 				// Display popup confirmation message - proceed only if user accepts.
 				if ( ! window.confirm( STR_CPVISITS.text_move_to_hidden_list ) ){
-						// User clicked Cancel
-						return; // Abort
+						// User clicked Cancel.
+						return; // Abort.
 				}
 
 
@@ -48,7 +50,7 @@ const AjaxSetAsHidden = (function(){
 
 
 				$.ajax({
-						url: ajaxurl,  // Works by default in WP backend
+						url: ajaxurl,  // Works by default in WP backend.
 						type: 'POST',
 						data: {
 								action: 'StrCPVisits_db_toggle_hidden_reports',
@@ -59,7 +61,7 @@ const AjaxSetAsHidden = (function(){
 						success: function( response ) {
 								// console.log(response);
 
-								//wp_send_json_success
+								// wp_send_json_success.
 								if ( response.success === true ) {
 										// console.log(response.data);
 										handleSuccess( response.data );
@@ -70,8 +72,8 @@ const AjaxSetAsHidden = (function(){
 								}
 
 						}
-				}); // $.ajax
-		}); // !btn.click()
+				}); // ! $.ajax
+		}); // ! btn.click()
 
 
 
@@ -99,13 +101,13 @@ const AjaxSetAsHidden = (function(){
 
 
 		function handleSuccess( response_msg ){
-				// Hide all page reports sub-tabs
+				// Hide all page reports sub-tabs.
 				report_options_sub_tabs.hide();
-				// Hide selected reports from the visible list - and add the hidden class
+				// Hide selected reports from the visible list - and add the hidden class.
 				let selected_reports = selected_reports_checkboxes.closest('.StrCPVisits_db_list_row');
 				selected_reports.addClass('StrCPVisits-hidden-indicator');
 				selected_reports.hide();
-				selected_reports_checkboxes.prop('checked', false); // unselect all selected
+				selected_reports_checkboxes.prop('checked', false); // unselect all selected.
 				enableSelection();
 				publishEvents();
 				spinner.hide();
@@ -115,10 +117,12 @@ const AjaxSetAsHidden = (function(){
 
 
 		function publishEvents(){
-				// Disable Icon-Menu
+				// Disable Icon-Menu.
 				StrCPVevents.publish("StrCPVdisableIconMenu");
-				// Count how many reports there are under each page type and display number in format
-				// current_nr_in_list/total_nr_of_reports - ( visible and hidden lists )
+        /**
+         * Count how many reports there are under each page type and display number in format
+         * current_nr_in_list/total_nr_of_reports - ( visible and hidden lists ).
+         */
 				StrCPVevents.publish("StrCPVcountAndUpdatePageByTypeReportsNr");
 
 				// If everything is removed from the list - disable select-all option, else enable it.
@@ -135,8 +139,5 @@ const AjaxSetAsHidden = (function(){
 				response_box.slideDown();
 				enableSelection();
 		}
-
-
-
 
 })();

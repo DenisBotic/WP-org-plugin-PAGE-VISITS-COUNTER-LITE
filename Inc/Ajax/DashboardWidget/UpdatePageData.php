@@ -1,13 +1,15 @@
 <?php
-/*
-* AJAX UPDATE PAGE DATA - CALLBACK
-* DESC: Update page data in option "strcpv_visits_by_page".
-* @package Strongetic - count page visits
-*/
+/**
+ * AJAX UPDATE PAGE DATA - CALLBACK
+ *
+ * DESC: Update page data in option "strcpv_visits_by_page".
+ *
+ * @package Strongetic - count page visits
+ */
 
 namespace StrCPVisits_Inc\Ajax\DashboardWidget;
 
-//Exit if accessed directly.
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 		exit;
 }
@@ -21,7 +23,7 @@ class UpdatePageData extends Options {
 
 
 		public function register() {
-				add_action( 'wp_ajax_StrCPVisits_update_page_data', [$this, 'StrCPVisits_update_page_data'] ); // Logged in users
+				add_action( 'wp_ajax_StrCPVisits_update_page_data', [$this, 'StrCPVisits_update_page_data'] ); // Logged in users.
 		}
 
 
@@ -86,7 +88,7 @@ class UpdatePageData extends Options {
 
 
 
-				// UPDATE OPTION VALUE and SEND AJAX RESPONSE
+				// UPDATE OPTION VALUE and SEND AJAX RESPONSE.
 				$response = $this->updatePageVisitsNr( $page_name, $new_number );
 
 				if ( $response === true ) {
@@ -100,6 +102,6 @@ class UpdatePageData extends Options {
 
 				die();
 
-		}// ! save settings()
+		}
 
-}// ! class
+}

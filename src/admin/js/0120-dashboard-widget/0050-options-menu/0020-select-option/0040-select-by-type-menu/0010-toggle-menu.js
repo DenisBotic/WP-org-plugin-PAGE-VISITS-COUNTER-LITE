@@ -1,12 +1,15 @@
 
 /**
-* SELECT BY PAGE TYPE TOGGLE
-* DESC: On select button click display checkboxes instead of arrows in dashboar report list.
-* @since 1.0.0
-*/
+ * SELECT BY PAGE TYPE TOGGLE
+ *
+ * DESC: On select button click display checkboxes instead of arrows in dashboard report list.
+ *
+ * @since 1.0.0
+ */
 const SelectByTypeToggle = (function(){
 
-		// Properties
+
+		// Properties.
 		let select_btn = $('#StrCPVisits_js_db_select_menu_select_by_type_toggle');
 		let select_btn_txt = $('#StrCPVisits_js_db_select_menu_select_by_type_text');
 		let select_btn_close_txt = $('#StrCPVisits_js_db_select_menu_select_by_type_close_text');
@@ -14,11 +17,10 @@ const SelectByTypeToggle = (function(){
 
 
 
-		// Click event listener
+
+		// Click event listener.
 		select_btn.click(function(e){
 				e.preventDefault();
-
-
 				if ( select_menu.is(':visible') ) {
 						hideMenu();
 
@@ -33,7 +35,7 @@ const SelectByTypeToggle = (function(){
 
 		function displayMenu(){
 				select_menu.slideDown();
-				// Replace text
+				// Replace text.
 				select_btn_txt.hide();
 				select_btn_close_txt.show();
 		}
@@ -43,7 +45,7 @@ const SelectByTypeToggle = (function(){
 
 		function hideMenu(){
 				select_menu.slideUp();
-				// Replace text
+				// Replace text.
 				select_btn_txt.show();
 				select_btn_close_txt.hide();
 		}

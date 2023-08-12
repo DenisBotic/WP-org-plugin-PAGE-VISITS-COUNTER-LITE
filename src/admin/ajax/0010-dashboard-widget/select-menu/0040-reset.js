@@ -1,19 +1,21 @@
 /**
-* AJAX - SELECTION RESET
-* DESC: Reset only selected page reports to zero.
-* @since 1.0.0
-*/
+ * AJAX - SELECTION RESET
+ *
+ * DESC: Reset only selected page reports to zero.
+ *
+ * @since 1.0.0
+ */
 const AjaxSelectionReset = (function(){
 
 
-		// Base Properties
+		// Base Properties.
 		let BaseProperties = AjaxSelectMenuBase.getProperties();
 		let spinner = BaseProperties.spinner;
-		let response_box = BaseProperties.response_box; // Master reset is set in JS
+		let response_box = BaseProperties.response_box; // Master reset is set in JS.
 		let pages_list_wrapper = BaseProperties.pages_list_wrapper;
 
 
-		// Properties
+		// Properties.
 		let total_page_visits_spinner = $('#StrCPVisits-js-db-total-page-visits-spinner');
 		let reset_button = $("#StrCPVisits_js_db_select_reset_btn");
 		let selected_reports;
@@ -22,11 +24,11 @@ const AjaxSelectionReset = (function(){
 
 
 
-		// Form submit listener
+		// Form submit listener.
 		reset_button.click( function(e){
 				e.preventDefault();
 
-				// If Buton disabled -> ABORT
+				// If Button is disabled -> ABORT.
 				if ( $(this).hasClass('StrCPVisits_icon_btn_disabled') ) {
 						return; // Abort
 				}
@@ -34,8 +36,8 @@ const AjaxSelectionReset = (function(){
 
 				// Display popup confirmation message - proceed only if user accepts.
 				if ( ! window.confirm( STR_CPVISITS.text_reset_selected ) ){
-						// User clicked Cancel
-						return; // Abort
+						// User clicked Cancel.
+						return; // Abort.
 				}
 
 
@@ -44,7 +46,7 @@ const AjaxSelectionReset = (function(){
 
 
 				$.ajax({
-						url: ajaxurl,  // Works by default in WP backend
+						url: ajaxurl,  // Works by default in WP backend.
 						type: 'POST',
 						data: {
 								action: 'StrCPVisits_db_reset_page_type',
@@ -54,7 +56,7 @@ const AjaxSelectionReset = (function(){
 						success: function( response ) {
 								// console.log(response);
 
-								//wp_send_json_success
+								// wp_send_json_success.
 								if ( response.success === true ) {
 										// console.log(response.data);
 										handleSuccess( response.data );
@@ -65,8 +67,8 @@ const AjaxSelectionReset = (function(){
 								}
 
 						}
-				});//$.ajax
-		});//AJAX form.submit
+				});// ! $.ajax
+		});// ! AJAX form.submit
 
 
 
@@ -96,10 +98,10 @@ const AjaxSelectionReset = (function(){
 
 
 		function handleSuccess( response_msg ){
-				// Set all pages - visits number to zero - (by reseted page type)
+				// Set all pages - visits number to zero - (By page type of reset pages).
 				selected_reports.closest('.StrCPVisits_db_list_row').find('.StrCPVisits_db_list_visits_nr').text('0');
 				setTimeout(function(){
-						// Recalculate total page nr
+						// Recalculate total page nr.
 						StrCPVevents.publish("StrCPVrecalculateTotalPageNr");
 						hideSpinners();
 				},1000);
@@ -114,8 +116,5 @@ const AjaxSelectionReset = (function(){
 				response_box.html("<p class='StrCPVisits-error-msg'>" + response_msg + "</p>");
 				response_box.slideDown();
 		}
-
-
-
 
 })();

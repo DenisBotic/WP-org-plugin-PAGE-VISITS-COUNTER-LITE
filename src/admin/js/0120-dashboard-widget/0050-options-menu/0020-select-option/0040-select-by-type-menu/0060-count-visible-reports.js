@@ -1,9 +1,9 @@
 /**
-* COUNT VISIBLE REPORTS
-* DESC:
-* TYPE: Module revealing
-* @since 1.0.0
-*/
+ * COUNT VISIBLE REPORTS
+ *
+ * @type: Module revealing
+ * @since 1.0.0
+ */
 const CountVisibleReports = (function(){
 
 
@@ -26,7 +26,7 @@ const CountVisibleReports = (function(){
 		function init(){
 				setPropertyValues();
 
-				// For each page-type-name
+				// For each page-type-name.
 				for (let i = 0; i < select_by_type_options.length; i++) {
 						select_option = select_by_type_options.eq(i);
 						page_type_name = select_option.val();
@@ -43,7 +43,7 @@ const CountVisibleReports = (function(){
 
 		function setPropertyValues(){
 				select_by_type_options = $('.StrCPVisits-select-by-type-option');
-				// Get list type obj - {current_list_type: "list-hidden", open_list_type: "list-visible"}
+				// Get list type obj - {current_list_type: "list-hidden", open_list_type: "list-visible"}.
 				list_type_obj = ToggleHiddenReports.getListType();
 		}
 
@@ -51,15 +51,14 @@ const CountVisibleReports = (function(){
 
 
 		function detectListType(){
-
 				if ( list_type_obj.open_list_type === "list-hidden" ) {
-						// LIST HIDDEN
+						// LIST HIDDEN.
 						HiddenListCountHiddenReportsInPageType();
 				} else if( list_type_obj.open_list_type === "list-visible" ) {
-						// LIST VISIBLE
+						// LIST VISIBLE.
 						VisibleListCountReportsInPageType();
 				} else {
-						// Page is loaded - default list type is LIST-VISIBLE
+						// Page is loaded - default list type is LIST-VISIBLE.
 						// console.log('default list type');
 						VisibleListCountReportsInPageType();
 				}
@@ -91,13 +90,15 @@ const CountVisibleReports = (function(){
 				// Add counted number ( in list ) to the select-by-type element.
 				select_option_displayed_nr.text( nr );
 
-				// Hide select-by-type option if number of reports in current list is zero,
-				// else display the option.
+				/**
+				 * Hide select-by-type option if number of reports in current list is zero,
+				 * else display the option.
+				 */
 				if (nr == 0) {
-						select_option.prop('checked', false); // Uncheck
-						select_option.attr('disabled', true); // Disable
+						select_option.prop('checked', false); // Uncheck.
+						select_option.attr('disabled', true); // Disable.
 				} else {
-						select_option.attr('disabled', false); // Enable
+						select_option.attr('disabled', false); // Enable.
 				}
 		}
 

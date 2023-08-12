@@ -1,19 +1,24 @@
 <?php
 /**
-* SETTINGS - SCREENSHOT TAB
-* DESC: Displays screenshot tab html content - image/s
-* @since 1.0.0
-*/
+ * SETTINGS - SCREENSHOT TAB
+ *
+ * DESC: Displays screenshot tab html content - image/s.
+ *
+ * @since 1.0.0
+ */
 
-//Exit if accessed directly.
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 		exit;
 }
 
 
 
-// Getting variable on template part:
-// Get $key variable from parent template
+
+/**
+ * Getting variable on template part:
+ * Get $key variable from parent template
+ */
 $base_controler_data = get_query_var( 'StrCPVisits_base_controler_data' );
 ?>
 

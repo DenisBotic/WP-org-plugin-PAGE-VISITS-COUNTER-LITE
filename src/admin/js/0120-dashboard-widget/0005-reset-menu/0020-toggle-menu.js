@@ -1,13 +1,16 @@
 /**
-* TOGGLE RESET MENU
-* DESC: Click on reset button to toggle reset menu tab.
-* INFO: Close other two menu tabs before expanding reset menu tab.
-* @type MODULE REVEALING - close - this menu tab
-* @since 1.0.0
-*/
+ * TOGGLE RESET MENU
+ *
+ * DESC: Click on reset button to toggle reset menu tab.
+ * INFO: Close other two menu tabs before expanding reset menu tab.
+ *
+ * @type MODULE REVEALING - close - this menu tab
+ * @since 1.0.0
+ */
 const ToggleResetMenu = (function(){
 
-		// Properties
+
+		// Properties.
 		let btn = $('#StrCPVisits_js_db_list_reset_menu_btn');
 		let btn_wrapper = $('#StrCPVisits_js_db_list_reset_menu_btn_wrapper');
 		let reset_menu = $('#StrCPVisits_js_db_reset_menu');
@@ -15,10 +18,10 @@ const ToggleResetMenu = (function(){
 
 
 
-		// Click listener
+		// Click listener.
 		btn.click( function(){
 
-				// If button is disabled - ABORT
+				// If button is disabled - ABORT.
 				if ($(this).hasClass('StrCPVisits_icon_btn_disabled')) {
 						return; // Abort
 				}
@@ -27,17 +30,14 @@ const ToggleResetMenu = (function(){
 				CloseOtherMenus.except( ToggleResetMenu );
 
 
-				// Get fresh - filter menu el - and - Toggle info tab
+				// Get fresh - filter menu el - and - Toggle info tab.
 				if ($('#StrCPVisits_js_db_reset_menu').hasClass('hidden')) {
 						displayResetMenu();
 				} else {
 						hideResetMenu();
 				}
 
-
 		});
-
-
 
 
 
@@ -61,10 +61,9 @@ const ToggleResetMenu = (function(){
 
 
 
+
 		return {
 				close: hideResetMenu
 		};
-
-
 
 })();

@@ -1,7 +1,12 @@
 <?php
 /**
-* @package Strongetic - count page visits
-*/
+ * ENQUEUE
+ *
+ * DESC: Enqueue scripts, styles and localize script.
+ *
+ * @package Strongetic - count page visits
+ * @since 1.0.0
+ */
 
 namespace StrCPVisits_Inc\Base;
 
@@ -12,13 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use \StrCPVisits_Inc\Base\BaseController;
 
-
-
-/**
- * ENQUEUE
- * DESC: Enqueue scripts, styles and localize script.
- * @since 1.0.0
- */
 class Enqueue extends BaseController {
 
 

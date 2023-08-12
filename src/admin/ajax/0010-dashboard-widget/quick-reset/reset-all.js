@@ -1,8 +1,10 @@
 /**
-* AJAX - RESET ALL in dashboard widget
-* DESC: Reset all visits number to zero - excl. TOTAL INDEPENDANT Loads & Reloads box.
-* @since 1.0.0
-*/
+ * AJAX - RESET ALL in dashboard widget
+ *
+ * DESC: Reset all visits number to zero - excl. TOTAL INDEPENDENT Loads & Reloads box.
+ *
+ * @since 1.0.0
+ */
 const AjaxResetAll = (function(){
 
 
@@ -10,16 +12,16 @@ const AjaxResetAll = (function(){
 		let total_page_visits_spinner = $('#StrCPVisits-js-db-total-page-visits-spinner');
 		let btn_spinner = $("#StrCPVisits-js-db-reset-all-spinner");
 		let btn = $('#StrCPVisits_js_db_reset_all_btn');
-		let response_box = $("#StrCPVisits_js_db_reset_response_box"); // Master reset is set in JS
+		let response_box = $("#StrCPVisits_js_db_reset_response_box"); // Master reset is set in JS.
 
 
-		// Form submit listener
+		// Form submit listener.
 		btn.click( function(){
 				displaySpinners();
 
 
 				$.ajax({
-						url: ajaxurl,  // Works by default in WP backend
+						url: ajaxurl,  // Works by default in WP backend.
 						type: 'POST',
 						data: {
 								action: 'StrCPVisits_db_reset_all',
@@ -29,7 +31,7 @@ const AjaxResetAll = (function(){
 						success: function( response ) {
 								// console.log(response);
 
-								//wp_send_json_success
+								// wp_send_json_success.
 								if ( response.success === true ) {
 										// console.log(response.data);
 										handleSuccess( response.data );
@@ -40,8 +42,8 @@ const AjaxResetAll = (function(){
 								}
 
 						}
-				});//$.ajax
-		});//AJAX form.submit
+				});// ! $.ajax
+		});// ! AJAX form.submit
 
 
 
@@ -65,10 +67,10 @@ const AjaxResetAll = (function(){
 
 
 		function handleSuccess( response_msg ){
-				// Set all pages visits number to zero
+				// Set all pages visits number to zero.
 				$('.StrCPVisits_db_list_visits_nr').text('0');
 				setTimeout(function(){
-						// Recalculate total page nr
+						// Recalculate total page nr.
 						StrCPVevents.publish("StrCPVrecalculateTotalPageNr");
 						hideSpinners();
 				},1000);
@@ -83,8 +85,5 @@ const AjaxResetAll = (function(){
 				response_box.html("<p class='StrCPVisits-error-msg'>" + response_msg + "</p>");
 				response_box.slideDown();
 		}
-
-
-
 
 })();

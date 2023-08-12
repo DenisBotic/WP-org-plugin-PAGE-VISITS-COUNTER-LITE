@@ -1,15 +1,18 @@
 <?php
 /**
-* SETTINGS - INSTALLATION TAB
-* DESC: Displays installation tab html content.
-* @since 1.0.0
-*/
+ * SETTINGS - INSTALLATION TAB
+ *
+ * DESC: Displays installation tab html content.
+ *
+ * @since 1.0.0
+ */
 
-//Exit if accessed directly.
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 		exit;
 }
 ?>
+
 
 
 

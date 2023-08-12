@@ -1,22 +1,19 @@
 <?php
 /**
-* @package Strongetic - count page visits
-*/
+ * INCLUDE ALL AJAX FILES
+ *
+ * @package Strongetic - count page visits
+ */
 
-//Exit if accessed directly.
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 		exit;
 }
 
 
-/**
-* INCLUDE ALL AJAX FILES
-*/
 
 
-
-
-// COUNTER
+// COUNTER.
 if( file_exists( dirname( __FILE__ ) . '/Counter/TotalVisits.php' ) ) {
 		require_once dirname(__FILE__) . '/Counter/TotalVisits.php';
 }
@@ -24,7 +21,7 @@ if( file_exists( dirname( __FILE__ ) . '/Counter/TotalVisits.php' ) ) {
 
 
 
-// SETTINGS PAGE
+// SETTINGS PAGE.
 if( file_exists( dirname( __FILE__ ) . '/SettingsPage/SaveSettings.php' ) ) {
 		require_once dirname(__FILE__) . '/SettingsPage/SaveSettings.php';
 }
@@ -32,7 +29,7 @@ if( file_exists( dirname( __FILE__ ) . '/SettingsPage/SaveSettings.php' ) ) {
 
 
 
-// DASHBOARD
+// DASHBOARD.
 if( file_exists( dirname( __FILE__ ) . '/DashboardWidget/UpdateTotalVisitsNr.php' ) ) {
 		require_once dirname(__FILE__) . '/DashboardWidget/UpdateTotalVisitsNr.php';
 }

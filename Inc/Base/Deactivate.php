@@ -1,17 +1,16 @@
 <?php
 /**
-* @package Strongetic - count page visits
-*/
+ * DEACTIVATE
+ *
+ * @package Strongetic - count page visits
+ */
 
 namespace StrCPVisits_Inc\Base;
 
-//Exit if accessed directly.
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 		exit;
 }
-
-
-
 
 class Deactivate
 {

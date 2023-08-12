@@ -1,14 +1,19 @@
 <?php
 /**
-* SETTINGS - SETTINGS TAB
-* DESC: Displays settings tab html content.
-* @since 1.0.6
-*/
+ * SETTINGS - SETTINGS TAB
+ *
+ * DESC: Displays settings tab html content.
+ *
+ * @since 1.0.6
+ */
 
-//Exit if accessed directly.
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 		exit;
 }
+
+
+
 
 $StrCpv_counter_default_style_dark = "  display: inline-block !important;<br>
 																				padding-top: 0 !important;<br>

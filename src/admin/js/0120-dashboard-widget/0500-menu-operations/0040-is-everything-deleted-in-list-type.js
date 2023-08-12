@@ -1,21 +1,23 @@
 /**
-* IS EVERYTHING DELETED IN LIST - hidden or visible
-* DESC: Check if all page reports are deleted in the current list,
-*       and if it is, disable the select-all option.
-* INFO: Invoked in ajax delete-page.js and 0050-delete.js
-* TYPE: Module revealing
-* @since 1.0.0
-*/
+ * IS EVERYTHING DELETED IN LIST - hidden or visible
+ *
+ * DESC: Check if all page reports are deleted in the current list,
+ *       and if it is, disable the select-all option.
+ * INFO: Invoked in ajax delete-page.js and 0050-delete.js
+ *
+ * @type Module revealing
+ * @since 1.0.0
+ */
 const IsEverythingDeletedInList = (function(){
 
 
-		// Properties
+		// Properties.
 		let list_type_obj;
 
 
 
 
-		// Listen to ajax delete responses
+		// Listen to ajax delete responses.
 		StrCPVevents.subscribe("StrCPVisEverythingDeletedInList", init);
 
 
@@ -30,7 +32,7 @@ const IsEverythingDeletedInList = (function(){
 
 
 		function setProperties(){
-				// Get list type obj - {current_list_type: "list-hidden", open_list_type: "list-visible"}
+				// Get list type obj - {current_list_type: "list-hidden", open_list_type: "list-visible"}.
 				list_type_obj = ToggleHiddenReports.getListType();
 		}
 
@@ -40,13 +42,13 @@ const IsEverythingDeletedInList = (function(){
 		function detectListType(){
 
 				if ( list_type_obj.open_list_type === "list-hidden" ) {
-						// LIST HIDDEN
+						// LIST HIDDEN.
 						HiddenListCountAllHiddenReports();
 				} else if( list_type_obj.open_list_type === "list-visible" ) {
-						// LIST VISIBLE
+						// LIST VISIBLE.
 						VisibleListCountAllReports();
 				} else {
-						// Page is loaded - default list type is LIST-VISIBLE
+						// Page is loaded - default list type is LIST-VISIBLE.
 						// console.log('default list type');
 						VisibleListCountAllReports();
 				}
@@ -88,6 +90,5 @@ const IsEverythingDeletedInList = (function(){
 		return {
 				init : init
 		};
-
 
 })();

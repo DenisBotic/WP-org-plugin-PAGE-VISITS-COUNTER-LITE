@@ -1,13 +1,15 @@
 <?php
-/*
-* AJAX DELETE PAGE - CALLBACK
-* DESC: delete page from option "strcpv_visits_by_page" with all its data and respond.
-* @package Strongetic - count page visits
-*/
+/**
+ * AJAX DELETE PAGE - CALLBACK
+ *
+ * DESC: delete page from option "strcpv_visits_by_page" with all its data and respond.
+ *
+ * @package Strongetic - count page visits
+ */
 
 namespace StrCPVisits_Inc\Ajax\DashboardWidget;
 
-//Exit if accessed directly.
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 		exit;
 }
@@ -30,31 +32,33 @@ class DeletePage extends Options {
 		public function StrCPVisits_delete_page() {
 
 
-				// Check if data are submited from coresponding form (by using wp_nonce)
+				// Check if data are submitted from corresponding form by using wp_nonce.
 				if( !check_ajax_referer( 'StrCPVisits_settings', 'security' ) ) {
 						return;
 				}
 
 
-				// Prevent form data submision for none admin users
+				// Prevent form data submission for none admin users.
 				if( !current_user_can( 'manage_options' ) ) {
 						return;
 				}
 
 
 				/**
-				* PAGE NAME - it should be set - else return an error message
-				* INFO: No need for hard core security because it is only going to be compared
-				*       with asoc-array keys retrieved from the DB option.
-				* VALIDATION: page_name can be anything.
-				*             There is no point to restriciting the max nr of characters as it is
-				*             only going to be compared with asoc-array keys retrieved from the DB option.
-				* @since 1.0.0
-				*/
+				 * PAGE NAME - it should be set - else return an error message
+				 *
+				 * INFO: No need for hard core security because it is only going to be compared
+				 *       with asoc. array keys retrieved from the DB option.
+				 * VALIDATION: page_name can be anything.
+				 *             There is no point to restricting the max nr of characters as it is
+				 *             only going to be compared with asoc. array keys retrieved from the DB option.
+				 *
+				 * @since 1.0.0
+				 */
 				if( isset( $_POST['page_name'] ) ) {
 						$page_name = sanitize_text_field( $_POST['page_name'] );
 				} else {
-						wp_send_json_error( esc_html__("Error - Page name missing!", "page-visits-counter-lite") ); // Abort
+						wp_send_json_error( esc_html__("Error - Page name missing!", "page-visits-counter-lite") ); // Abort.
 				}
 
 
@@ -72,6 +76,6 @@ class DeletePage extends Options {
 
 				die();
 
-		}// ! save settings()
+		}
 
-}// ! class
+}

@@ -1,9 +1,11 @@
 /**
-* TOGGLE HIDDEN REPORTS
-* DESC: On options eyes icons click - toggle hidden and visible reports in reports list.
-* TYPE: Module revealing
-* @since 1.0.0
-*/
+ * TOGGLE HIDDEN REPORTS
+ *
+ * DESC: On options eyes icons click - toggle hidden and visible reports in reports list.
+ *
+ * @type Module revealing
+ * @since 1.0.0
+ */
 const ToggleHiddenReports = (function(){
 
 
@@ -19,9 +21,9 @@ const ToggleHiddenReports = (function(){
 
 		toggle_button.click(function(){
 
-				// If button disabled -> Abort
+				// If button disabled -> Abort.
 				if ( toggle_button.hasClass('disabled') ) {
-						return; // Abort
+						return; // Abort.
 				}
 
 				setPropertyValues();
@@ -38,11 +40,11 @@ const ToggleHiddenReports = (function(){
 
 				// Check which icon is visible/active and accordingly set current list type.
 				if ( btn_icon_hidden.is(':visible') ) {
-						// HIDDEN
+						// HIDDEN.
 						list_type = "list-hidden";
 
 				} else {
-						// VISIBLE
+						// VISIBLE.
 						list_type = "list-visible";
 				}
 		}
@@ -51,24 +53,26 @@ const ToggleHiddenReports = (function(){
 
 
 		/**
-		* CHECK SELECTIONS IN CURRENT LIST
-		* DESC: Check if at least one checkbox is selected in the current report list and
-		*       if it is, display a confirm popup message with warning that everything that
-		*       is selected in the list is going to be deselected before switching to another report list.
-		* @since 1.0.0
-		*/
+		 * CHECK SELECTIONS IN CURRENT LIST
+		 *
+		 * DESC: Check if at least one checkbox is selected in the current report list and
+		 *       if it is, display a confirm popup message with warning that everything that
+		 *       is selected in the list is going to be deselected before switching to another report list.
+		 *
+		 * @since 1.0.0
+		 */
 		function checkSelectionsInCurrentList() {
 
-				// Cheeck if at least one visible checkbox is selected in the current report list.
-				let selected = isChkboxsSelected(); // true || false
+				// Check if at least one visible checkbox is selected in the current report list.
+				let selected = isChkboxsSelected(); // TRUE ||FALSE.
 				if ( selected === false ) {
-						return; // Abort
+						return; // Abort.
 				}
 
-				// Display default Confirm - popup message
+				// Display default Confirm - popup message.
 				if ( ! window.confirm( getMessage() ) ){
-						// User clicked Cancel
-						return; // Abort
+						// User clicked Cancel.
+						return; // Abort.
 				}
 
 				resetSelectionsInCurrentList();
@@ -85,12 +89,12 @@ const ToggleHiddenReports = (function(){
 				let checkbox_checked_nr = $('.StrCPVisits_db_list_chkbox:checked').length;
 				if ( checkbox_checked_nr > 0) {
 
-						// SOMETHING IS SELECTED
+						// SOMETHING IS SELECTED.
 						return true;
 
 				} else {
 
-						// NOTHING SELECTED
+						// NOTHING IS SELECTED.
 						switchReport();
 						return false;
 				}
@@ -100,14 +104,14 @@ const ToggleHiddenReports = (function(){
 
 
 		function getMessage(){
-				// Set message
+				// Set message.
 				let message;
-				// Check the current list type
+				// Check the current list type.
 				if ( list_type === "list-visible") {
-						// Message for Hidden list
+						// Message for Hidden list.
 						message = STR_CPVISITS.text_switching_to_hidden_list;
 				} else if( list_type === "list-hidden" ) {
-						// Message for Visible list
+						// Message for Visible list.
 						message = STR_CPVISITS.text_switching_to_visible_list;
 				}
 				return message;
@@ -117,13 +121,15 @@ const ToggleHiddenReports = (function(){
 
 
 		/**
-		* RESET SELECTIONS IN CURRENT LIST
-		* DESC: Reset all selections in the current list:
-		*       - select all / deselect all
-		*       - select by type
-		*       - reports in the list
-		* @since 1.0.0
-		*/
+		 * RESET SELECTIONS IN CURRENT LIST
+		 *
+		 * DESC: Reset all selections in the current list:
+		 *       - select all / deselect all
+		 *       - select by type
+		 *       - reports in the list
+		 *
+		 * @since 1.0.0
+		 */
 		function resetSelectionsInCurrentList() {
 				SelectAllToggle.reset();
 				SelectingByType.reset();
@@ -135,14 +141,11 @@ const ToggleHiddenReports = (function(){
 
 
 		function switchReport() {
-
 				if ( list_type === "list-visible") {
 						displayHiddenReports();
-
 				} else if( list_type === "list-hidden" ) {
 						displayVisibleReports();
 				}
-
 		}
 
 
@@ -152,15 +155,15 @@ const ToggleHiddenReports = (function(){
 
 				activateIconBtnHidden();
 
-				// If there is no report options visible
+				// If there is no report options visible.
 				if (report_options_visible.length == 0) {
-						// Display hidden reports
-						report_options_hidden.css('display','flex'); // show;
+						// Display hidden reports.
+						report_options_hidden.css('display','flex'); // Show.
 				} else {
 						// Animate hidining visible reports and after tha display hidden reports.
 						report_options_visible.fadeOut('slow', function(){
-								// Display hidden reports
-								report_options_hidden.css('display','flex'); // show
+								// Display hidden reports.
+								report_options_hidden.css('display','flex'); // Show.
 						});
 				}
 
@@ -171,7 +174,7 @@ const ToggleHiddenReports = (function(){
 
 
 		function activateIconBtnHidden(){
-				// Toggle Buton - change icon and styling
+				// Toggle Button - change icon and styling.
 				toggle_button.addClass('button_active_background_color');
 				btn_icon_hidden.show();
 				btn_icon_visible.hide();
@@ -184,16 +187,16 @@ const ToggleHiddenReports = (function(){
 
 				activateIconBtnVisible();
 
-				// If there is no hidden report
+				// If there is no hidden report.
 				if (report_options_hidden.length == 0) {
-						// Display report options visible
-						report_options_visible.css('display','flex'); // show;
+						// Display report options visible.
+						report_options_visible.css('display','flex'); // Show.
 
 				} else {
 						// Animate hiding hidden reports and after that display visible reports.
 						report_options_hidden.fadeOut('slow',function(){
-								// Display report options visible
-								report_options_visible.css('display','flex'); // show
+								// Display report options visible.
+								report_options_visible.css('display','flex'); // Show.
 
 						});
 				}
@@ -205,7 +208,7 @@ const ToggleHiddenReports = (function(){
 
 
 		function activateIconBtnVisible(){
-				// Toggle Buton - change icon and styling
+				// Toggle Button - change icon and styling.
 				toggle_button.removeClass('button_active_background_color');
 				btn_icon_hidden.hide();
 				btn_icon_visible.show();
@@ -215,17 +218,19 @@ const ToggleHiddenReports = (function(){
 
 
 		function doAllAdditionalTasks(){
-				// Hide all page reports sub-tabs
+				// Hide all page reports sub-tabs.
 				report_options_sub_tabs.hide();
 
-				// Count how many reports there are under each page type and display number in format
-				// current_nr_in_list/total_nr_of_reports - ( visible and hidden lists )
+				/**
+				 * Count how many reports there are under each page type and display the number in format
+				 * current_nr_in_list/total_nr_of_reports. ( For visible and hidden lists. )
+				 */
 				CountVisibleReports.init();
 
 				// If everything is deleted from the list - disable select-all option, else enable it.
 				StrCPVevents.publish("StrCPVisEverythingDeletedInList");
 
-				// Close search menu
+				// Close search menu.
 				SearchToggle.close();
 		}
 
@@ -233,11 +238,13 @@ const ToggleHiddenReports = (function(){
 
 
 		/**
-		* GET LIST TYPE
-		* DESC: Create response obj which holds data about current list_type  and list type that is going to be displayed.
-		* INFO: Invoked from outside this module.
-		* @since 1.0.0
-		*/
+		 * GET LIST TYPE
+		 *
+		 * DESC: Create response obj which holds data about current list_type  and list type that is going to be displayed.
+		 * INFO: Invoked from outside this module.
+		 *
+		 * @since 1.0.0
+		 */
 		function getListType(){
 
 				let current_list_type = "";
@@ -264,8 +271,7 @@ const ToggleHiddenReports = (function(){
 
 
 		return {
-						getListType : getListType
+				getListType : getListType
 		};
-
 
 })();

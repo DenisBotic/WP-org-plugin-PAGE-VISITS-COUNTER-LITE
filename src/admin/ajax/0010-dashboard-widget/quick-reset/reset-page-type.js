@@ -1,16 +1,18 @@
 /**
-* AJAX - RESET PAGE TYPE in dashboard widget
-* DESC: Reset page type visits number only to zero.
-* @since 1.0.0
-*/
+ * AJAX - RESET PAGE TYPE in dashboard widget
+ *
+ * DESC: Reset page type visits number only to zero.
+ *
+ * @since 1.0.0
+ */
 const AjaxResetPageType = (function(){
 
 
-		// Properties
+		// Properties.
 		let total_page_visits_spinner = $('#StrCPVisits-js-db-total-page-visits-spinner');
 		let btn_spinner;
 		let btns = $('.StrCPVisits_db_reset_button');
-		let response_box = $("#StrCPVisits_js_db_reset_response_box"); // Master reset is set in JS
+		let response_box = $("#StrCPVisits_js_db_reset_response_box"); // Master reset is set in JS.
 		let clicked_button;
 		let page_type_name;
 		let pages_list_wrapper = $('#StrCPVisits_js_db_list_wrapper');
@@ -18,14 +20,14 @@ const AjaxResetPageType = (function(){
 		let page_names_arr = [];
 
 
-		// Form submit listener
+		// Form submit listener.
 		btns.click( function(){
 				setProperties( $(this) );
 				displaySpinners( $(this) );
 				page_names_arr = getPageNamesByPageType();
 
 				$.ajax({
-						url: ajaxurl,  // Works by default in WP backend
+						url: ajaxurl,  // Works by default in WP backend.
 						type: 'POST',
 						data: {
 								action: 'StrCPVisits_db_reset_page_type',
@@ -35,7 +37,7 @@ const AjaxResetPageType = (function(){
 						success: function( response ) {
 								// console.log(response);
 
-								//wp_send_json_success
+								// wp_send_json_success.
 								if ( response.success === true ) {
 										// console.log(response.data);
 										handleSuccess( response.data );
@@ -46,8 +48,8 @@ const AjaxResetPageType = (function(){
 								}
 
 						}
-				});//$.ajax
-		});//AJAX form.submit
+				});// ! $.ajax
+		});// ! AJAX form.submit
 
 
 
@@ -64,7 +66,7 @@ const AjaxResetPageType = (function(){
 		function getPageNamesByPageType(){
 				let page_titles_arr = [];
 				page_rows = pages_list_wrapper.find("section[data-strcpv-page-type='" + page_type_name + "']");
-				// Get page names
+				// Get page names.
 				for (var i = 0; i < page_rows.length; i++) {
 						let page_row = page_rows.eq(i);
 						let page_name = page_row.attr('data-strcpv-page-name');
@@ -96,10 +98,10 @@ const AjaxResetPageType = (function(){
 
 
 		function handleSuccess( response_msg ){
-				// Set all pages - visits number to zero - (by reseted page type)
+				// Set all pages - visits number to zero - (by page type of reset pages).
 				page_rows.find('.StrCPVisits_db_list_visits_nr').text('0');
 				setTimeout(function(){
-						// Recalculate total page nr
+						// Recalculate total page nr.
 						StrCPVevents.publish("StrCPVrecalculateTotalPageNr");
 						hideSpinners();
 				},1000);
@@ -114,8 +116,5 @@ const AjaxResetPageType = (function(){
 				response_box.html("<p class='StrCPVisits-error-msg'>" + response_msg + "</p>");
 				response_box.slideDown();
 		}
-
-
-
 
 })();

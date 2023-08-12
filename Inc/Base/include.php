@@ -1,18 +1,18 @@
 <?php
 /**
-* @package Strongetic - count page visits
-*/
+ * INCLUDE ALL BASE FILES
+ *
+ * @package Strongetic - count page visits
+ */
 
-//Exit if accessed directly.
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 		exit;
 }
 
 
 
-/**
-* INCLUDE ALL BASE FILES
-*/
+
 if( file_exists( dirname( __FILE__ ) . '/Activate.php' ) ) {
 		require_once dirname(__FILE__) . '/Activate.php';
 }

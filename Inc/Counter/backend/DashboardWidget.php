@@ -1,11 +1,14 @@
 <?php
-/*
-* DESCRIPTION: Display page visits report list in admim dashboard.
-* @package Strongetic - count page visits
-*/
+/**
+ * DASHBOARD WIDGET
+ *
+ * DESCRIPTION: Display page visits report list in the WordPress admin dashboard.
+ *
+ * @package Strongetic - count page visits
+ */
 namespace StrCPVisits_Inc\Counter\backend;
 
-//Exit if accessed directly.
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 		exit;
 }
@@ -23,12 +26,12 @@ class DashboardWidget extends BaseController {
 
 
 
-		// Register new dashboar widget
+		// Register new dashboard widget.
 		public function add_dashboard_widgets(){
 			wp_add_dashboard_widget(
-				'strongetic_page_visits_counter_light', // Widget slug
-				'ALL PAGE VISITS', // Widget title
-				array( $this, 'displayWidgetContent') // Function name to display the widget
+				'strongetic_page_visits_counter_light', // Widget slug.
+				'ALL PAGE VISITS', // Widget title.
+				array( $this, 'displayWidgetContent') // Function name to display the widget.
 			);
 		}
 
@@ -36,16 +39,18 @@ class DashboardWidget extends BaseController {
 
 
 		/**
-		* DASHBOARD ALL PAGE VISITS
-		* INFO: This func. is invoked by dashboard widget register callback.
-		* DESC: Output the contents of new dashboard widget.
-		* @since 1.0.0
-		*/
+		 * DASHBOARD ALL PAGE VISITS
+		 *
+		 * INFO: This function is invoked by dashboard widget register callback.
+		 * DESC: Output the contents of new dashboard widget.
+		 *
+		 * @since 1.0.0
+		 */
 		public function displayWidgetContent() {
 
-				// Get pages data
+				// Get pages data.
 				$pages_data = $this->get_pages_data();
-				// Set default classes for info box and quick info button
+				// Set default classes for info box and quick info button.
 				$default_classes = $this->getDefaultInfoBoxClass( $pages_data );
 
 
@@ -53,7 +58,9 @@ class DashboardWidget extends BaseController {
 
 				/**
 				 * WP-HOOK - StrCPVisits_db_widget_wrapper_start
-				 * DESC: Fires at the beggining of the dashboard widget content.
+				 *
+				 * DESC: Fires at the beginning of the dashboard widget content.
+				 *
 				 * @since 1.0.0
 				 */
 				do_action( 'StrCPVisits_db_widget_wrapper_start' );
@@ -74,7 +81,9 @@ class DashboardWidget extends BaseController {
 						<?php
 								/**
 								 * WP-HOOK - StrCPVisits_db_widget_after_total_visits_boxes
-								 * DESC: Fires at the end of the dashboard widget total visist boxes
+								 *
+								 * DESC: Fires at the end of the dashboard widget total visits boxes.
+								 *
 								 * @since 1.0.0
 								 */
 								do_action( 'StrCPVisits_db_widget_after_total_visits_boxes' );
@@ -94,7 +103,7 @@ class DashboardWidget extends BaseController {
 														<span id="StrCPVisits_js_db_list_reset_menu_btn" class="StrCPVisits_db_list_reset_menu_btn StrCPVisits_icon_btn dashicons dashicons-image-rotate <?php echo $default_classes['reset_menu_icon']; ?>"></span>
 												</div>
 										</div>
-										<i>( Not countig page refresh/reload. )</i>
+										<i>( Not counting page refresh/reload. )</i>
 								</div>
 
 
@@ -344,15 +353,20 @@ class DashboardWidget extends BaseController {
 
 				/**
 				 * WP-HOOK - StrCPVisits_db_widget_wrapper_end_before_js
+				 *
 				 * DESC: Fires at the end of the dashboard widget content but before js.
+				 *
 				 * @since 1.0.0
 				 */
 				do_action( 'StrCPVisits_db_widget_wrapper_end_before_js' );
 
 
 
-				// ADD JS and AJAX
-				// DESC: They must be added here, otherwise it is to early and it will not work.
+				/**
+				 * ADD JS and AJAX
+				 *
+				 * DESC: They must be added here, otherwise it is to early and it will not work.
+				 */
 				wp_enqueue_script('StrCPVisits_js');
 				wp_enqueue_script('StrCPVisits_ajax');
 
@@ -360,7 +374,9 @@ class DashboardWidget extends BaseController {
 
 				/**
 				 * WP-HOOK - StrCPVisits_db_widget_wrapper_end_after_js
+				 *
 				 * DESC: Fires at the end of the dashboard widget content but after js.
+				 *
 				 * @since 1.0.0
 				 */
 				do_action( 'StrCPVisits_db_widget_wrapper_end_after_js' );
@@ -371,21 +387,23 @@ class DashboardWidget extends BaseController {
 
 
 		/**
-		* GET PAGES DATA
-		* DESC: Get visits by page option data.
-		*       If there are no data display default values and quick info tab.
-		*       Else, count total page visits and
-		*       build HTML page visits row list.
-		* RETURN: array with:
-		*                   - total_page_visits property
-		*                   - HTML property that holds entire list of page visits
-		* @since 1.0.0
-		*/
+		 * GET PAGES DATA
+		 *
+		 * DESC: Get visits by page option data.
+		 *       If there are no data display default values and quick info tab.
+		 *       Else, count total page visits and
+		 *       build HTML page visits row list.
+		 * RETURN: array with:
+		 *                   - Total_page_visits property.
+		 *                   - HTML property that holds entire list of page visits.
+		 *
+		 * @since 1.0.0
+		 */
 		public function get_pages_data(){
-				// Check if option has data
+				// Check if option has data.
 				$visits_by_page_data_ser = get_option( STRCPV_OPT_NAME["visits_by_page"] );
 				if ( $visits_by_page_data_ser == false ) {
-						// There is no data -> return default values
+						// There is no data -> return default values.
 						$data_arr = [
 								"html_visits" => "",
 								"total_visits" => 0,
@@ -393,19 +411,21 @@ class DashboardWidget extends BaseController {
 						];
 						return $data_arr; // Abort further exec.
 			}
-				// Option has data
+				// Option has data.
 				return $this->getDataValues( $visits_by_page_data_ser );
 		}
 
 
 
 		/**
-		* GET DATA VALUES
-		* DESC: Bulid list report by page name
-		*       Count total page visits
-		*       Do not display quick explanation
-		* @since 1.0.0
-		*/
+		 * GET DATA VALUES
+		 *
+		 * DESC: Build list report by page name,
+		 *       Count total page visits,
+		 *       Do not display quick explanation.
+		 *
+		 * @since 1.0.0
+		 */
 		public function getDataValues( $visits_by_page_data_ser ){
 				$visits_by_page_data_arr = maybe_unserialize( $visits_by_page_data_ser );
 				$html_visits = "";
@@ -413,10 +433,10 @@ class DashboardWidget extends BaseController {
 				$nr_of_rows = 0;
 				foreach ( $visits_by_page_data_arr as $key => $value ) {
 
-						// Count total page visits
+						// Count total page visits.
 						$total_page_visits = $total_page_visits + (int)$value;
 
-						// Build HTML visits by page name - list
+						// Build HTML visits by page name - list.
 						if ($key === "Archives: Products") {
 								// Archive: products should have additional descr. (SHOP) at the end.
 								$shop_page = " ( SHOP )";
@@ -424,25 +444,25 @@ class DashboardWidget extends BaseController {
 								$shop_page = "";
 						}
 
-						// Get page type (the word before ":" or "All-Others")
+						// Get page type - (the word before ":" or "All-Others").
 						$page_type = $this->getPageType( $key );
 
-						// Count rows
+						// Count rows.
 						$nr_of_rows = $nr_of_rows + 1;
-						// Set accordion class for the first menu option
+						// Set accordion class for the first menu option.
 						if ( $nr_of_rows === 1) {
 								$accordion_class_first = "StrCPVisits_accordion_first";
 						} else {
 								$accordion_class_first = "";
 						}
 
-						// Set option to Visible or Hidden List
-						$hidden_report_class = $this->getHiddenReportClass( $key ); // "StrCPVisits-hidden-indicator" || ""
+						// Set option to Visible or Hidden List.
+						$hidden_report_class = $this->getHiddenReportClass( $key ); // "StrCPVisits-hidden-indicator" || "".
 
-						// Prepare input array data as a string - page-type-name, page-name
-						$input_value_str = json_encode( [$page_type, $key] ); // array as a string
+						// Prepare input array data as a string - page-type-name, page-name.
+						$input_value_str = json_encode( [$page_type, $key] ); // array as a string.
 
-						// ROW START
+						// ROW START.
 						$html_visits .= "<section class='StrCPVisits_db_list_row StrCPVisits_accordion_btn " . $accordion_class_first . " " . $hidden_report_class . "' data-StrCPV-page-type='" . $page_type . "' data-StrCPV-page-name='" . $key . "'>";
 						$html_visits .=     "<div class='StrCPVisits_db_list_chkbox_toggle_wrapper hidden'>";
 						$html_visits .=         "<div class='StrCPVisits_db_list_chkbox_wrapper'>";
@@ -453,7 +473,7 @@ class DashboardWidget extends BaseController {
 						$html_visits .=     "<span class='StrCPVisits_db_list_visits_nr StrCPVisits-visible-indicator'>" . $value . "</span>";
 						$html_visits .= "</section>";
 
-														// ROW SubTAB
+														// ROW SubTAB.
 						$html_visits .= "<div class='StrCPVisits_db_list_row_tab StrCPVisits_accordion_panel' data-StrCPV-page-type='" . $page_type . "'>";
 						$html_visits .=     "<div class='StrCPVisits_db_list_row_msg_box'>";
 						$html_visits .=     "</div>";
@@ -476,7 +496,7 @@ class DashboardWidget extends BaseController {
 						$html_visits .=         "<a href='#' class='StrCPVisits-dblist-delete-page-btn' data-StrCPVisits-dblist-page-name='" . $key . "'><span class='dashicons dashicons-trash'></span></a>";
 						$html_visits .=     "</div>";
 						$html_visits .= "</div>";
-						// ROW END
+						// ROW END.
 			}
 
 				$data_arr = [
@@ -491,22 +511,22 @@ class DashboardWidget extends BaseController {
 
 
 		public static function getHiddenReportClass( $page_name ){
-				// GET HIDDEN PAGE REPORTS
+				// GET HIDDEN PAGE REPORTS.
 				$hidden_page_reports_ser = get_option( STRCPV_OPT_NAME['hidden_page_reports'] );
-				// CHECK IF REPORTS HAS DATA
+				// CHECK IF REPORTS HAS DATA.
 				if ( $hidden_page_reports_ser === false) {
-						return ""; // Page name not in hidden list
+						return ""; // Page name is not in hidden list.
 				}
 				// Convert serialized to array
 				$hidden_page_reports_arr = maybe_unserialize( $hidden_page_reports_ser );
 
-				// Check if page name is in hidden_page_reports array
+				// Check if page name is in hidden_page_reports array.
 				if ( in_array( $page_name, $hidden_page_reports_arr ) ) {
-					// PAGE NAME IS IN HIDEN ARRAY
+					// PAGE NAME IS IN HIDDEN ARRAY.
 						return "StrCPVisits-hidden-indicator";
 				} else {
-						// NO PAGE NAME IN HIDDEN ARRAY
-					return ""; // No class
+						// NO PAGE NAME IN HIDDEN ARRAY.
+					return ""; // No class.
 				}
 		}
 
@@ -514,19 +534,21 @@ class DashboardWidget extends BaseController {
 
 
 		/**
-		* GET PAGE TYPE
-		* DESC: Check if page name belongs to a page type by ":" in page name.
-		*       If there is no ":" in page name - set page type to "All-Others"
-		* @since 1.0.0
-		*/
+		 * GET PAGE TYPE
+		 *
+		 * DESC: Check if page name belongs to a page type by ":" in page name.
+		 *       If there is no ":" in page name - set page type to "All-Others".
+		 *
+		 * @since 1.0.0
+		 */
 		public static function getPageType( $page_name ) {
-				// Default page type
+				// Default page type.
 				$page_type = "All-Others";
-				// Check if page name string has ":"
+				// Check if page name string has ":".
 				if (strpos($page_name, ':') !== false) {
-						// It has ":" -> extract the word before becasue it is the page type
+						// It has ":" -> extract the word before because it is the page type.
 						$arr = explode(":", $page_name, 2);
-						$page_type = $arr[0]; // Get first array
+						$page_type = $arr[0]; // Get the first array.
 				}
 				return $page_type;
 		}
@@ -535,14 +557,16 @@ class DashboardWidget extends BaseController {
 
 
 		/**
-		* GET DEFAULT INFO BOX CLASS
-		* DESC: If there is no page visits yet, display info box
-		*       else, hide it.
-		* @since 1.0.0
-		*/
+		 * GET DEFAULT INFO BOX CLASS
+		 *
+		 * DESC: If there is no page visits yet, display info box
+		 *       else, hide it.
+		 *
+		 * @since 1.0.0
+		 */
 		public function getDefaultInfoBoxClass( $pages_data ) {
 				if ( $pages_data["displ_expl"] === true ) {
-						// There is no data yet - display explanation by default
+						// There is no data yet - display explanation by default.
 						$info_box_class = "";
 						$quick_info_btn_class = "StrCPVisits_icon_btn_disabled";
 						$filter_menu_icon_class = "StrCPVisits_icon_btn_disabled";
@@ -572,10 +596,12 @@ class DashboardWidget extends BaseController {
 
 
 		/**
-		* DISPLAY TOTAL PAGE VISITS
-		* DESC: Display total page visits - excl. page reloads
-		* @since 1.0.0
-		*/
+		 * DISPLAY TOTAL PAGE VISITS
+		 *
+		 * DESC: Display total page visits - excl. page reloads.
+		 *
+		 * @since 1.0.0
+		 */
 		public function displayTotalPageVisits( $pages_data ){
 				?>
 						<!-- HTML CONTENT -->
@@ -597,13 +623,15 @@ class DashboardWidget extends BaseController {
 
 
 		/**
-		* DISPLAY TOTAL VISITS
-		* DESC: Display all visits - incl. page reloads.
-		* @since 1.0.0
-		*/
+		 * DISPLAY TOTAL VISITS
+		 *
+		 * DESC: Display all visits - incl. page reloads.
+		 *
+		 * @since 1.0.0
+		 */
 		public function displayTotalVisits(){
 				$option_name = STRCPV_OPT_NAME["total_visits"];
-				$total_visits = ( get_option( $option_name ) === false ) ? 0 : get_option( $option_name ); // Set default value to 0 if there are no data
+				$total_visits = ( get_option( $option_name ) === false ) ? 0 : get_option( $option_name ); // Set default value to 0 if there are no data.
 				?>
 						<div class='StrCPVisits_db_total_visits_box'>
 							<p>TOTAL INDEPENDENT<br>Loads & Reloads</p>
@@ -617,11 +645,13 @@ class DashboardWidget extends BaseController {
 
 
 		/**
-		* ADD HIDDEN EDIT TOTAL VISITS BOX
-		* DESC: Display edit total visits number form.
-		* INFO: It will slide in  - on total visits edit button click.
-		* @since 1.0.0
-		*/
+		 * ADD HIDDEN EDIT TOTAL VISITS BOX
+		 *
+		 * DESC: Display edit total visits number form.
+		 * INFO: It will slide in  - on total visits edit button click.
+		 *
+		 * @since 1.0.0
+		 */
 		public function addHiddenEditTotalVisitsBox( $total_visits ){
 				?>
 						<div id="StrCPVisits_js_db_edit_total_visits_box" class="StrCPVisits_db_edit_total_visits_box">
@@ -648,7 +678,7 @@ class DashboardWidget extends BaseController {
 
 
 		public function getExplanation(){
-				// Green text
+				// Green text.
 				$html_expl =  "<div class='StrCPVisits_db_counting_text_box'>";
 				$html_expl .=   "<p>A page is <strong>going to appear</strong> here and <br>visit is going to be counted after one of the listed<br>user roles visits the page:</p>";
 				$html_expl .=   "<ul>";
@@ -661,7 +691,7 @@ class DashboardWidget extends BaseController {
 				$html_expl .=       "</ul>";
 				$html_expl .= "</div>";
 
-				// Red text
+				// Red text.
 				$html_expl .= "<div class='StrCPVisits_db_not_counting_text_box'>";
 				$html_expl .=   "<p>A page is <strong>not going to</strong> appear here and visit is not<br>going to be counted if it is visited by user role:</p>";
 				$html_expl .=   "<ul>";
@@ -673,13 +703,13 @@ class DashboardWidget extends BaseController {
 				$html_expl .=   "</ul>";
 				$html_expl .= "</div>";
 
-				// Red Sentence
+				// Red Sentence.
 				$html_expl .= "<p class='StrCPVisits_db_not_counting_sentence'>A page visit is not going to be counted if page is refreshed.</p>";
 
-				// Red Sentence
+				// Red Sentence.
 				$html_expl .= "<p class='StrCPVisits_db_not_counting_sentence'>( Please flush the cache memory on all places as described in plugin installation instructions. )</p>";
 
-				// Settings button
+				// Settings button.
 				$html_expl .= "<div class='StrCPVisits_db_settings_btn_wrapper'>";
 				$html_expl .=   "<a href='options-general.php?page=strongetic-page-visits-counter-lite' class='button'>";
 				$html_expl .=       "<span>Settings</span>";

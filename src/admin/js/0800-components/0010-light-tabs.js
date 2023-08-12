@@ -1,16 +1,20 @@
 /**
-* LIGHT TABS MENU - COMPONENT
-* @since 1.0.0
-*/
+ * LIGHT TABS MENU - COMPONENT
+ *
+ * @since 1.0.0
+ */
 var StrCPVisitsLightTabs = (function() {
 
-		// Click Listener - works on dynamically added tab options
+
+		// Click Listener - works on dynamically added tab options.
 		$(document).on('click', '.StrCPVisits-light-tabs > ul > li', function(){
 				lightTabs( $(this) );
 		});
 
-		function lightTabs( option_clicked ){
 
+
+
+		function lightTabs( option_clicked ){
 				var light_tabs = option_clicked.closest('.StrCPVisits-light-tabs');
 				var class_active = light_tabs.attr('data-active-class');
 				var index_nr = light_tabs.find('ul li').index( option_clicked );

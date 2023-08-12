@@ -1,11 +1,12 @@
 /**
-* AJAX - UPDATE PAGE VISITS NUMBER in dashboard widget - page list
-* @since 1.0.0
-*/
+ * AJAX - UPDATE PAGE VISITS NUMBER in dashboard widget - page list
+ *
+ * @since 1.0.0
+ */
 const AjaxUpdatePageVisitsNr = (function(){
 
 
-		// Properties
+		// Properties.
 		let total_page_visits_spinner = $('#StrCPVisits-js-db-total-page-visits-spinner');
 		let submit_form_spinner;
 		let response_box; // Master reset is set in JS
@@ -13,21 +14,21 @@ const AjaxUpdatePageVisitsNr = (function(){
 		let row_nr;
 
 
-		// Form submit listener
+		// Form submit listener.
 		$('#StrCPVisits_js_db_list_wrapper').on('submit', '.StrCPVisits-dblist-page-visits-form', function(evt){
 				evt.preventDefault();
 
-				// Display spinner aside total page visits number
+				// Display spinner aside total page visits number.
 				StrCPVevents.publish("StrCPVTotalPageNrDisplaySpinner");
 
 				setPropertyValues( $(this) );
 				displaySpinners();
 
-				// Get form data
+				// Get form data.
 				let formData = $(this).serialize();
 
 				$.ajax({
-						url: ajaxurl,  // Works by default in WP backend
+						url: ajaxurl,  // Works by default in the WP backend.
 						type: 'POST',
 						data: {
 								action: 'StrCPVisits_update_page_data',
@@ -37,7 +38,7 @@ const AjaxUpdatePageVisitsNr = (function(){
 						success: function( response ) {
 								// console.log(response);
 
-								//wp_send_json_success
+								// wp_send_json_success.
 								if ( response.success === true ) {
 										// console.log(response.data);
 										handleSuccess( response.data );
@@ -48,17 +49,19 @@ const AjaxUpdatePageVisitsNr = (function(){
 								}
 
 						}
-				});//$.ajax
-		});//AJAX form.submit
+				});// ! $.ajax
+		});// ! AJAX form.submit
 
 
 
 
 		/**
-		* SET GLOB VARIABLE VALUES
-		* DESC: Set values for variables: response_box, row_nr, and new_nr.
-		* @since 1.0.0
-		*/
+		 * SET GLOB VARIABLE VALUES
+     *
+		 * DESC: Set values for variables: response_box, row_nr, and new_nr.
+     *
+		 * @since 1.0.0
+		 */
 		function setPropertyValues( submited_form ){
 				// Get current SubROW el.
 				let sub_tab = submited_form.closest('.StrCPVisits_db_list_row_tab ');
@@ -66,12 +69,12 @@ const AjaxUpdatePageVisitsNr = (function(){
 				submit_form_spinner = sub_tab.find('.StrCPVisits-loading-spinner-wrapper-toggle');
 				// Get current response box el.
 				response_box = sub_tab.find('.StrCPVisits_db_list_row_msg_box');
-				// Get curent page visits nr el.
+				// Get current page visits nr el.
 				row_nr = sub_tab.prev('section').find('.StrCPVisits_db_list_visits_nr');
 
-				// Get new number (int)
+				// Get new number (int).
 				new_nr = submited_form.find('.StrCPVisits-dblist-page-visits-nr').val();
-				// Remove HTML tags before displaying data
+				// Remove HTML tags before displaying data.
 				new_nr = StrCPV.stripHTMLtags( new_nr );
 		}
 
@@ -87,11 +90,11 @@ const AjaxUpdatePageVisitsNr = (function(){
 
 
 		function handleSuccess( response_msg ){
-				// Update page visits number
+				// Update page visits number.
 				row_nr.html( new_nr );
-				// Hide edit page nr spinner
+				// Hide edit page nr spinner.
 				submit_form_spinner.hide();
-				// Recalculate total page nr
+				// Recalculate total page nr.
 				StrCPVevents.publish("StrCPVrecalculateTotalPageNr");
 		}
 
@@ -99,15 +102,12 @@ const AjaxUpdatePageVisitsNr = (function(){
 
 
 		function handleError( response_msg ){
-				// Hide spinners
+				// Hide spinners.
 				submit_form_spinner.hide();
 				total_page_visits_spinner.hide();
-				// Display response in response box.
+				// Display response in response box..
 				response_box.html("<p class='StrCPVisits-error-msg'>" + response_msg + "</p>");
 				response_box.slideDown();
 		}
-
-
-
 
 })();

@@ -1,15 +1,18 @@
 <?php
 /**
-* SETTINGS - DOCUMENTATION TAB
-* DESC: Displays documentation tab html content.
-* @since 1.0.0
-*/
+ * SETTINGS - DOCUMENTATION TAB
+ *
+ * DESC: Displays documentation tab html content.
+ *
+ * @since 1.0.0
+ */
 
-//Exit if accessed directly.
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 		exit;
 }
 ?>
+
 
 
 

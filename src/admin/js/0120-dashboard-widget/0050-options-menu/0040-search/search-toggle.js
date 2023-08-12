@@ -1,12 +1,14 @@
 /**
-* SEARCH OPTION TOGGLE
-* DESC: On search button click display/hide search menu.
-* @since 1.0.0
-*/
+ * SEARCH OPTION TOGGLE
+ *
+ * DESC: On search button click display/hide search menu.
+ *
+ * @since 1.0.0
+ */
 const SearchToggle = (function(){
 
 
-		// Properties
+		// Properties.
 		let search_btn = $('#StrCPVisits_js_db_options_menu_search_btn');
 		let search_menu = $('#StrCPVisits_js_db_search_menu');
 		let search_box = $('#StrCPVisits_js_db_search_input_field');
@@ -14,12 +16,12 @@ const SearchToggle = (function(){
 
 
 
-		// Click Event listener
+		// Click Event listener.
 		search_btn.click(function(){
 
-				// If button disabled -> Abort
+				// If button disabled -> Abort.
 				if ( search_btn.hasClass('disabled') ) {
-						return; // Abort
+						return; // Abort.
 				}
 
 
@@ -56,6 +58,5 @@ const SearchToggle = (function(){
 		return {
 				close : hideMenu
 		};
-
 
 })();

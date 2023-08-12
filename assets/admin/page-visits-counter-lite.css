@@ -3,6 +3,7 @@
  */
 /**
  * BUTTONS
+ *
  * INFO: WP buttons styles are used by default
  */
 /**
@@ -110,7 +111,7 @@
 }
 
 .StrCPVisits-light-tabs > ul {
-  margin-botom: 20px;
+  margin-bottom: 20px;
 }
 
 .StrCPVisits-light-tabs > ul > li {

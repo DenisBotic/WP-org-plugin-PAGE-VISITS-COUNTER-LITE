@@ -1,15 +1,18 @@
 <?php
 /**
-* SETTINGS - ABOUT TAB
-* DESC: Displays about tab html content.
-* @since 1.0.0
-*/
+ * SETTINGS - ABOUT TAB
+ *
+ * DESC: Displays about tab html content.
+ *
+ * @since 1.0.0
+ */
 
-//Exit if accessed directly.
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 		exit;
 }
 ?>
+
 
 
 

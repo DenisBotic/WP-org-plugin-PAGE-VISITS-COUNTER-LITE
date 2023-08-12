@@ -1,8 +1,11 @@
 <?php
 /**
-* DESCRIPTION: display settings link in plugin aside activate/deactivate option
-* @package Strongetic - count page visits
-*/
+ * SETTINGS LINK
+ *
+ * DESCRIPTION: display settings link in plugin aside activate/deactivate option.
+ *
+ * @package Strongetic - count page visits
+ */
 
 namespace StrCPVisits_Inc\Base;
 

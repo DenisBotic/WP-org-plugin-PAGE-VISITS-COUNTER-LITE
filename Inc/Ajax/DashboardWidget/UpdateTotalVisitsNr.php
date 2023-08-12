@@ -1,13 +1,15 @@
 <?php
-/*
-* AJAX UPDATE TOTAL VISITS NR - CALLBACK
-* DESC: Update total visits data in option "strcpv_total_visits".
-* @package Strongetic - count page visits
-*/
+/**
+ * AJAX UPDATE TOTAL VISITS NR - CALLBACK
+ *
+ * DESC: Update total visits data in option "strcpv_total_visits".
+ *
+ * @package Strongetic - count page visits
+ */
 
 namespace StrCPVisits_Inc\Ajax\DashboardWidget;
 
-//Exit if accessed directly.
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 		exit;
 }
@@ -21,7 +23,7 @@ class UpdateTotalVisitsNr extends Options {
 
 
 		public function register() {
-				add_action( 'wp_ajax_StrCPVisits_update_total_visits_nr', [$this, 'StrCPVisits_update_total_visits_nr'] ); // Logged in users
+				add_action( 'wp_ajax_StrCPVisits_update_total_visits_nr', [$this, 'StrCPVisits_update_total_visits_nr'] ); // Logged in users.
 		}
 
 
@@ -79,6 +81,6 @@ class UpdateTotalVisitsNr extends Options {
 
 				die();
 
-		}// ! save settings()
+		}
 
-}// ! class
+}

@@ -1,8 +1,10 @@
 /**
-* FUNCTIONS GLOB MODULE - END
-* DESC: return property and/or method name to make it publically available.
-* @since 1.0.0
-*/
+ * FUNCTIONS GLOB MODULE - END
+ *
+ * DESC: return property and/or method name to make it publicly available.
+ *
+ * @since 1.0.0
+ */
 
 return {
 		stripHTMLtags: stripHTMLtags,
@@ -11,4 +13,4 @@ return {
 };
 
 
-})();// functions-gob - module end
+})();// functions-glob - module end.

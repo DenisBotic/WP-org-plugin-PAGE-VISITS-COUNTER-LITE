@@ -1,22 +1,24 @@
 /**
-* AJAX - SELECT MENU BASE
-* DESC: Base module for icon-menu options available after at least one page report is selected.
-*       It holds properties and methodes that are used in options:
-*       set-as-visible, set-as-hidden, reset, and delete.
-* TYPE: Module revealing
-* @since 1.0.0
-*/
+ * AJAX - SELECT MENU BASE
+ *
+ * DESC: Base module for icon-menu options available after at least one page report is selected.
+ *       It holds properties and methods that are used in options:
+ *       set-as-visible, set-as-hidden, reset, and delete.
+ * TYPE: Module revealing.
+ *
+ * @since 1.0.0
+ */
 const AjaxSelectMenuBase = (function(){
 
 
-		// Properties
+		// Properties.
 		let spinner = $('#StrCPVisits-js-db-select-icon-menu-spinner');
-		let response_box = $("#StrCPVisits_js_db_select_response_box"); // Master reset is set in JS
+		let response_box = $("#StrCPVisits_js_db_select_response_box"); // Master reset is set in JS.
 		let pages_list_wrapper = $('#StrCPVisits_js_db_list_wrapper');
 		let all_list_checkboxes = $('.StrCPVisits_db_list_chkbox');
 		let report_options_sub_tabs = $('.StrCPVisits_db_list_row_tab');
 
-		// Properties getter
+		// Properties getter.
 		function getProperties(){
 				return {
 						"spinner" : spinner,
@@ -40,7 +42,7 @@ const AjaxSelectMenuBase = (function(){
 
 		function getSelectedPageNamesArr( selected_reports ){
 				let page_titles_arr = [];
-				// Get page names
+				// Get page names.
 				for (var i = 0; i < selected_reports.length; i++) {
 						let page_row = selected_reports.eq(i);
 						let page_name = page_row.attr('data-strcpv-inp-page-name');
@@ -58,6 +60,5 @@ const AjaxSelectMenuBase = (function(){
 				getSelectedReports : getSelectedReports,
 				getSelectedPageNamesArr : getSelectedPageNamesArr
 		};
-
 
 })();
