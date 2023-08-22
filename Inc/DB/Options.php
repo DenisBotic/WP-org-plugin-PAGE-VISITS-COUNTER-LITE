@@ -272,7 +272,7 @@ class Options {
 				// Respond.
 				return [
 								"update" => $response, // TRUE || FALSE.
-								"nr" => $new_visit // number of visits.
+								"nr" => $new_visit     // Number of visits.
 				];
 		}
 
