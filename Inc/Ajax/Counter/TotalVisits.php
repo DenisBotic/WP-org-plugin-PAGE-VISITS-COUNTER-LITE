@@ -21,10 +21,9 @@ use StrCPVisits_Inc\DB\Options;
 class TotalVisits extends Options {
 
 
-
 		public function register() {
 				add_action( 'wp_ajax_nopriv_StrCPVisits_update_total_visits', [$this,'StrCPVisits_update_total_visits'] ); // Not logged in users
-				add_action( 'wp_ajax_StrCPVisits_update_total_visits', [$this, 'StrCPVisits_update_total_visits'] ); // Logged in users
+				add_action( 'wp_ajax_StrCPVisits_update_total_visits', [$this, 'StrCPVisits_update_total_visits'] ); // Logged in users.
 		}
 
 
@@ -34,9 +33,9 @@ class TotalVisits extends Options {
 
 
 				// DISABLED - so it will work properly if website is cashed.
-				// // Check if data are submitted from corresponding ajax request. (by using wp_nonce)
+				// // Check if data are submitted from corresponding ajax request. ( By using wp_nonce. )
 				// if( !check_ajax_referer( 'StrCPVisits_frontend', 'security' ) ) {
-				// 		return; // Abort
+				// 		return; // Abort.
 				// }
 
 
@@ -81,11 +80,11 @@ class TotalVisits extends Options {
 				if ( is_user_logged_in() ){
 
 						$user_role = wp_get_current_user()->roles[0];
-						if ( $user_role != "subscriber" &&      // allow subscriber
-								 $user_role != "customer" &&        // allow custome
-								 $user_role != "author" &&          // allow author
-								 $user_role != "contributor" &&     // allow contributor
-								 $user_role != "pending_user") {    // allow pending_user
+						if ( $user_role != "subscriber" &&      // allow subscriber.
+								 $user_role != "customer" &&        // allow custome.
+								 $user_role != "author" &&          // allow author.
+								 $user_role != "contributor" &&     // allow contributor.
+								 $user_role != "pending_user") {    // allow pending_user.
 
 
 
@@ -93,7 +92,7 @@ class TotalVisits extends Options {
 
 										 // Logged in with not counting user role.
 										 $final_response['msg'] = esc_html__("Logged in with a not counting user role!", "page-visits-counter-lite");
-										 // Not counting this page response
+										 // Not counting this page response.
 										 if ( isset( $_POST['page_data']['abort'] )) {
 												 if ( $_POST['page_data']['abort'] === "true" ) {
 														 // Set response
@@ -129,10 +128,10 @@ class TotalVisits extends Options {
 				 * @since 1.0.0
 				 */
 				if( !empty( $_SERVER['HTTP_CLIENT_IP'] ) ){
-						// IP from share internet
+						// IP from share internet.
 						$ip = $_SERVER['HTTP_CLIENT_IP'];
 				} else if ( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-						// IP pass from proxy
+						// IP pass from proxy.
 						$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
 				} else {
 						$ip = $_SERVER['REMOTE_ADDR'];
@@ -148,8 +147,8 @@ class TotalVisits extends Options {
 
 				/**
 				 * PAGE DATA - it should be set - else abort
-				 * DATA TYPE: Asoc. array
 				 *
+				 * @param asoc-array $_POST['page_data']
 				 * @since 1.0.0
 				 */
 				if( !isset( $_POST['page_data'] ) ) {
