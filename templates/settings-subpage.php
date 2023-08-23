@@ -11,137 +11,137 @@
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
-		exit;
+	exit;
 }
 
 
 
 
-function strongeticSubpageVisitsCounterLight( $base_controler_data ){
+function strongeticSubpageVisitsCounterLight( $base_controler_data ) {
 
-			/**
-			 * Setting variable.
-			 * Make key available to the template parts.
-			 */
-			set_query_var( 'StrCPVisits_base_controler_data', $base_controler_data );
-?>
+	/**
+	 * Setting variable.
+	 * Make key available to the template parts.
+	 */
+	set_query_var( 'StrCPVisits_base_controler_data', $base_controler_data );
+	?>
 
-		<!-- HTML CONTENT -->
-		<div class="StrCPVisits_main-wrapper">
-				<h1><?php esc_html_e("Page Visits Counter Lite - Settings", "page-visits-counter-lite"); ?></h1>
+	<!-- HTML CONTENT -->
+	<div class="StrCPVisits_main-wrapper">
+		<h1><?php esc_html_e( 'Page Visits Counter Lite - Settings', 'page-visits-counter-lite' ); ?></h1>
+		<br>
+
+		<!-- LIGHT TABS -->
+		<div class="StrCPVisits-light-tabs" data-active-class="StrCPVisits-form-tab-active">
+
+			<ul>
+				<li class="StrCPVisits-form-tab-active"><?php esc_html_e( 'Settings', 'page-visits-counter-lite' ); ?></li>
+				<li><?php esc_html_e( 'Counter', 'page-visits-counter-lite' ); ?></li>
+				<li><?php esc_html_e( 'Documentation', 'page-visits-counter-lite' ); ?></li>
+				<li><?php esc_html_e( 'Screenshot', 'page-visits-counter-lite' ); ?></li>
+				<li><?php esc_html_e( 'Installation', 'page-visits-counter-lite' ); ?></li>
+				<li><?php esc_html_e( 'Debugging', 'page-visits-counter-lite' ); ?></li>
+				<li><?php esc_html_e( 'FAQ', 'page-visits-counter-lite' ); ?></li>
+				<li><?php esc_html_e( 'About', 'page-visits-counter-lite' ); ?></li>
+			</ul>
+
+			<!-- SETTINGS -->
+			<div class="StrCPVisits-form-tab">
 				<br>
+				<?php
+				// INCLUDE SETTINGS TAB CONTENT.
+				if ( file_exists( dirname( __FILE__ ) . '/template-parts/settings-tab.php' ) ) {
+					require_once dirname( __FILE__ ) . '/template-parts/settings-tab.php';
+				}
+				?>
+			</div>
 
-				<!-- LIGHT TABS -->
-				<div class="StrCPVisits-light-tabs" data-active-class="StrCPVisits-form-tab-active">
+			<!-- COUNTER -->
+			<div class="StrCPVisits-form-tab">
+				<br>
+				<?php
+				// INCLUDE COUNTER TAB CONTENT.
+				if ( file_exists( dirname( __FILE__ ) . '/template-parts/counter-tab.php' ) ) {
+					require_once dirname( __FILE__ ) . '/template-parts/counter-tab.php';
+				}
+				?>
+			</div>
 
-						<ul>
-								<li class="StrCPVisits-form-tab-active"><?php esc_html_e("Settings", "page-visits-counter-lite"); ?></li>
-								<li><?php esc_html_e("Counter", "page-visits-counter-lite"); ?></li>
-								<li><?php esc_html_e("Documentation", "page-visits-counter-lite"); ?></li>
-								<li><?php esc_html_e("Screenshot", "page-visits-counter-lite"); ?></li>
-								<li><?php esc_html_e("Installation", "page-visits-counter-lite"); ?></li>
-								<li><?php esc_html_e("Debugging", "page-visits-counter-lite"); ?></li>
-								<li><?php esc_html_e("FAQ", "page-visits-counter-lite"); ?></li>
-								<li><?php esc_html_e("About", "page-visits-counter-lite"); ?></li>
-						</ul>
+			<!-- DOCUMENTATION -->
+			<div class="StrCPVisits-form-tab">
+				<br>
+				<?php
+				// INCLUDE DOCUMENTATION TAB CONTENT.
+				if ( file_exists( dirname( __FILE__ ) . '/template-parts/documentation-tab.php' ) ) {
+					require_once dirname( __FILE__ ) . '/template-parts/documentation-tab.php';
+				}
+				?>
+			</div>
 
-						<!-- SETTINGS -->
-						<div class="StrCPVisits-form-tab">
-								<br>
-								<?php
-								// INCLUDE SETTINGS TAB CONTENT.
-								if( file_exists( dirname( __FILE__ ) . '/template-parts/settings-tab.php' ) ) {
-										require_once( dirname(__FILE__) . '/template-parts/settings-tab.php' );
-								}
-								?>
-						</div>
+			<!-- SCREENSHOT -->
+			<div class="StrCPVisits-form-tab">
+				<br>
+				<?php
+				// INCLUDE SCREENSHOT TAB CONTENT.
+				if ( file_exists( dirname( __FILE__ ) . '/template-parts/screenshot-tab.php' ) ) {
+					require_once dirname( __FILE__ ) . '/template-parts/screenshot-tab.php';
+				}
+				?>
+			</div>
 
-						<!-- COUNTER -->
-						<div class="StrCPVisits-form-tab">
-								<br>
-								<?php
-								// INCLUDE COUNTER TAB CONTENT.
-								if( file_exists( dirname( __FILE__ ) . '/template-parts/counter-tab.php' ) ) {
-										require_once( dirname(__FILE__) . '/template-parts/counter-tab.php' );
-								}
-								?>
-						</div>
+			<!-- INSTALLATION -->
+			<div class="StrCPVisits-form-tab">
+				<br>
+				<?php
+				// INCLUDE INSTALLATION TAB CONTENT.
+				if ( file_exists( dirname( __FILE__ ) . '/template-parts/installation-tab.php' ) ) {
+					require_once dirname( __FILE__ ) . '/template-parts/installation-tab.php';
+				}
+				?>
+			</div>
 
-						<!-- DOCUMENTATION -->
-						<div class="StrCPVisits-form-tab">
-								<br>
-								<?php
-								// INCLUDE DOCUMENTATION TAB CONTENT.
-								if( file_exists( dirname( __FILE__ ) . '/template-parts/documentation-tab.php' ) ) {
-										require_once( dirname(__FILE__) . '/template-parts/documentation-tab.php' );
-								}
-								?>
-						</div>
+			<!-- DEBUGGING -->
+			<div class="StrCPVisits-form-tab">
+				<br>
+				<?php
+				// INCLUDE DEBUGGING TAB CONTENT.
+				if ( file_exists( dirname( __FILE__ ) . '/template-parts/debugging-tab.php' ) ) {
+					require_once dirname( __FILE__ ) . '/template-parts/debugging-tab.php';
+				}
+				?>
+			</div>
 
-						<!-- SCREENSHOT -->
-						<div class="StrCPVisits-form-tab">
-								<br>
-								<?php
-								// INCLUDE SCREENSHOT TAB CONTENT.
-								if( file_exists( dirname( __FILE__ ) . '/template-parts/screenshot-tab.php' ) ) {
-										require_once( dirname(__FILE__) . '/template-parts/screenshot-tab.php' );
-								}
-								?>
-						</div>
+			<!-- FAQ -->
+			<div class="StrCPVisits-form-tab">
+				<br>
+				<?php
+				// INCLUDE FAQ TAB CONTENT.
+				if ( file_exists( dirname( __FILE__ ) . '/template-parts/faq.php' ) ) {
+					require_once dirname( __FILE__ ) . '/template-parts/faq.php';
+				}
+				?>
+			</div>
 
-						<!-- INSTALLATION -->
-						<div class="StrCPVisits-form-tab">
-								<br>
-								<?php
-								// INCLUDE INSTALLATION TAB CONTENT.
-								if( file_exists( dirname( __FILE__ ) . '/template-parts/installation-tab.php' ) ) {
-										require_once( dirname(__FILE__) . '/template-parts/installation-tab.php' );
-								}
-								?>
-						</div>
+			<!-- ABOUT -->
+			<div class="StrCPVisits-form-tab">
+				<br>
+				<?php
+				// INCLUDE ABOUT TAB CONTENT.
+				if ( file_exists( dirname( __FILE__ ) . '/template-parts/about-tab.php' ) ) {
+					require_once dirname( __FILE__ ) . '/template-parts/about-tab.php';
+				}
+				?>
+			</div>
 
-						<!-- DEBUGGING -->
-						<div class="StrCPVisits-form-tab">
-								<br>
-								<?php
-								// INCLUDE DEBUGGING TAB CONTENT.
-								if( file_exists( dirname( __FILE__ ) . '/template-parts/debugging-tab.php' ) ) {
-										require_once( dirname(__FILE__) . '/template-parts/debugging-tab.php' );
-								}
-								?>
-						</div>
+		</div>
 
-						<!-- FAQ -->
-						<div class="StrCPVisits-form-tab">
-								<br>
-								<?php
-								// INCLUDE FAQ TAB CONTENT.
-								if( file_exists( dirname( __FILE__ ) . '/template-parts/faq.php' ) ) {
-										require_once( dirname(__FILE__) . '/template-parts/faq.php' );
-								}
-								?>
-						</div>
+	</div> <!-- main wrapper end -->
 
-						<!-- ABOUT -->
-						<div class="StrCPVisits-form-tab">
-								<br>
-								<?php
-								// INCLUDE ABOUT TAB CONTENT.
-								if( file_exists( dirname( __FILE__ ) . '/template-parts/about-tab.php' ) ) {
-										require_once( dirname(__FILE__) . '/template-parts/about-tab.php' );
-								}
-								?>
-						</div>
-
-				</div>
-
-		</div> <!-- main wrapper end -->
-
-		<!-- HTML CONTENT END -->
-<?php
-// ADD JS and AJAX scripts.
-wp_enqueue_script('StrCPVisits_js');
-wp_enqueue_script('StrCPVisits_ajax');
-// DO NOT WRITE ANYTHING BELOW THIS LINE.
+	<!-- HTML CONTENT END -->
+	<?php
+	// ADD JS and AJAX scripts.
+	wp_enqueue_script( 'StrCPVisits_js' );
+	wp_enqueue_script( 'StrCPVisits_ajax' );
+	// DO NOT WRITE ANYTHING BELOW THIS LINE.
 }
 ?>

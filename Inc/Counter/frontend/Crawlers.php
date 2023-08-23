@@ -9,11 +9,11 @@
 //
 // if ( isset( $header_arr["User-Agent"] ) ) {
 //
-//     // Treba li ovo sanitizirati ili esc
-//     $user_agent = $header_arr["User-Agent"];
-//     echo $user_agent;
+//	 // Treba li ovo sanitizirati ili esc
+//	 $user_agent = $header_arr["User-Agent"];
+//	 echo $user_agent;
 //
-//     var_dump($header_arr);
+//	 var_dump($header_arr);
 // }
 
 
@@ -34,20 +34,20 @@
 //
 //   // A list of some common words used only for bots and crawlers.
 //   $bot_identifiers = array(
-//     'bot',
-//     'slurp',
-//     'crawler',
-//     'spider',
-//     'curl',
-//     'facebook',
-//     'fetch',
+//	 'bot',
+//	 'slurp',
+//	 'crawler',
+//	 'spider',
+//	 'curl',
+//	 'facebook',
+//	 'fetch',
 //   );
 //
 //   // See if one of the identifiers is in the UA string.
 //   foreach ($bot_identifiers as $identifier) {
-//     if (strpos($user_agent, $identifier) !== FALSE) {
-//       return TRUE;
-//     }
+//	 if (strpos($user_agent, $identifier) !== FALSE) {
+//	   return TRUE;
+//	 }
 //   }
 //
 //   return FALSE;

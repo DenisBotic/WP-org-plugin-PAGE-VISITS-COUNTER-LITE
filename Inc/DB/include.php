@@ -7,16 +7,15 @@
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
-		exit;
+	exit;
 }
 
 
 
 
 // BACKEND.
-if( file_exists( dirname( __FILE__ ) . '/Options.php' ) ) {
-		require_once dirname(__FILE__) . '/Options.php';
+if ( file_exists( dirname( __FILE__ ) . '/Options.php' ) ) {
+	require_once dirname( __FILE__ ) . '/Options.php';
 }
-
 
 ?>

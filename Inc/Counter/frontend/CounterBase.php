@@ -14,10 +14,6 @@ use \StrCPVisits_Inc\Base\BaseController;
 // PARENT CLASS FOR ALL SUB CLASSES ON FRONTEND.
 class CounterBase extends BaseController {
 
-
-
-
-
-
 }
+
 ?>

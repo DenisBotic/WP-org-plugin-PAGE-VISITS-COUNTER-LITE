@@ -9,13 +9,14 @@ namespace StrCPVisits_Inc\Base;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
-		exit;
+	exit;
 }
 
-class Deactivate
-{
-		public static function deactivate() {
-				flush_rewrite_rules();
-		}
+class Deactivate {
+
+
+	public static function deactivate() {
+		flush_rewrite_rules();
+	}
 
 }

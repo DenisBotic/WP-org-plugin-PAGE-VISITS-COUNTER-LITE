@@ -7,16 +7,15 @@
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
-		exit;
+	exit;
 }
 
 
 
 
 // BACKEND.
-if( file_exists( dirname( __FILE__ ) . '/SettingsApi.php' ) ) {
-		require_once dirname(__FILE__) . '/SettingsApi.php';
+if ( file_exists( dirname( __FILE__ ) . '/SettingsApi.php' ) ) {
+	require_once dirname( __FILE__ ) . '/SettingsApi.php';
 }
-
 
 ?>
