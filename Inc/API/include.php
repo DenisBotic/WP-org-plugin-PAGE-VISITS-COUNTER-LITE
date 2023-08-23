@@ -14,8 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 // BACKEND.
-if ( file_exists( dirname( __FILE__ ) . '/SettingsApi.php' ) ) {
-	require_once dirname( __FILE__ ) . '/SettingsApi.php';
+if ( file_exists( dirname( __FILE__ ) . '/class-settings-api.php' ) ) {
+	require_once dirname( __FILE__ ) . '/class-settings-api.php';
 }
 
 ?>

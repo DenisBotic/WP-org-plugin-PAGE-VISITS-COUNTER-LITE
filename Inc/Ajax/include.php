@@ -14,48 +14,48 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 // COUNTER.
-if ( file_exists( dirname( __FILE__ ) . '/Counter/TotalVisits.php' ) ) {
-	require_once dirname( __FILE__ ) . '/Counter/TotalVisits.php';
+if ( file_exists( dirname( __FILE__ ) . '/Counter/class-total-visits.php' ) ) {
+	require_once dirname( __FILE__ ) . '/Counter/class-total-visits.php';
 }
 
 
 
 
 // SETTINGS PAGE.
-if ( file_exists( dirname( __FILE__ ) . '/SettingsPage/SaveSettings.php' ) ) {
-	require_once dirname( __FILE__ ) . '/SettingsPage/SaveSettings.php';
+if ( file_exists( dirname( __FILE__ ) . '/SettingsPage/class-save-settings.php' ) ) {
+	require_once dirname( __FILE__ ) . '/SettingsPage/class-save-settings.php';
 }
 
 
 
 
 // DASHBOARD.
-if ( file_exists( dirname( __FILE__ ) . '/DashboardWidget/UpdateTotalVisitsNr.php' ) ) {
-	require_once dirname( __FILE__ ) . '/DashboardWidget/UpdateTotalVisitsNr.php';
+if ( file_exists( dirname( __FILE__ ) . '/DashboardWidget/class-update-total-visits-nr.php' ) ) {
+	require_once dirname( __FILE__ ) . '/DashboardWidget/class-update-total-visits-nr.php';
 }
 
-if ( file_exists( dirname( __FILE__ ) . '/DashboardWidget/UpdatePageData.php' ) ) {
-	require_once dirname( __FILE__ ) . '/DashboardWidget/UpdatePageData.php';
+if ( file_exists( dirname( __FILE__ ) . '/DashboardWidget/class-update-page-data.php' ) ) {
+	require_once dirname( __FILE__ ) . '/DashboardWidget/class-update-page-data.php';
 }
 
-if ( file_exists( dirname( __FILE__ ) . '/DashboardWidget/DeletePages.php' ) ) {
-	require_once dirname( __FILE__ ) . '/DashboardWidget/DeletePages.php';
+if ( file_exists( dirname( __FILE__ ) . '/DashboardWidget/class-delete-pages.php' ) ) {
+	require_once dirname( __FILE__ ) . '/DashboardWidget/class-delete-pages.php';
 }
 
-if ( file_exists( dirname( __FILE__ ) . '/DashboardWidget/DeletePage.php' ) ) {
-	require_once dirname( __FILE__ ) . '/DashboardWidget/DeletePage.php';
+if ( file_exists( dirname( __FILE__ ) . '/DashboardWidget/class-delete-page.php' ) ) {
+	require_once dirname( __FILE__ ) . '/DashboardWidget/class-delete-page.php';
 }
 
-if ( file_exists( dirname( __FILE__ ) . '/DashboardWidget/reset/ResetAll.php' ) ) {
-	require_once dirname( __FILE__ ) . '/DashboardWidget/reset/ResetAll.php';
+if ( file_exists( dirname( __FILE__ ) . '/DashboardWidget/reset/class-reset-all.php' ) ) {
+	require_once dirname( __FILE__ ) . '/DashboardWidget/reset/class-reset-all.php';
 }
 
-if ( file_exists( dirname( __FILE__ ) . '/DashboardWidget/reset/ResetPageType.php' ) ) {
-	require_once dirname( __FILE__ ) . '/DashboardWidget/reset/ResetPageType.php';
+if ( file_exists( dirname( __FILE__ ) . '/DashboardWidget/reset/class-reset-page-type.php' ) ) {
+	require_once dirname( __FILE__ ) . '/DashboardWidget/reset/class-reset-page-type.php';
 }
 
-if ( file_exists( dirname( __FILE__ ) . '/DashboardWidget/ToggleHiddenReports.php' ) ) {
-	require_once dirname( __FILE__ ) . '/DashboardWidget/ToggleHiddenReports.php';
+if ( file_exists( dirname( __FILE__ ) . '/DashboardWidget/class-toggle-hidden-reports.php' ) ) {
+	require_once dirname( __FILE__ ) . '/DashboardWidget/class-toggle-hidden-reports.php';
 }
 
 ?>

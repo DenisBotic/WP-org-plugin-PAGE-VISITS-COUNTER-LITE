@@ -13,24 +13,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 
-if ( file_exists( dirname( __FILE__ ) . '/Activate.php' ) ) {
-	require_once dirname( __FILE__ ) . '/Activate.php';
+if ( file_exists( dirname( __FILE__ ) . '/class-activate.php' ) ) {
+	require_once dirname( __FILE__ ) . '/class-activate.php';
 }
 
-if ( file_exists( dirname( __FILE__ ) . '/Deactivate.php' ) ) {
-	require_once dirname( __FILE__ ) . '/Deactivate.php';
+if ( file_exists( dirname( __FILE__ ) . '/class-deactivate.php' ) ) {
+	require_once dirname( __FILE__ ) . '/class-deactivate.php';
 }
 
-if ( file_exists( dirname( __FILE__ ) . '/BaseController.php' ) ) {
-	require_once dirname( __FILE__ ) . '/BaseController.php';
+if ( file_exists( dirname( __FILE__ ) . '/class-base-controller.php' ) ) {
+	require_once dirname( __FILE__ ) . '/class-base-controller.php';
 }
 
-if ( file_exists( dirname( __FILE__ ) . '/Enqueue.php' ) ) {
-	require_once dirname( __FILE__ ) . '/Enqueue.php';
+if ( file_exists( dirname( __FILE__ ) . '/class-enqueue.php' ) ) {
+	require_once dirname( __FILE__ ) . '/class-enqueue.php';
 }
 
-if ( file_exists( dirname( __FILE__ ) . '/SettingsLinks.php' ) ) {
-	require_once dirname( __FILE__ ) . '/SettingsLinks.php';
+if ( file_exists( dirname( __FILE__ ) . '/class-settings-links.php' ) ) {
+	require_once dirname( __FILE__ ) . '/class-settings-links.php';
 }
 
 ?>

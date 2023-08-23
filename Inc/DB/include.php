@@ -14,8 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 // BACKEND.
-if ( file_exists( dirname( __FILE__ ) . '/Options.php' ) ) {
-	require_once dirname( __FILE__ ) . '/Options.php';
+if ( file_exists( dirname( __FILE__ ) . '/class-options.php' ) ) {
+	require_once dirname( __FILE__ ) . '/class-options.php';
 }
 
 ?>
