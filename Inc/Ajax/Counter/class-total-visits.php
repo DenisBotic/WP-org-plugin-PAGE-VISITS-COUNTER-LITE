@@ -80,11 +80,13 @@ class TotalVisits extends Options {
 		if ( is_user_logged_in() ) {
 
 			$user_role = wp_get_current_user()->roles[0];
-			if ( $user_role != 'subscriber' &&   // Allow subscriber.
+			if (
+					$user_role != 'subscriber' &&    // Allow subscriber.
 					$user_role != 'customer' &&      // Allow customer.
 					$user_role != 'author' &&        // Allow author.
 					$user_role != 'contributor' &&   // Allow contributor.
-					$user_role != 'pending_user' ) { // Allow pending_user.
+					$user_role != 'pending_user'     // Allow pending_user.
+			) {
 
 				// SET RESPONSES:
 
