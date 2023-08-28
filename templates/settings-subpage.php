@@ -2,10 +2,11 @@
 /**
  * DISPLAY SETTINGS PAGE
  *
- * DESC: Displays the HTML content on the admin sub-page called "Page Visits Counter Light"
+ * This file is responsible for displaying the HTML content in the admin sub-page called "Page Visits Counter Light"
  *       under admin menu setting option.
  *
- * @param $base_controller_data    asoc.array
+ * @param  $base_controller_data  asoc.array
+ * @package Strongetic - count page visits
  * @since 1.1.0
  */
 
@@ -45,88 +46,88 @@ function strongeticSubpageVisitsCounterLight( $base_controler_data ) {
 				<li><?php esc_html_e( 'About', 'page-visits-counter-lite' ); ?></li>
 			</ul>
 
-			<!-- SETTINGS -->
+			<!-- SETTINGS TAB -->
 			<div class="StrCPVisits-form-tab">
 				<br>
 				<?php
-				// INCLUDE SETTINGS TAB CONTENT.
+				// Include settings tab content.
 				if ( file_exists( dirname( __FILE__ ) . '/template-parts/settings-tab.php' ) ) {
 					require_once dirname( __FILE__ ) . '/template-parts/settings-tab.php';
 				}
 				?>
 			</div>
 
-			<!-- COUNTER -->
+			<!-- COUNTER TAB -->
 			<div class="StrCPVisits-form-tab">
 				<br>
 				<?php
-				// INCLUDE COUNTER TAB CONTENT.
+				// Include counter tab content.
 				if ( file_exists( dirname( __FILE__ ) . '/template-parts/counter-tab.php' ) ) {
 					require_once dirname( __FILE__ ) . '/template-parts/counter-tab.php';
 				}
 				?>
 			</div>
 
-			<!-- DOCUMENTATION -->
+			<!-- DOCUMENTATION  TAB -->
 			<div class="StrCPVisits-form-tab">
 				<br>
 				<?php
-				// INCLUDE DOCUMENTATION TAB CONTENT.
+				// Include documentation tab content.
 				if ( file_exists( dirname( __FILE__ ) . '/template-parts/documentation-tab.php' ) ) {
 					require_once dirname( __FILE__ ) . '/template-parts/documentation-tab.php';
 				}
 				?>
 			</div>
 
-			<!-- SCREENSHOT -->
+			<!-- SCREENSHOT TAB -->
 			<div class="StrCPVisits-form-tab">
 				<br>
 				<?php
-				// INCLUDE SCREENSHOT TAB CONTENT.
+				// Include screenshot tab content.
 				if ( file_exists( dirname( __FILE__ ) . '/template-parts/screenshot-tab.php' ) ) {
 					require_once dirname( __FILE__ ) . '/template-parts/screenshot-tab.php';
 				}
 				?>
 			</div>
 
-			<!-- INSTALLATION -->
+			<!-- INSTALLATION TAB -->
 			<div class="StrCPVisits-form-tab">
 				<br>
 				<?php
-				// INCLUDE INSTALLATION TAB CONTENT.
+				// Include installation tab content.
 				if ( file_exists( dirname( __FILE__ ) . '/template-parts/installation-tab.php' ) ) {
 					require_once dirname( __FILE__ ) . '/template-parts/installation-tab.php';
 				}
 				?>
 			</div>
 
-			<!-- DEBUGGING -->
+			<!-- DEBUGGING TAB -->
 			<div class="StrCPVisits-form-tab">
 				<br>
 				<?php
-				// INCLUDE DEBUGGING TAB CONTENT.
+				// Include debugging tab content.
 				if ( file_exists( dirname( __FILE__ ) . '/template-parts/debugging-tab.php' ) ) {
 					require_once dirname( __FILE__ ) . '/template-parts/debugging-tab.php';
 				}
 				?>
 			</div>
 
-			<!-- FAQ -->
+			<!-- FAQ TAB -->
 			<div class="StrCPVisits-form-tab">
 				<br>
 				<?php
-				// INCLUDE FAQ TAB CONTENT.
-				if ( file_exists( dirname( __FILE__ ) . '/template-parts/faq.php' ) ) {
-					require_once dirname( __FILE__ ) . '/template-parts/faq.php';
+				// Include faq tab content.
+				if ( file_exists( dirname( __FILE__ ) . '/template-parts/faq-tab.php' ) ) {
+					require_once dirname( __FILE__ ) . '/template-parts/faq-tab.php';
 				}
 				?>
 			</div>
 
-			<!-- ABOUT -->
+			<!-- ABOUT TAB -->
 			<div class="StrCPVisits-form-tab">
 				<br>
 				<?php
-				// INCLUDE ABOUT TAB CONTENT.
+				// Include about tab content.
 				if ( file_exists( dirname( __FILE__ ) . '/template-parts/about-tab.php' ) ) {
 					require_once dirname( __FILE__ ) . '/template-parts/about-tab.php';
 				}

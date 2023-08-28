@@ -3,7 +3,7 @@
  * DATABASE MANGE OPTIONS
  *
  * DESC: Save settings and respond.
- * INFO: Used for Ajax requests.
+ * INFO: This is used for AJAX requests.
  *
  * @package Strongetic - count page visits
  */
@@ -25,6 +25,9 @@ class Options {
 	 * DESC: Update option value and respond with TRUE on update success.
 	 *       Else respond with FALSE.
 	 *
+	 * @param  $option_name  string
+	 * @param  $value  string
+	 * @return  boolean
 	 * @since 1.0.0
 	 */
 
@@ -40,8 +43,8 @@ class Options {
 	 * GET VISITS-BY-PAGE DATA
 	 *
 	 * DESC: Retrieve serialized data from option visits_by_page and unserialize them.
-	 * RETURNS: An array - ['page-name1' => visits_nr1, 'page-name2'=>visits_nr2, ... ].
 	 *
+	 * @return  array  ['page-name1' => visits_nr1, 'page-name2'=>visits_nr2, ... ] or []
 	 * @since 1.0.0
 	 */
 	public function getVisitsByPageData() {
@@ -61,13 +64,14 @@ class Options {
 	 *
 	 * DESC: Accept data_array argument and serialize it before updating option visits_by_page.
 	 *
-	 * @param $data_arr  -  ['page-name1' => visits_nr1, 'page-name2'=>visits_nr2, ... ].
+	 * @param  $data_arr  ['page-name1' => visits_nr1, 'page-name2'=>visits_nr2, ... ].
+	 * @return boolean
 	 * @since 1.0.0
 	 */
 	public function setVisitsByPageData( $data_arr ) {
 		// Serialize data.
 		$data_ser = maybe_serialize( $data_arr );
-		// UPDATE OPTION.
+		// Update option.
 		$response = $this->updateOptionValue( STRCPV_OPT_NAME['visits_by_page'], $data_ser );
 		return $response; // TRUE || FALSE.
 	}
@@ -76,13 +80,14 @@ class Options {
 
 
 	/**
-	 * GET VISITS NR. BY PAGE NAME
+	 * GET VISITS NUMBER BY PAGE NAME
 	 *
 	 * DESC: Retrieve page visits nr. from visits_by_page option.
-	 * RETURNS: Nr of visits || NULL.
 	 *
+	 * @param  $page_name  string
+	 * @return Number of visits or Null
 	 * @since 1.1.0
-	 * Last update:  1.1.0 ( ADDED - if array key exist and if not - return null ).
+	 * Last update: 1.1.0  ( ADDED - if array key exist and if not - return null ).
 	 */
 	public function getVisitsNrByPageName( $page_name ) {
 		// Retrieve serialized data from option visits_by_page and unserialize them.
@@ -104,6 +109,8 @@ class Options {
 	 * DESC: Retrieve visits_by_page option data and remove key with page name.
 	 *       Update option value with updated asoc. array.
 	 *
+	 * @param  $page_name  string
+	 * @return boolean
 	 * @since 1.0.0
 	 */
 	public function deletePageFromOptionValue( $page_name ) {
@@ -130,11 +137,12 @@ class Options {
 
 
 	/**
-	 * DELETE PAGE-S FROM OPTION VALUE - option "strcpv_visits_by_page"
+	 * DELETE PAGES FROM OPTION VALUE - option "strcpv_visits_by_page"
 	 *
 	 * DESC: Delete pages by the names provided in the argument.
 	 *
-	 * @param $page_names_arr  ->  array  ->  page names ['page-name1', 'page-name2']
+	 * @param  $page_names_arr  array  ['page-name1', 'page-name2']
+	 * @return  boolean
 	 * @since 1.0.0
 	 */
 	public function deletePagesFromOptionValue( $page_names_arr ) {
@@ -172,6 +180,9 @@ class Options {
 	 *       Change the visits number.
 	 *       Update option value with updated asoc. array.
 	 *
+	 * @param  $page_name  string
+	 * @param  $new_number  number
+	 * @return boolean
 	 * @since 1.0.0
 	 */
 	public function updatePageVisitsNr( $page_name, $new_number ) {
@@ -197,8 +208,9 @@ class Options {
 	/**
 	 * RESET ALL PAGE VISITS
 	 *
-	 * DESC: Reset all page visits nr to zero.
+	 * DESC: Reset all page visits number to zero.
 	 *
+	 * @return  boolean
 	 * @since 1.0.0
 	 */
 	public function resetAllPageVisits() {
@@ -223,7 +235,8 @@ class Options {
 	 *
 	 * DESC Reset pages by the names provided in argument.
 	 *
-	 * @param $page_names_arr  ->  array  ->  page names ['page-name1', 'page-name2']
+	 * @param  $page_names_arr  array  ['page-name1', 'page-name2']
+	 * @return  boolean
 	 * @since 1.0.0
 	 */
 	public function resetPageTypeVisits( $page_names_arr ) {
@@ -250,6 +263,7 @@ class Options {
 	 * DESC: Get total_visits option value (nr.), increase it by one and update it.
 	 *       If there is no total_visits option, create it and add value zero.
 	 *
+	 * @return  array  response
 	 * @since 1.0.0
 	 */
 	public function countTotalVisits() {
@@ -287,6 +301,8 @@ class Options {
 	 *       return true - which means that page is refreshed
 	 * INFO: First time visiting, there will be no ip address with current page name.
 	 *
+	 * @param  $ip_address  string
+	 * @param  $current_page_name  string
 	 * @since 1.0.0
 	 */
 	public function isPageRefreshed( $ip_address, $current_page_name ) {
@@ -333,7 +349,9 @@ class Options {
 	 * DESC: Check user type and ABORT if not VISITOR, SUBSCRIBER, CUSTOMER, AUTHOR, CONTRIBUTOR, AND PENDING_USER.
 	 *       Create visits by page option if doesn't exist.
 	 *       Update visit number by page name.
-	 *
+	 * @param  string  $ip
+	 * @param  string  $page_name
+	 * @return  array  response
 	 * @since 1.0.0
 	 */
 	public function countVisitsPerPage( $ip, $page_name ) {
@@ -343,7 +361,7 @@ class Options {
 
 		// Get counting (option) data.
 		$visits_by_page_data_ser = get_option( $option_name );
-		$type_of_response = gettype( $visits_by_page_data_ser );
+		$type_of_response        = gettype( $visits_by_page_data_ser );
 
 		// If OPTION DOES NOT EXIST with the given name.
 		if ( $visits_by_page_data_ser == false && $type_of_response == 'BOOLEAN' ) {
@@ -358,8 +376,10 @@ class Options {
 			];
 
 		} else {
-			// OPTION EXIST - and it holds at least an empty serialized array.
-			// ( We have some data. )
+			/**
+			 * OPTION EXIST - and it holds at least an empty serialized array.
+			 * ( We have some data. )
+			 */
 			$visits_by_page_data_arr = maybe_unserialize( $visits_by_page_data_ser );
 			if ( isset( $visits_by_page_data_arr[ $page_name ] ) ) {
 				// Value has a record of page data.
@@ -367,7 +387,7 @@ class Options {
 				$visits_by_page_data_arr[ $page_name ] = $new_nr_of_visits;
 
 			} else {
-				// Value doesn't have records - (probably deleted...).
+				// Value doesn't have records - ( Probably deleted ).
 				$new_nr_of_visits                      = 1;
 				$visits_by_page_data_arr[ $page_name ] = $new_nr_of_visits;
 			}
@@ -394,8 +414,8 @@ class Options {
 	 * GET HIDDEN-PAGE-REPORTS DATA
 	 *
 	 * DESC: Retrieve serialized data from option hidden_page_reports and unserialize them.
-	 * RETURNS: An array - ['page-name1', 'page-name2', ... ].
 	 *
+	 * @return array ['page-name1', 'page-name2', ... ] or []
 	 * @since 1.0.0
 	 */
 	public function getHiddenPageReportsData() {
@@ -415,7 +435,8 @@ class Options {
 	 *
 	 * DESC: Accept data_array argument and serialize it before updating option hidden_page_reports.
 	 *
-	 * @param $data_arr  -  ['page-name1', 'page-name2', ... ]
+	 * @param $data_arr  ['page-name1', 'page-name2', ... ]
+	 * @return boolean
 	 * @since 1.0.0
 	 */
 	public function setHiddenPageReportsData( $data_arr ) {
@@ -435,7 +456,8 @@ class Options {
 	 *
 	 * DESC: Set (selected) pages as hidden - add them to "hidden-page-reports" option.
 	 *
-	 * @param $page_names_arr  ->  array  ->  page names ['page-name1', 'page-name2', ...]
+	 * @param $page_names_arr  array  ['page-name1', 'page-name2', ...]
+	 * @return boolean
 	 * @since 1.0.0
 	 */
 	public function setAsHiddenReports( $page_names_arr ) {
@@ -455,7 +477,8 @@ class Options {
 	 *
 	 * DESC: Remove (selected) pages from "hidden-page-reports" option.
 	 *
-	 * @param $page_names_arr  ->  array  ->  page names ['page-name1', 'page-name2']
+	 * @param  $page_names_arr  array  ['page-name1', 'page-name2']
+	 * @return  boolean
 	 * @since 1.0.0
 	 */
 	public function removeFromHiddenReports( $page_names_arr ) {

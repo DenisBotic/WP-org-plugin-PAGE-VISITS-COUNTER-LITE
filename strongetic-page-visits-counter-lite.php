@@ -30,12 +30,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 // /**
 //  * LOADS TRANSLATIONS - not necessary for WP.org
 //  *
-//  * DESC: Loads translations from your plugins 'languages' directory
+//  * DESC: Loads translations from plugin 'lang' directory
 //  *
-//  * @since 1.0.4
+//  * @since 1.2.0
 //  */
 // function strcpv_plugin_load_text_domain() {
-// 	load_plugin_textdomain( 'page-visits-counter-lite', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+// 	load_plugin_textdomain( 'page-visits-counter-lite', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
 // }
 // add_action( 'plugins_loaded', 'strcpv_plugin_load_text_domain' );
 

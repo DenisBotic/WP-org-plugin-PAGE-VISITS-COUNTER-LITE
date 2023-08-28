@@ -64,7 +64,6 @@ class DashboardWidget extends BaseController {
 		 * @since 1.0.0
 		 */
 		do_action( 'StrCPVisits_db_widget_wrapper_start' );
-
 		?>
 
 
@@ -392,10 +391,10 @@ class DashboardWidget extends BaseController {
 	 * DESC: Get visits by page option data.
 	 *       If there are no data display default values and quick info tab.
 	 *       Else, count total page visits and build HTML page visits row list.
-	 * RETURN array with:
+	 *
+	 * @return array with:
 	 *                   - Total_page_visits property.
 	 *                   - HTML property that holds entire list of page visits.
-	 *
 	 * @since 1.0.0
 	 */
 	public function get_pages_data() {
@@ -416,13 +415,16 @@ class DashboardWidget extends BaseController {
 
 
 
+
 	/**
 	 * GET DATA VALUES
 	 *
 	 * DESC: Build list report by page name,
-	 *     Count total page visits,
-	 *     Do not display quick explanation.
+	 *       Count total page visits,
+	 *       Do not display quick explanation.
 	 *
+	 * @param  $visits_by_page_data_ser  string  ( Serialized data )
+	 * @return  array
 	 * @since 1.0.0
 	 */
 	public function getDataValues( $visits_by_page_data_ser ) {
@@ -509,6 +511,16 @@ class DashboardWidget extends BaseController {
 
 
 
+	/**
+	 * GET HIDDEN REPORT CLASS
+	 *
+	 * DESC: Check if page name is in hidden reports and if it is return
+	 *       class name 'StrCPVisits-hidden-indicator'.
+	 *
+	 * @param  $page_name  string
+	 * @return string  '' or 'StrCPVisits-hidden-indicator'
+	 * @since 1.0.0
+	 */
 	public static function getHiddenReportClass( $page_name ) {
 		// GET HIDDEN PAGE REPORTS.
 		$hidden_page_reports_ser = get_option( STRCPV_OPT_NAME['hidden_page_reports'] );
@@ -537,7 +549,10 @@ class DashboardWidget extends BaseController {
 	 *
 	 * DESC: Check if page name belongs to a page type by ":" in page name.
 	 *       If there is no ":" in page name - set page type to "All-Others".
+	 * EXAMPLE: page type can look like this "Product: Some page name".
 	 *
+	 * @param  $page_name  string
+	 * @return  string
 	 * @since 1.0.0
 	 */
 	public static function getPageType( $page_name ) {
@@ -558,9 +573,11 @@ class DashboardWidget extends BaseController {
 	/**
 	 * GET DEFAULT INFO BOX CLASS
 	 *
-	 * DESC: If there is no page visits yet, display info box
-	 *       else, hide it.
+	 * DESC: If there is no page visits yet, display info box.
+	 *       Else, hide it.
 	 *
+	 * @param  $pages_data  array
+	 * @return  array
 	 * @since 1.0.0
 	 */
 	public function getDefaultInfoBoxClass( $pages_data ) {
@@ -597,8 +614,9 @@ class DashboardWidget extends BaseController {
 	/**
 	 * DISPLAY TOTAL PAGE VISITS
 	 *
-	 * DESC: Display total page visits - excl. page reloads.
+	 * DESC: Display total page visits - exclude page reloads.
 	 *
+	 * @param  $pages_data  array
 	 * @since 1.0.0
 	 */
 	public function displayTotalPageVisits( $pages_data ) {
@@ -621,10 +639,12 @@ class DashboardWidget extends BaseController {
 	}
 
 
+
+
 	/**
 	 * DISPLAY TOTAL VISITS
 	 *
-	 * DESC: Display all visits - incl. page reloads.
+	 * DESC: Display all visits - include page reloads.
 	 *
 	 * @since 1.0.0
 	 */
@@ -643,12 +663,15 @@ class DashboardWidget extends BaseController {
 	}
 
 
+
+
 	/**
 	 * ADD HIDDEN EDIT TOTAL VISITS BOX
 	 *
 	 * DESC: Display edit total visits number form.
 	 * INFO: It will slide in  - on total visits edit button click.
 	 *
+	 * @param  $total_visits  string
 	 * @since 1.0.0
 	 */
 	public function addHiddenEditTotalVisitsBox( $total_visits ) {
@@ -676,6 +699,17 @@ class DashboardWidget extends BaseController {
 	}
 
 
+
+
+	/**
+	 * GET EXPLANATION
+	 *
+	 * DESC: When plugin is installed for the first time and there is no visits yet,
+	 *       the explanation is displayed.
+	 *
+	 * @return  string  HTML code
+	 * @since 1.0.0
+	 */
 	public function getExplanation() {
 		// Green text.
 		$html_expl =  "<div class='StrCPVisits_db_counting_text_box'>";

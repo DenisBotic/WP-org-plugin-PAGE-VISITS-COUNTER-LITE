@@ -1,8 +1,9 @@
 <?php
 /**
- *  Trigger this file on Plugin uninstall
+ *  Trigger this file on Plugin delete/uninstall
  *
- *  @package Strongetic - count page visits
+ * @package Strongetic - count page visits
+ * @since 1.0.0
  */
 
 // If uninstall not called from WordPress exit

@@ -2,8 +2,11 @@
 /**
  * SETTINGS - SETTINGS TAB
  *
- * DESC: Displays settings tab html content.
+ * This file is responsible for displaying the content of the settings tab, allowing users to configure plugin options.
  *
+ * The settings tab provides checkboxes that allow users to control specific behaviors of the plugin, such as preserving data on plugin uninstall and enabling page refresh/reload counting.
+ *
+ * @package Strongetic - count page visits
  * @since 1.0.0
  */
 
@@ -69,7 +72,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<!-- LOADING SPINNER -->
 			<div id="StrCPVisits-js-settings-form-submit-btn-spinner" class="StrCPVisits-loading-spinner-wrapper-toggle">
 				<div class="StrCPVisits-loading-spinner">
-					<!--Element for spinner made with HTML + CSS-->
+					<!-- Element for spinner made with HTML + CSS -->
 					<div class="StrCPVisits-spinner-loader"></div>
 				</div>
 			</div>
@@ -79,4 +82,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div id="StrCPVisits-js-settings-form-response"></div>
 
 	</form>
+
+
 </div>

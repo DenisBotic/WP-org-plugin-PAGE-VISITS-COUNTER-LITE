@@ -1,10 +1,12 @@
 <?php
 /**
- * AJAX COUNT TOTAL VISITS - CALLBACK
+ * AJAX count total visits - Callback
  *
- * DESC: Increase the number of TOTAL INDEPENDENT visits BY ONE.
+ * This class handles the AJAX callback to increase the number of total independent visits by one.
  *
  * @package Strongetic - count page visits
+ * @subpackage Inc\Ajax\Counter
+ * @since 1.0.0
  */
 
 namespace StrCPVisits_Inc\Ajax\Counter;
@@ -16,11 +18,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use StrCPVisits_Inc\DB\Options;
 
-
-
 class TotalVisits extends Options {
 
 
+
+	/**
+	 * Register AJAX Actions
+	 *
+	 * Registers the WordPress AJAX actions for updating total visits.
+	 *
+	 * @since 1.0.0
+	 */
 	public function register() {
 		add_action( 'wp_ajax_nopriv_StrCPVisits_update_total_visits', [ $this, 'StrCPVisits_update_total_visits' ] ); // Not logged in users.
 		add_action( 'wp_ajax_StrCPVisits_update_total_visits', [ $this, 'StrCPVisits_update_total_visits' ] ); // Logged in users.
@@ -29,16 +37,27 @@ class TotalVisits extends Options {
 
 
 
+	/**
+	 * AJAX Update Total Visits Callback
+	 *
+	 * This method is triggered as an AJAX callback to increase the number of total independent visits by one.
+	 * It performs necessary security checks and updates, counting the total visits and page visits.
+	 *
+	 * @since 1.0.0
+	 */
 	public function StrCPVisits_update_total_visits() {
 
 
 		// DISABLED - so it will work properly if website is cashed.
-		// // Check if data are submitted from corresponding ajax request. ( By using wp_nonce. )
+		// // Verify if data is submitted from corresponding ajax request. ( By using wp_nonce. )
 		// if ( !check_ajax_referer( 'StrCPVisits_frontend', 'security' ) ) {
 		// 	return; // Abort.
 		// }
 
 
+
+
+		// Prepare an array for the final response.
 		$final_response = [];
 
 
@@ -51,7 +70,7 @@ class TotalVisits extends Options {
 		 *       with asoc-array keys retrieved from the DB option.
 		 *
 		 * VALIDATION: page_name can be anything.
-		 *       There is no point restricting the max nr of characters as it is
+		 *       There is no point restricting the maximum number of characters as it is
 		 *       only going to be compared with asoc-array keys retrieved from the DB option.
 		 *
 		 * @since 1.0.0
@@ -66,14 +85,13 @@ class TotalVisits extends Options {
 
 
 
-
 		/**
 		 * ABORT BY USER TYPE
 		 *
 		 * PROBLEM: User can have custom admin roles in use which visits should be excluded from our count.
 		 * SOLUTION: Check by logged out state and for logged in roles that we are going to count.
 		 * DESC: Count only if is a visitor or logged in role: subscriber, customer, author, contributor, and pending_user.
-		 *       Do not count if is logged in role: admin, editor, suspended, shop-manager or any other custom role.
+		 *       Do not count if is logged in with role: admin, editor, suspended, shop-manager or any other custom role.
 		 *
 		 * @since 1.0.0
 		 */
@@ -137,6 +155,7 @@ class TotalVisits extends Options {
 			$ip = $_SERVER['REMOTE_ADDR'];
 		}
 
+
 		/**
 		 * HASH IP ADDRESS
 		 *
@@ -150,7 +169,7 @@ class TotalVisits extends Options {
 		/**
 		 * PAGE DATA - it should be set - else abort
 		 *
-		 * @param asoc-array $_POST['page_data']
+		 * @param asoc. array $_POST['page_data']
 		 * @since 1.0.0
 		 */
 		if ( ! isset( $_POST['page_data'] ) ) {
@@ -180,7 +199,7 @@ class TotalVisits extends Options {
 
 
 		/**
-		 * IS PAGE REFRESHED
+		 * CHECK IF PAGE IS REFRESHED.
 		 *
 		 * DESC: If page is refreshed abort and send response with page total visits nr and message.
 		 *
@@ -210,8 +229,6 @@ class TotalVisits extends Options {
 
 		// Send final response for Total Visits and Page Visits.
 		wp_send_json_success( $final_response );
-
-
 
 
 		die();

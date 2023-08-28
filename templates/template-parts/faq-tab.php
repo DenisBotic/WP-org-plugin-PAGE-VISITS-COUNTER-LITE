@@ -2,8 +2,11 @@
 /**
  * SETTINGS - FAQ TAB
  *
- * DESC: Displays FAQ tab html content.
+ * This file is responsible for displaying the FAQ tab content.
  *
+ * The FAQ tab provides answers to frequently asked questions about the plugin's features and usage.
+ *
+ * @package Strongetic - count page visits
  * @since 1.0.0
  */
 
@@ -22,6 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="StrCPVisits_accordion_menu" data-stracc-close-other-options="true">
 
 
+		<!-- FAQ Section 1 -->
 		<section class="StrCPVisits_accordion_btn StrCPVisits_accordion_first"><h3><?php esc_html_e( 'Where I can find the page visits report as seen on the screenshot?', 'page-visits-counter-lite' ); ?></h3></section>
 		<div class="StrCPVisits_accordion_panel">
 			<p><?php esc_html_e( 'Select the "Dashboard" option from the WordPress admin menu and there you should find a widget called "ALL PAGE VISITS."', 'page-visits-counter-lite' ); ?></p>
@@ -30,6 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 
+		<!-- FAQ Section 2 -->
 		<section class="StrCPVisits_accordion_btn"><h3><?php esc_html_e( 'Where I can find the plugin settings page?', 'page-visits-counter-lite' ); ?></h3></section>
 		<div class="StrCPVisits_accordion_panel">
 			<p><?php esc_html_e( 'You will find it under the settings option in the WordPress admin menu.', 'page-visits-counter-lite' ); ?></p>
@@ -38,6 +43,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 
+		<!-- FAQ Section 3 -->
 		<section class="StrCPVisits_accordion_btn"><h3><?php esc_html_e( 'Is it going to count the sum of all page visits?', 'page-visits-counter-lite' ); ?></h3></section>
 		<div class="StrCPVisits_accordion_panel">
 			<p><?php esc_html_e( 'Yes, there are two TOTAL VISITS boxes.', 'page-visits-counter-lite' ); ?></p>
@@ -47,6 +53,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 
+		<!-- FAQ Section 4 -->
 		<section class="StrCPVisits_accordion_btn"><h3><?php esc_html_e( 'Can I delete a page from the page visits report list?', 'page-visits-counter-lite' ); ?></h3></section>
 		<div class="StrCPVisits_accordion_panel">
 			<p><?php esc_html_e( 'Yes, you can.', 'page-visits-counter-lite' ); ?></p>
@@ -54,6 +61,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 
+		<!-- FAQ Section 5 -->
 		<section class="StrCPVisits_accordion_btn"><h3><?php esc_html_e( 'Can I update the number of visits?', 'page-visits-counter-lite' ); ?></h3></section>
 		<div class="StrCPVisits_accordion_panel">
 			<p><?php esc_html_e( 'Yes, you can update the number of TOTAL VISITS box and you can update the number of visits for each page.', 'page-visits-counter-lite' ); ?></p>
@@ -62,6 +70,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 
+		<!-- FAQ Section 6 -->
 		<section class="StrCPVisits_accordion_btn"><h3><?php esc_html_e( 'Can I enable page refresh/reload counting for each page report?', 'page-visits-counter-lite' ); ?></h3></section>
 		<div class="StrCPVisits_accordion_panel">
 			<p><?php esc_html_e( 'No, there is no such option.', 'page-visits-counter-lite' ); ?></p>
@@ -69,6 +78,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 
+		<!-- FAQ Section 7 -->
 		<section class="StrCPVisits_accordion_btn"><h3><?php esc_html_e( 'Can I set it up so it will preserve page visit records after the plugin is uninstalled?', 'page-visits-counter-lite' ); ?></h3></section>
 		<div class="StrCPVisits_accordion_panel">
 			<p><?php esc_html_e( 'Yes, you will find that option (checkbox) in the plugin settings area under the settings tab.', 'page-visits-counter-lite' ); ?></p>
@@ -77,6 +87,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 
+		<!-- FAQ Section 8 -->
 		<section class="StrCPVisits_accordion_btn"><h3><?php esc_html_e( 'Can I display a number of page visits on the website/page frontend?', 'page-visits-counter-lite' ); ?></h3></section>
 		<div class="StrCPVisits_accordion_panel">
 			<p><?php esc_html_e( 'Yes, you can add and display one or both counters on the frontend of your website:', 'page-visits-counter-lite' ); ?></p>
@@ -89,6 +100,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 
+		<!-- FAQ Section 9 -->
 		<section class="StrCPVisits_accordion_btn"><h3><?php esc_html_e( 'Why frontend visits-counter displays N/A?', 'page-visits-counter-lite' ); ?></h3></section>
 		<div class="StrCPVisits_accordion_panel">
 			<ul>
@@ -106,6 +118,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 
+		<!-- FAQ Section 10 -->
 		<section class="StrCPVisits_accordion_btn"><h3><?php esc_html_e( 'Does it set cookies into the user browser?', 'page-visits-counter-lite' ); ?></h3></section>
 		<div class="StrCPVisits_accordion_panel">
 			<p><?php esc_html_e( 'No, this plugin does not set browser cookie/s.', 'page-visits-counter-lite' ); ?></p>
@@ -113,6 +126,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 
+		<!-- FAQ Section 11 -->
 		<section class="StrCPVisits_accordion_btn"><h3><?php esc_html_e( 'I have visited my page but my visit is not recorded?', 'page-visits-counter-lite' ); ?></h3></section>
 		<div class="StrCPVisits_accordion_panel">
 			<p><?php esc_html_e( 'You have to logout before visiting the page or login with one of the user roles that page will count.', 'page-visits-counter-lite' ); ?></p>
@@ -121,6 +135,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 
+		<!-- FAQ Section 12 -->
 		<section class="StrCPVisits_accordion_btn"><h3><?php esc_html_e( 'I have visited my page but only the TOTAL VISITS box has recorded the visit?', 'page-visits-counter-lite' ); ?></h3></section>
 		<div class="StrCPVisits_accordion_panel">
 			<p><?php esc_html_e( 'You have probably refreshed the page and the TOTAL VISITS box is counting everything including a page refresh/reload.', 'page-visits-counter-lite' ); ?></p>
@@ -128,7 +143,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<p>(<?php esc_html_e( 'Please read the plugin documentation under titles "NOT COUNTING" and "COUNTING".', 'page-visits-counter-lite' ); ?>)<p>
 			<br>
 		</div>
-
 
 
 	</div><!-- ACCORDION END -->

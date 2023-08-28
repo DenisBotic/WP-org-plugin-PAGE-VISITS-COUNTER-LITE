@@ -1,10 +1,13 @@
 <?php
 /**
- * AJAX UPDATE TOTAL VISITS NR - CALLBACK
+ * AJAX update total visits nr - Callback - class
  *
- * DESC: Update total visits data in option "strcpv_total_visits".
+ * This class handles the AJAX callback to update the total visits data in the "strcpv_total_visits" option.
+ * It allows administrators to modify the total number of visits across all pages.
  *
  * @package Strongetic - count page visits
+ * @subpackage Inc\Ajax\DashboardWidget
+ * @since 1.0.0
  */
 
 namespace StrCPVisits_Inc\Ajax\DashboardWidget;
@@ -16,29 +19,43 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use StrCPVisits_Inc\DB\Options;
 
-
-
 class UpdateTotalVisitsNr extends Options {
 
 
 
+	/**
+	 * Register AJAX Action
+	 *
+	 * Registers the WordPress AJAX action for updating the total visits number.
+	 *
+	 * @since 1.0.0
+	 */
 	public function register() {
-		add_action( 'wp_ajax_StrCPVisits_update_total_visits_nr', [ $this, 'StrCPVisits_update_total_visits_nr' ] ); // Logged in users.
+		// Logged in users.
+		add_action( 'wp_ajax_StrCPVisits_update_total_visits_nr', [ $this, 'StrCPVisits_update_total_visits_nr' ] );
 	}
 
 
 
 
+	/**
+	 * AJAX Update Total Visits Number Callback
+	 *
+	 * This method is triggered as an AJAX callback to update the total visits data in the "strcpv_total_visits" option.
+	 * It performs necessary security checks and updates, allowing administrators to modify the total number of visits.
+	 *
+	 * @since 1.0.0
+	 */
 	public function StrCPVisits_update_total_visits_nr() {
 
 
-		// Check if data are submitted from corresponding form by using wp_nonce.
+		// Verify if data is submitted from the corresponding form using wp_nonce.
 		if ( ! check_ajax_referer( 'StrCPVisits_settings', 'security' ) ) {
 			return;
 		}
 
 
-		// Prevent form data submission for none admin users.
+		// Prevent form data submission for non-admin users.
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
@@ -47,11 +64,11 @@ class UpdateTotalVisitsNr extends Options {
 		// NEW NUMBER OF VISTIS.
 		if ( isset( $_POST['data'] ) ) {
 
-			// Is numeric
+			// Check if it's numeric.
 			if ( is_numeric( $_POST['data'] ) ) {
 				$new_number = sanitize_text_field( $_POST['data'] );
 
-				// Throw error if number > 9bil.
+				// Throw an error if the number is greater than 9 billion.
 				if ( $new_number > 9000000000 ) {
 					wp_send_json_error( esc_html__( 'Error - number too big!', 'page-visits-counter-lite' ) ); // Abort.
 				}
@@ -75,8 +92,6 @@ class UpdateTotalVisitsNr extends Options {
 		} else {
 			wp_send_json_error( esc_html__( 'No changes to save...', 'page-visits-counter-lite' ) );
 		}
-
-
 
 
 		die();

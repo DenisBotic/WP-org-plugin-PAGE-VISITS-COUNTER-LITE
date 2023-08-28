@@ -2,8 +2,13 @@
 /**
  * SETTINGS - SETTINGS TAB
  *
- * DESC: Displays settings tab html content.
+ * This file is responsible for displaying the HTML content of the settings tab.
  *
+ * The settings tab provides options and information related to the display and placement
+ * of the page and website visits counters on the website. Users can customize the appearance
+ * and behavior of the counters through the settings available in this tab.
+ *
+ * @package Strongetic - count page visits
  * @since 1.0.6
  */
 
@@ -15,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 
+// Define default styles for counter boxes.
 $StrCpv_counter_default_style_dark = "  display: inline-block !important;<br>
 										padding-top: 0 !important;<br>
 										padding-bottom: 0 !important;<br>

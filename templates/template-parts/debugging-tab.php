@@ -2,8 +2,13 @@
 /**
  * SETTINGS - DEBUGGING TAB
  *
- * DESC: Displays debugging tab html content - image/s.
+ * This file is responsible for displaying the debugging tab content, including images.
  *
+ * The debugging tab provides guidance and information on troubleshooting issues with the plugin.
+ * Users can follow step-by-step instructions to debug and resolve common problems related to
+ * JavaScript and PHP caching that might affect the functioning of the page and website visits counters.
+ *
+ * @package Strongetic - count page visits
  * @since 1.0.0
  */
 
@@ -17,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Getting variable on template part:
- * Get $key variable from parent template
+ * Get key variable from parent template
  */
 $base_controler_data = get_query_var( 'StrCPVisits_base_controler_data' );
 ?>

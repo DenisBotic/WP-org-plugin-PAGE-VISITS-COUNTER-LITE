@@ -3,6 +3,7 @@
  * INCLUDE ALL TEMPLATES FILES
  *
  * @package Strongetic - count page visits
+ * @since 1.0.0
  */
 
 // Exit if accessed directly.

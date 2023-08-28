@@ -2,8 +2,12 @@
 /**
  * SETTINGS - INSTALLATION TAB
  *
- * DESC: Displays installation tab html content.
+ * This file is responsible for displaying the installation tab content.
  *
+ * The installation tab provides instructions and guidance on how to properly set up the plugin after installation,
+ * including necessary cache flushing and configuration for the plugin to function correctly.
+ *
+ * @package Strongetic - count page visits
  * @since 1.0.0
  */
 

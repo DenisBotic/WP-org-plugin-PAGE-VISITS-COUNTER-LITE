@@ -1,10 +1,13 @@
 <?php
 /**
- * AJAX TOGGLE HIDDEN REPORTS - CALLBACK
+ * AJAX toggle hidden reports - Callback - class
  *
- * DESC: Set selected page-reports as hidden and vice versa in option named "strcpv_hidden_page_reports".
+ * This class handles the AJAX callback to toggle the visibility of selected page-reports in the "strcpv_hidden_page_reports" option.
+ * It allows administrators to set page-reports as hidden or visible.
  *
  * @package Strongetic - count page visits
+ * @subpackage Inc\Ajax\DashboardWidget
+ * @since 1.0.0
  */
 
 namespace StrCPVisits_Inc\Ajax\DashboardWidget;
@@ -16,28 +19,43 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use StrCPVisits_Inc\DB\Options;
 
-
-
 class ToggleHiddenReports extends Options {
 
 
 
+	/**
+	 * Register AJAX Action
+	 *
+	 * Registers the WordPress AJAX action for toggling the visibility of page-reports.
+	 *
+	 * @since 1.0.0
+	 */
 	public function register() {
-		add_action( 'wp_ajax_StrCPVisits_db_toggle_hidden_reports', [ $this, 'StrCPVisits_db_toggle_hidden_reports' ] ); // Logged in users.
+		// Logged in users.
+		add_action( 'wp_ajax_StrCPVisits_db_toggle_hidden_reports', [ $this, 'StrCPVisits_db_toggle_hidden_reports' ] );
 	}
 
 
 
 
+	/**
+	 * AJAX Toggle Hidden Reports Callback
+	 *
+	 * This method is triggered as an AJAX callback to toggle the visibility of selected page-reports in the "strcpv_hidden_page_reports" option.
+	 * It performs necessary security checks and updates, allowing administrators to set page-reports as hidden or visible.
+	 *
+	 * @since 1.0.0
+	 */
 	public function StrCPVisits_db_toggle_hidden_reports() {
 
-		// Check if data are submitted from corresponding form by using wp_nonce.
+
+		// Verify if data is submitted from the corresponding form using wp_nonce.
 		if ( ! check_ajax_referer( 'StrCPVisits_settings', 'security' ) ) {
 			return;
 		}
 
 
-		// Prevent form data submission for none admin users.
+		// Prevent form data submission for non-admin users.
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
@@ -48,7 +66,7 @@ class ToggleHiddenReports extends Options {
 			wp_send_json_error( esc_html__( 'Error - data not set!', 'page-visits-counter-lite' ) ); // Abort.
 		}
 
-		// ABORT IF IS NOT ARRAY.
+		// ABORT IF NOT AN ARRAY.
 		if ( ! is_array( $_POST['data'] ) ) {
 			wp_send_json_error( esc_html__( 'Error - not array!', 'page-visits-counter-lite' ) ); // Abort.
 		}
@@ -62,7 +80,7 @@ class ToggleHiddenReports extends Options {
 			 * INFO: No need for hard core security because it is only going to be compared
 			 *       with asoc. array keys retrieved from the DB option.
 			 * VALIDATION: page_name can be anything.
-			 *       There is no point to restricting the max nr of characters as it is
+			 *       There is no point to restricting the maximum number of characters as it is
 			 *       only going to be compared with asoc. array keys retrieved from the DB option.
 			 *
 			 * @since 1.0.0
@@ -80,6 +98,7 @@ class ToggleHiddenReports extends Options {
 		}
 
 
+		// TOGGLE VISIBILITY OF PAGE-REPORTS.
 		if ( $_POST['list'] === 'hidden' ) {
 
 			// SET AS HIDDEN.
@@ -104,8 +123,6 @@ class ToggleHiddenReports extends Options {
 		} else {
 			wp_send_json_error( esc_html__( 'There was an error!', 'page-visits-counter-lite' ) );
 		}
-
-
 
 
 		die();

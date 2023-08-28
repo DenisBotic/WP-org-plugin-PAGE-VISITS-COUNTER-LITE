@@ -1,10 +1,12 @@
 <?php
 /**
- * SETTINGS API
+ * Settings API class
  *
- * DESCRIPTION: Create admin menu pages/sub-pages.
+ * This class manages the creation of admin menu pages and sub-pages using the WordPress Settings API.
  *
  * @package Strongetic - count page visits
+ * @subpackage Inc\API
+ * @since 1.0.0
  */
 
 namespace StrCPVisits_Inc\API;
@@ -16,13 +18,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use StrCPVisits_Inc\Counter\frontend\CounterBase;
 
-
-
 class SettingsApi extends CounterBase {
 
 
 
-
+	/**
+	 * REGISTER
+	 *
+	 * Registers the submenu page under the Settings menu.
+	 *
+	 * @since 1.0.0
+	 */
 	public function register() {
 		// Register submenu page under Settings.
 		add_action( 'admin_menu', [ $this, 'strongetic_register_settings_option' ] );
@@ -34,7 +40,7 @@ class SettingsApi extends CounterBase {
 	/**
 	 * REGISTER ADMIN PAGES AND SUB-PAGES
 	 *
-	 * DESC: register_menu_page() and register_submenu_page methods.
+	 * DESC: This method register a sub-page under the admin Settings menu.
 	 *
 	 * @since 1.0.0
 	 */

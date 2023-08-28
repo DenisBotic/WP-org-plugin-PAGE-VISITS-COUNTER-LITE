@@ -1,10 +1,13 @@
 <?php
 /**
- * AJAX RESET ALL VISITS NR - CALLBACK
+ * AJAX reset all visits nr - Callback - class
  *
- * DESC: Reset all page visit numbers in option "strcpv_visits_by_page".
+ * This class handles the AJAX callback to reset all page visit numbers stored in the "strcpv_visits_by_page" option.
+ * It ensures the action is secure, and only administrators can perform the reset.
  *
  * @package Strongetic - count page visits
+ * @subpackage Inc\Ajax\DashboardWidget\reset
+ * @since 1.0.0
  */
 
 namespace StrCPVisits_Inc\Ajax\DashboardWidget\reset;
@@ -16,42 +19,55 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use StrCPVisits_Inc\DB\Options;
 
-
-
 class ResetAll extends Options {
 
 
 
+	/**
+	 * Register AJAX Action
+	 *
+	 * Registers the WordPress AJAX action for resetting all page visit numbers.
+	 *
+	 * @since 1.0.0
+	 */
 	public function register() {
-		add_action( 'wp_ajax_StrCPVisits_db_reset_all', [ $this, 'StrCPVisits_db_reset_all' ] ); // Logged in users.
+		// Logged in users.
+		add_action( 'wp_ajax_StrCPVisits_db_reset_all', [ $this, 'StrCPVisits_db_reset_all' ] );
 	}
 
 
 
 
+	/**
+	 * AJAX Reset All Callback
+	 *
+	 * This method is triggered as an AJAX callback to reset all page visit numbers.
+	 * It performs necessary checks and updates, ensuring the reset is secure and allowed for administrators.
+	 *
+	 * @return  ABORT or send JSON SUCCESS or ERROR message
+	 * @since 1.0.0
+	 */
 	public function StrCPVisits_db_reset_all() {
 
 
-		// Check if data are submitted from corresponding form by using wp_nonce.
+		// Verify if data is submitted from the corresponding form using wp_nonce.
 		if ( ! check_ajax_referer( 'StrCPVisits_settings', 'security' ) ) {
 			return;
 		}
 
-
-
-		// Prevent form data submission for none admin users.
+		// Prevent form data submission for non-admin users.
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
 
 
-
 		// ==== ABORT OR CONTINUE SECTION ====
 
-		// ABORT IF DATA NOT SET.
+
+		// Abort if data is not set.
 		if ( isset( $_POST['data'] ) ) {
 
-			// ABORT IF VALUE NOT "RESET ALL".
+			// Abort if value not "RESET ALL".
 			if ( $_POST['data'] !== 'RESET-ALL' ) {
 				wp_send_json_error( esc_html__( 'Reset all error!', 'page-visits-counter-lite' ) );
 			}
@@ -59,11 +75,13 @@ class ResetAll extends Options {
 		} else {
 			wp_send_json_error( esc_html__( 'Error - data not set!', 'page-visits-counter-lite' ) ); // Abort.
 		}
+
+
 		// ====  CONTINUE WITHOUT ANY DATA ====
 
 
 
-		// UPDATE OPTION VALUE and SEND AJAX RESPONSE.
+		// Update the option value and send AJAX response.
 		$response = $this->resetAllPageVisits();
 
 		if ( $response === true ) {
@@ -71,8 +89,6 @@ class ResetAll extends Options {
 		} else {
 			wp_send_json_error( esc_html__( 'No changes to save...", "page-visits-counter-lite' ) );
 		}
-
-
 
 
 		die();

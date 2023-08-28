@@ -78,10 +78,11 @@ class TotalVisits extends CounterBase {
 	 *
 	 * DESC: Detect current page name and detect if it is an archive page or woocommerce archive page.
 	 *       Is default homepage with posts or static homepage?
-	 *       Is it a BLOG Posts page, 404, CPT?
+	 *       Is it a BLOG Posts page, 404 or CPT?
 	 *
-	 * RETURN: Set corresponding page name and return it.
+	 * INFO: Set corresponding page name and return it.
 	 *
+	 * @return  false or page name
 	 * @since 1.0.0
 	 */
 	public function getPageName() {
@@ -91,13 +92,13 @@ class TotalVisits extends CounterBase {
 		if ( $post === NULL ) {
 			if ( is_404() ) {
 				// Sometimes, there is no post and there is 404 page displayed.
-				return '404';  // Return page name.
+				return '404';  // Return page name 404.
 			} else {
 				return false; // Abort to prevent error trying to post a title.
 			}
 		}
 
-
+		// Get page name.
 		$page_name = $post->post_title;
 
 		// If page name is missing - ABORT.

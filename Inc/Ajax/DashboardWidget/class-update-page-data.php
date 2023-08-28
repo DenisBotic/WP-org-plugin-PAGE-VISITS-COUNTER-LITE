@@ -1,10 +1,13 @@
 <?php
 /**
- * AJAX UPDATE PAGE DATA - CALLBACK
+ * AJAX update page data - Callback - class
  *
- * DESC: Update page data in option "strcpv_visits_by_page".
+ * This class handles the AJAX callback to update page data in the "strcpv_visits_by_page" option.
+ * It allows administrators to update the number of visits for a specific page.
  *
  * @package Strongetic - count page visits
+ * @subpackage Inc\Ajax\DashboardWidget
+ * @since 1.0.0
  */
 
 namespace StrCPVisits_Inc\Ajax\DashboardWidget;
@@ -16,29 +19,43 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use StrCPVisits_Inc\DB\Options;
 
-
-
 class UpdatePageData extends Options {
 
 
 
+	/**
+	 * Register AJAX Action
+	 *
+	 * Registers the WordPress AJAX action for updating page data.
+	 *
+	 * @since 1.0.0
+	 */
 	public function register() {
-		add_action( 'wp_ajax_StrCPVisits_update_page_data', [ $this, 'StrCPVisits_update_page_data' ] ); // Logged in users.
+		// Logged in users.
+		add_action( 'wp_ajax_StrCPVisits_update_page_data', [ $this, 'StrCPVisits_update_page_data' ] );
 	}
 
 
 
 
+	/**
+	 * AJAX Update Page Data Callback
+	 *
+	 * This method is triggered as an AJAX callback to update page data in the "strcpv_visits_by_page" option.
+	 * It performs necessary security checks and updates, allowing administrators to modify the number of visits for a specific page.
+	 *
+	 * @since 1.0.0
+	 */
 	public function StrCPVisits_update_page_data() {
 
 
-		// Check if data are submitted from corresponding form by using wp_nonce.
+		// Verify if data is submitted from the corresponding form using wp_nonce.
 		if ( ! check_ajax_referer( 'StrCPVisits_settings', 'security' ) ) {
 			return;
 		}
 
 
-		// Prevent form data submission for none admin users.
+		// Prevent form data submission for non-admin users.
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
@@ -55,11 +72,11 @@ class UpdatePageData extends Options {
 		// NEW NUMBER OF VISITS.
 		if ( isset( $settings_data['StrCPVisits-dblist-page-visits-nr'] ) ) {
 
-			// Is numeric.
+			// Check if it's numeric.
 			if ( is_numeric( $settings_data['StrCPVisits-dblist-page-visits-nr'] ) ) {
 				$new_number = sanitize_text_field( $settings_data['StrCPVisits-dblist-page-visits-nr'] );
 
-				// Throw error if number > 9bil.
+				// Throw an error if the number is greater than 9 billion.
 				if ( $new_number > 9000000000 ) {
 					wp_send_json_error( esc_html__( 'Error - number too big!', 'page-visits-counter-lite' ) ); // Abort.
 				}
@@ -74,9 +91,9 @@ class UpdatePageData extends Options {
 
 
 		/**
-		 * PAGE NAME - it should be set - else return error message.
+		 * PAGE NAME - it should be set; otherwise, return an error message.
 		 *
-		 * INFO: No need for hard core security because it is going to be compared with another data.
+		 * INFO: No need for hardcore security as it is going to be compared with another data.
 		 *
 		 * @since 1.0.0.
 		 */
@@ -96,8 +113,6 @@ class UpdatePageData extends Options {
 		} else {
 			wp_send_json_error( esc_html__( 'No changes to save...', 'page-visits-counter-lite' ) );
 		}
-
-
 
 
 		die();

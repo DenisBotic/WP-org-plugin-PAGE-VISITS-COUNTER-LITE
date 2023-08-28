@@ -1,10 +1,11 @@
 <?php
 /**
- * ENQUEUE
+ * Enqueue class
  *
- * DESC: Enqueue scripts, styles and localize script.
+ * This class handles enqueueing scripts, styles, and localizing scripts.
  *
  * @package Strongetic - count page visits
+ * @subpackage Inc\Base
  * @since 1.0.0
  */
 
@@ -21,6 +22,7 @@ class Enqueue extends BaseController {
 
 
 	public function register() {
+		// Hook into WordPress script and style enqueueing actions.
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'adminEnqueue' ] );
 	}
@@ -31,8 +33,8 @@ class Enqueue extends BaseController {
 	/**
 	 * ENQUEUE
 	 *
-	 * DESC: Add styles and scripts to the wp frontend.
-	 * INFO: If you wish to localize this plugin, or just pass the php variable to js file then use wp_localize_script.
+	 * DESC: Add styles and scripts for the wp frontend.
+	 * INFO: If you wish to localize this plugin, or just pass the PHP variable to JS file then use wp_localize_script.
 	 *       Also, with localize script you can create NONCE.
 	 *
 	 * @since 1.0.0
@@ -43,7 +45,7 @@ class Enqueue extends BaseController {
 		wp_enqueue_script( 'jquery' );
 
 
-		// REGISTER JS.
+		// ADD CUSTOM FRONTEND JAVASCRIPT.
 		$plugin_js_path = $this->plugin_path . 'assets/frontend/page-visits-counter-lite-ajax.js';
 		if ( file_exists( $plugin_js_path ) ) {
 			$script1_ver = filemtime( $plugin_js_path );
@@ -51,7 +53,7 @@ class Enqueue extends BaseController {
 		}
 
 
-		// LOCALIZE SCRIPT -> add php variable to JS file.
+		// LOCALIZE THE FRONTEND SCRIPT -> add php variable to JS file.
 		wp_localize_script(
 			'StrCPVisits_js_frontend',
 			'STR_CPVISITS',
@@ -74,20 +76,23 @@ class Enqueue extends BaseController {
 	/**
 	 * ADMIN ENQUEUE
 	 *
-	 * DESC: Add styles and scripts to the wp admin area.
-	 * INFO: If you wish to localize this plugin, or just pass the php variable to js file then use wp_localize_script.
+	 * DESC: Add styles and scripts for the wp admin area.
+	 * INFO: If you wish to localize this plugin, or just pass the PHP variable to JS file then use wp_localize_script.
 	 *       Also, with localize script you can create NONCE.
 	 *
 	 * @since 1.0.0
 	 */
 	public function adminEnqueue( $page ) {
 
-
-		// Enqueue only on admin "Dashboard" page or settings sub-page called "Page Visits Counter Light".
+		/**
+		 * Enqueue styles and scripts only on specific admin pages.
+		 * - Dashboard page.
+		 * - Settings sub-page called "Page Visits Counter Light".
+		 */
 		if ( strpos( $page, 'settings_page_strongetic-page-visits-counter-lite' ) !== false || strpos( $page, 'index.php' ) !== false ) {
 
 
-			// ADD STYLE.
+			// ADD CUSTOM ADMIN STYLESHEET.
 			$plugin_style_path = $this->plugin_path . 'assets/admin/page-visits-counter-lite.css';
 			if ( file_exists( $plugin_style_path ) ) {
 				$style1_ver = filemtime( $plugin_style_path );
@@ -102,14 +107,14 @@ class Enqueue extends BaseController {
 
 
 
-		// REGISTER JS.
+		// REGISTER ADMIN JAVASCRIPT.
 		$plugin_js_path = $this->plugin_path . 'assets/admin/page-visits-counter-lite.js';
 		if ( file_exists( $plugin_js_path ) ) {
 			$script1_ver = filemtime( $plugin_js_path );
 			wp_register_script( 'StrCPVisits_js', $this->plugin_url . 'assets/admin/page-visits-counter-lite.js', [ 'jquery' ], $script1_ver, false );
 		}
 
-		// ADD AJAX.
+		// REGISTER ADMIN AJAX js.
 		$plugin_ajax_path = $this->plugin_path . 'assets/admin/page-visits-counter-lite-ajax.js';
 		if ( file_exists( $plugin_ajax_path ) ) {
 			$script2_ver = filemtime( $plugin_ajax_path );
@@ -122,7 +127,7 @@ class Enqueue extends BaseController {
 		}
 
 
-		// LOCALIZE SCRIPT in JS file.
+		// LOCALIZE SCRIPT IN THE ADMIN JAVASCRIPT FILE.
 		wp_localize_script(
 			'StrCPVisits_js',
 			'STR_CPVISITS_JS',
@@ -132,7 +137,7 @@ class Enqueue extends BaseController {
 		);
 
 
-		// LOCALIZE SCRIPT in AJAX file.
+		// LOCALIZE SCRIPT IN THE ADMIN AJAX js FILE.
 		wp_localize_script(
 			'StrCPVisits_ajax',
 			'STR_CPVISITS',
