@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="StrCPVisits_accordion_panel">
 			<ul>
 				<li><?php esc_html_e( 'It is a small size software and it does not require much memory.', 'page-visits-counter-lite' ); ?></li>
-				<li><?php esc_html_e( 'It is not going to crowd your database with tons of metric data and  "eat" the database memory.', 'page-visits-counter-lite' ); ?></li>
+				<li><?php esc_html_e( 'It is not going to crowd your database with tons of metric data and "eat" the database memory.', 'page-visits-counter-lite' ); ?></li>
 				<li><?php esc_html_e( "It is not going to collect users' personal data - GDPR compliant.", 'page-visits-counter-lite' ); ?></li>
 			</ul>
 			<br>

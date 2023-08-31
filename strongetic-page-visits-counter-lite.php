@@ -14,7 +14,7 @@
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       page-visits-counter-lite
- * Domain Path:       /languages
+ * Domain Path:       /lang
  * WC requires at least: 4.9.2
  * WC tested up to: 5.0.0
  */
@@ -27,17 +27,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 
-// /**
-//  * LOADS TRANSLATIONS - not necessary for WP.org
-//  *
-//  * DESC: Loads translations from plugin 'lang' directory
-//  *
-//  * @since 1.2.0
-//  */
-// function strcpv_plugin_load_text_domain() {
-// 	load_plugin_textdomain( 'page-visits-counter-lite', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
-// }
-// add_action( 'plugins_loaded', 'strcpv_plugin_load_text_domain' );
+// Disable auto-updates for translations
+add_filter('auto_update_translation', '__return_false');
+
+
+
+
+/**
+ * LOADS TRANSLATIONS - not necessary for WP.org
+ *
+ * DESC: Loads translations from plugin 'lang' directory
+ *
+ * @since 1.2.0
+ */
+function strcpv_plugin_load_text_domain() {
+	load_plugin_textdomain( 'page-visits-counter-lite', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
+}
+add_action( 'plugins_loaded', 'strcpv_plugin_load_text_domain' );
 
 
 
@@ -74,7 +80,6 @@ if ( file_exists( dirname( __FILE__ ) . '/Inc/include.php' ) ) {
 if ( file_exists( dirname( __FILE__ ) . '/templates/include.php' ) ) {
 	require_once dirname( __FILE__ ) . '/templates/include.php';
 }
-
 
 
 

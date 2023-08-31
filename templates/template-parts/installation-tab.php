@@ -45,7 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<p><?php esc_html_e( 'You should flush the cache memory from all three places in the presented order.', 'page-visits-counter-lite' ); ?><p>
 		<p><?php esc_html_e( 'Usually, there are buttons for that:', 'page-visits-counter-lite' ); ?></p>
 		<ul>
-			<li><?php esc_html_e( 'A button can be named:  Clear/Purge/Flush or a brume icon instead.', 'page-visits-counter-lite' ); ?></li>
+			<li><?php esc_html_e( 'A button can be named: Clear / Purge / Flush or a brume icon instead.', 'page-visits-counter-lite' ); ?></li>
 			<li><?php esc_html_e( 'A button named "Delete min JS and CSS" or something like that.', 'page-visits-counter-lite' ); ?></li>
 		</ul>
 		<br>

@@ -105,11 +105,11 @@ $StrCpv_counter_default_style_light = " display: inline-block !important;<br>
 			<br>
 
 			<!-- POSITION MENU -->
-			<span class="StrCPVisits-frontend-counter-code-select-position-text">Set counter position in parent element</span>
+			<span class="StrCPVisits-frontend-counter-code-select-position-text"><?php esc_html_e( 'Set counter position in parent element', 'page-visits-counter-lite' ); ?></span>
 			<select id="StrCPVisits-page-counter-select-position">
-				<option value="left">Left</option>
-				<option value="center">Center</option>
-				<option value="right">Right</option>
+				<option value="left"><?php esc_html_e( 'Left', 'page-visits-counter-lite' ); ?></option>
+				<option value="center"><?php esc_html_e( 'Center', 'page-visits-counter-lite' ); ?></option>
+				<option value="right"><?php esc_html_e( 'Right', 'page-visits-counter-lite' ); ?></option>
 			</select>
 
 			<!-- PAGE VISITS COUNTER - CODE BLOCKS -->
@@ -197,11 +197,11 @@ $StrCpv_counter_default_style_light = " display: inline-block !important;<br>
 			<br>
 
 			<!-- POSITION MENU -->
-			<span class="StrCPVisits-frontend-counter-code-select-position-text">Set counter position in parent element</span>
+			<span class="StrCPVisits-frontend-counter-code-select-position-text"><?php esc_html_e( 'Set counter position in parent element', 'page-visits-counter-lite' ); ?></span>
 			<select id="StrCPVisits-website-counter-select-position">
-				<option value="left">Left</option>
-				<option value="center">Center</option>
-				<option value="right">Right</option>
+				<option value="left"><?php esc_html_e( 'Left', 'page-visits-counter-lite' ); ?></option>
+				<option value="center"><?php esc_html_e( 'Center', 'page-visits-counter-lite' ); ?></option>
+				<option value="right"><?php esc_html_e( 'Right', 'page-visits-counter-lite' ); ?></option>
 			</select>
 
 			<!-- WEBSITE VISITS COUNTER - CODE BLOCKS -->

@@ -40,11 +40,12 @@ $base_controler_data = get_query_var( 'StrCPVisits_base_controler_data' );
 		<li><?php esc_html_e( 'Press the F12 keyboard button to open the browser Dev Tools. ( Or google for the tutorials on how to open Dev Tools in Chrome or Mozilla. )', 'page-visits-counter-lite' ); ?></li>
 		<li><?php esc_html_e( 'In the Dev Tools tab at the top, you will see menu options like in the image below this text. Click on the option called Console. ', 'page-visits-counter-lite' ); ?></li>
 	</ul>
+	<img src="<?php echo $base_controler_data['plugin_url']; ?>assets/img/strongetic-page-visits-counter-lite-debug1-v-1-0-0.jpg" alt="strongetic-page-visits-counter-light plugin debugging1">
 	<br>
 
 	<h3><?php esc_html_e( 'DEBUG ISSUES', 'page-visits-counter-lite' ); ?></h3>
 	<h4><?php esc_html_e( 'NO TEXT', 'page-visits-counter-lite' ); ?></h4>
-	<p><?php esc_html_e( 'If you do not see the text as on the image below in your console tab, even if you scroll it up or down, it means that your Javascript files are still cashed.', 'page-visits-counter-lite' ); ?></p>
+	<p><?php esc_html_e( 'If you do not see the text as on the image in your console tab, even if you scroll it up or down, it means that your Javascript files are still cashed.', 'page-visits-counter-lite' ); ?></p>
 	<h5><?php esc_html_e( 'FIX', 'page-visits-counter-lite' ); ?></h5>
 	<ul>
 		<li><?php esc_html_e( 'You should flush the cache and delete minified JS and CSS files from your WP cache and automatic optimization plugins.', 'page-visits-counter-lite' ); ?></li>
