@@ -3,7 +3,7 @@
  * DISPLAY SETTINGS PAGE
  *
  * This file is responsible for displaying the HTML content in the admin sub-page called "Page Visits Counter Light"
- *       under admin menu setting option.
+ * under admin menu setting option.
  *
  * @param  $base_controller_data  asoc.array
  * @package Strongetic - count page visits
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 
-function strongeticSubpageVisitsCounterLight( $base_controler_data ) {
+function strongetic_subpage_visits_counter_light( $base_controler_data ) {
 
 	/**
 	 * Setting variable.

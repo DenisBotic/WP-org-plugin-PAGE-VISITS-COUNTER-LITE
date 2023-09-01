@@ -24,7 +24,7 @@ class Enqueue extends Base_Controller {
 	public function register() {
 		// Hook into WordPress script and style enqueueing actions.
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue' ] );
-		add_action( 'admin_enqueue_scripts', [ $this, 'adminEnqueue' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue' ] );
 	}
 
 
@@ -82,7 +82,13 @@ class Enqueue extends Base_Controller {
 	 *
 	 * @since 1.0.0
 	 */
-	public function adminEnqueue( $page ) {
+	public function admin_enqueue( $page ) {
+
+
+		// ADD JQUERY.
+		wp_enqueue_script( 'jquery' );
+
+
 
 		/**
 		 * Enqueue styles and scripts only on specific admin pages.
@@ -98,10 +104,6 @@ class Enqueue extends Base_Controller {
 				$style1_ver = filemtime( $plugin_style_path );
 				wp_enqueue_style( 'style', $this->plugin_url . 'assets/admin/page-visits-counter-lite.css', '', $style1_ver );
 			}
-
-
-			// ADD JQUERY.
-			wp_enqueue_script( 'jquery' );
 
 		} // ! if page
 
@@ -154,6 +156,6 @@ class Enqueue extends Base_Controller {
 		);
 
 
-	} // ! adminEnqueue.
+	} // ! admin_enqueue.
 
 } // ! Class.

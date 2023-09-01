@@ -27,4 +27,4 @@ $base_controler_data = get_query_var( 'StrCPVisits_base_controler_data' );
 
 
 <!-- Display the screenshot image related to the plugin -->
-<img src="<?php echo $base_controler_data['plugin_url']; ?>assets/img/strongetic-page-visits-counter-lite-v1-0-0.jpg" alt="strongetic-page-visits-counter-light plugin screenshot">
+<img src="<?php echo esc_url( $base_controler_data['plugin_url'] ); ?>assets/img/strongetic-page-visits-counter-lite-v1-0-0.jpg" alt="strongetic-page-visits-counter-light plugin screenshot">

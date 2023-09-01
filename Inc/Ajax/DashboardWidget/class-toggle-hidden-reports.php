@@ -51,13 +51,13 @@ class Toggle_Hidden_Reports extends Options {
 
 		// Verify if data is submitted from the corresponding form using wp_nonce.
 		if ( ! check_ajax_referer( 'StrCPVisits_settings', 'security' ) ) {
-			return;
+			return; // Abort.
 		}
 
 
 		// Prevent form data submission for non-admin users.
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return;
+			return; // Abort.
 		}
 
 
@@ -102,12 +102,12 @@ class Toggle_Hidden_Reports extends Options {
 		if ( $_POST['list'] === 'hidden' ) {
 
 			// SET AS HIDDEN.
-			$response = $this->setAsHiddenReports( $page_names_arr );
+			$response = $this->set_as_hidden_reports( $page_names_arr );
 
 		} elseif ( $_POST['list'] === 'visible' ) {
 
 			// REMOVE FROM HIDDEN.
-			$response = $this->removeFromHiddenReports( $page_names_arr );
+			$response = $this->remove_from_hidden_reports( $page_names_arr );
 
 		} else {
 			// ABORT.
@@ -121,7 +121,7 @@ class Toggle_Hidden_Reports extends Options {
 		if ( $response === true ) {
 			wp_send_json_success( esc_html__( 'Success!', 'page-visits-counter-lite' ) );
 		} else {
-			wp_send_json_error( esc_html__( 'There was an error!', 'page-visits-counter-lite' ) );
+			wp_send_json_error( esc_html__( 'There was an error!', 'page-visits-counter-lite' ) ); // Abort.
 		}
 
 

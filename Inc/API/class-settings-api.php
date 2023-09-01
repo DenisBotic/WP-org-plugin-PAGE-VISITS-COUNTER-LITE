@@ -45,7 +45,7 @@ class Settings_Api extends Counter_Base {
 	 * @since 1.0.0
 	 */
 	public function strongetic_register_settings_option() {
-		add_submenu_page( 'options-general.php', 'strongetic-page-visits-counter-lite', 'Page Visits Counter Lite', 'manage_options', 'strongetic-page-visits-counter-lite', [ $this, 'generateSubpageVisitsCounterLight' ] );
+		add_submenu_page( 'options-general.php', 'strongetic-page-visits-counter-lite', 'Page Visits Counter Lite', 'manage_options', 'strongetic-page-visits-counter-lite', [ $this, 'generate_subpage_visits_counter_light' ] );
 	}
 
 
@@ -55,14 +55,14 @@ class Settings_Api extends Counter_Base {
 	 * INVOKE PAGE TEMPLATE FUNCTIONS
 	 *
 	 * DESC: This is required for passing all BASE CONTROLLER data
-	 * INFO: Param. $this->getAllData is retrieving all data from the base controller class.
+	 * INFO: Param. $this->get_all_data is retrieving all data from the base controller class.
 	 *       Param type is asoc. array.
 	 *
 	 * @since 1.0.0
 	 */
 
-	public function generateSubpageVisitsCounterLight() {
-		strongeticSubpageVisitsCounterLight( $this->getAllData() );
+	public function generate_subpage_visits_counter_light() {
+		strongetic_subpage_visits_counter_light( $this->get_all_data() );
 	}
 
 }

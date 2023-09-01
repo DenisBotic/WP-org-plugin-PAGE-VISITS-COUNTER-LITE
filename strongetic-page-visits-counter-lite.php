@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 // Disable auto-updates for translations
-add_filter('auto_update_translation', '__return_false');
+add_filter( 'auto_update_translation', '__return_false' );
 
 
 

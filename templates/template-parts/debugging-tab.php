@@ -40,7 +40,7 @@ $base_controler_data = get_query_var( 'StrCPVisits_base_controler_data' );
 		<li><?php esc_html_e( 'Press the F12 keyboard button to open the browser Dev Tools. ( Or google for the tutorials on how to open Dev Tools in Chrome or Mozilla. )', 'page-visits-counter-lite' ); ?></li>
 		<li><?php esc_html_e( 'In the Dev Tools tab at the top, you will see menu options like in the image below this text. Click on the option called Console. ', 'page-visits-counter-lite' ); ?></li>
 	</ul>
-	<img src="<?php echo $base_controler_data['plugin_url']; ?>assets/img/strongetic-page-visits-counter-lite-debug1-v-1-0-0.jpg" alt="strongetic-page-visits-counter-light plugin debugging1">
+	<img src="<?php echo esc_url( $base_controler_data['plugin_url'] ); ?>assets/img/strongetic-page-visits-counter-lite-debug1-v-1-0-0.jpg" alt="strongetic-page-visits-counter-light plugin debugging1">
 	<br>
 
 	<h3><?php esc_html_e( 'DEBUG ISSUES', 'page-visits-counter-lite' ); ?></h3>
@@ -62,7 +62,7 @@ $base_controler_data = get_query_var( 'StrCPVisits_base_controler_data' );
 	<h5><?php esc_html_e( 'FIX', 'page-visits-counter-lite' ); ?></h5>
 	<p><?php esc_html_e( "You should log in to your hosting account and flush the cache memory. If you don't know how to do it on your own, you can google for instructions on how to do it or contact the hosting support and ask them to do it for you.", 'page-visits-counter-lite' ); ?></p>
 
-	<img src="<?php echo $base_controler_data['plugin_url']; ?>assets/img/strongetic-page-visits-counter-lite-debug1-v-1-0-0.jpg" alt="strongetic-page-visits-counter-light plugin debugging1">
+	<img src="<?php echo esc_url( $base_controler_data['plugin_url'] ); ?>assets/img/strongetic-page-visits-counter-lite-debug1-v-1-0-0.jpg" alt="strongetic-page-visits-counter-light plugin debugging1">
 	<small>( <?php esc_html_e( 'On the image above you can find out how many visits a page had - without counting page reload/refresh.', 'page-visits-counter-lite' ); ?> )</small>
 	<br><br>
 </article>
@@ -77,16 +77,16 @@ $base_controler_data = get_query_var( 'StrCPVisits_base_controler_data' );
 	<br>
 	<p><?php esc_html_e( 'You can find out the official page name that later you can search for in the admin dashboard to update.', 'page-visits-counter-lite' ); ?></p>
 	<p><?php esc_html_e( 'If you are visiting the page or a page type that is not going to be counted, you will be notified about that.', 'page-visits-counter-lite' ); ?></p>
-	<img src="<?php echo $base_controler_data['plugin_url']; ?>assets/img/strongetic-page-visits-counter-lite-debug2-v-1-0-0.jpg" alt="strongetic-page-visits-counter-light plugin debugging2">
+	<img src="<?php echo esc_url( $base_controler_data['plugin_url'] ); ?>assets/img/strongetic-page-visits-counter-lite-debug2-v-1-0-0.jpg" alt="strongetic-page-visits-counter-light plugin debugging2">
 </article>
 
 <article class="StrCPVisits-settings-page-text-box">
 	<p><?php esc_html_e( 'If you refresh the page, you will get the page visits ( unchanged ) number and the message.', 'page-visits-counter-lite' ); ?></p>
 	<p><?php esc_html_e( 'The message is going to tell you that the page is refreshed, and it is not going to count as a visit.', 'page-visits-counter-lite' ); ?></p>
-	<img src="<?php echo $base_controler_data['plugin_url']; ?>assets/img/strongetic-page-visits-counter-lite-debug3-v-1-0-0.jpg" alt="strongetic-page-visits-counter-light plugin debugging3">
+	<img src="<?php echo esc_url( $base_controler_data['plugin_url'] ); ?>assets/img/strongetic-page-visits-counter-lite-debug3-v-1-0-0.jpg" alt="strongetic-page-visits-counter-light plugin debugging3">
 </article>
 
 <article class="StrCPVisits-settings-page-text-box">
 	<p><?php esc_html_e( 'If you are logged in with a user role that is not going to count a page visit, you will be notified about that as well.', 'page-visits-counter-lite' ); ?></p>
-	<img src="<?php echo $base_controler_data['plugin_url']; ?>assets/img/strongetic-page-visits-counter-lite-debug4-v-1-0-0.jpg" alt="strongetic-page-visits-counter-light plugin debugging4">
+	<img src="<?php echo esc_url( $base_controler_data['plugin_url'] ); ?>assets/img/strongetic-page-visits-counter-lite-debug4-v-1-0-0.jpg" alt="strongetic-page-visits-counter-light plugin debugging4">
 </article>

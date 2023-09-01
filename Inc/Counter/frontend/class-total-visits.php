@@ -1,10 +1,12 @@
 <?php
 /**
- * TOTAL VISITS
+ * Total visits - class
  *
- * DESCRIPTION: Count visits - all pages.
+ * This class is responsible for counting visits on all pages.
  *
  * @package Strongetic - count page visits
+ * @subpackage Inc\Counter\frontend
+ * @since 1.0.0
  */
 
 namespace StrCPVisits_Inc\Counter\frontend;
@@ -16,21 +18,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use StrCPVisits_Inc\Counter\frontend\Counter_Base;
 
-
-
 class Total_Visits extends Counter_Base {
 
 
 
+	/**
+	 * Register Actions
+	 *
+	 * Registers WordPress actions for setting page data.
+	 *
+	 * @since 1.0.0
+	 */
 	public function register() {
-		add_action( 'wp_head', [ $this, 'setPageData' ] );
+		add_action( 'wp_head', [ $this, 'set_page_data' ] );
 	}
 
 
 
 
 	/**
-	 * COUNT ALL VISITS
+	 * Count all visits
 	 *
 	 * DESC: Check user type and ABORT if not VISITOR, SUBSCRIBER, CUSTOMER, AUTHOR, CONTRIBUTOR, AND PENDING_USER.
 	 *       Create total visits option if doesn't exist.
@@ -38,7 +45,7 @@ class Total_Visits extends Counter_Base {
 	 *
 	 * @since 1.0.0
 	 */
-	public function setPageData() {
+	public function set_page_data() {
 
 		// ABORT IF ATTACHMENT PAGE.
 		if ( is_attachment() ) {
@@ -49,7 +56,7 @@ class Total_Visits extends Counter_Base {
 
 
 		// GET PAGE NAME.
-		$page_name = $this->getPageName();
+		$page_name = $this->get_page_name();
 		// ABORT if there is no page name.
 		if ( $page_name === false ) {
 			$abort = 'true';
@@ -74,7 +81,7 @@ class Total_Visits extends Counter_Base {
 
 
 	/**
-	 * GET PAGE NAME
+	 * Get page name
 	 *
 	 * DESC: Detect current page name and detect if it is an archive page or woocommerce archive page.
 	 *       Is default homepage with posts or static homepage?
@@ -85,7 +92,7 @@ class Total_Visits extends Counter_Base {
 	 * @return  false or page name
 	 * @since 1.0.0
 	 */
-	public function getPageName() {
+	public function get_page_name() {
 		global $post;
 
 		// If there is no post - ABORT.

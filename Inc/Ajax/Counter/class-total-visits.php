@@ -99,11 +99,11 @@ class Total_Visits extends Options {
 
 			$user_role = wp_get_current_user()->roles[0];
 			if (
-					$user_role != 'subscriber' &&    // Allow subscriber.
-					$user_role != 'customer' &&      // Allow customer.
-					$user_role != 'author' &&        // Allow author.
-					$user_role != 'contributor' &&   // Allow contributor.
-					$user_role != 'pending_user'     // Allow pending_user.
+					$user_role !== 'subscriber' &&  // Allow subscriber.
+					$user_role !== 'customer' &&    // Allow customer.
+					$user_role !== 'author' &&      // Allow author.
+					$user_role !== 'contributor' && // Allow contributor.
+					$user_role !== 'pending_user'   // Allow pending_user.
 			) {
 
 				// SET RESPONSES:
@@ -122,7 +122,7 @@ class Total_Visits extends Options {
 				$final_response['total_visits']['nr']     = esc_html( get_option( STRCPV_OPT_NAME['total_visits'] ) );
 				// Get total page visits response.
 				$final_response['page_visits']       = false;
-				$final_response['page_visits']['nr'] = esc_html( $this->getVisitsNrByPageName( $page_name ) );
+				$final_response['page_visits']['nr'] = esc_html( $this->get_visits_nr_by_page_name( $page_name ) );
 
 				wp_send_json_success( $final_response ); // Abort.
 			}
@@ -132,7 +132,7 @@ class Total_Visits extends Options {
 
 
 		// Update total visits number (+1).
-		$final_response['total_visits'] = $this->countTotalVisits();
+		$final_response['total_visits'] = $this->count_total_visits();
 
 
 
@@ -206,11 +206,11 @@ class Total_Visits extends Options {
 		 * @since 1.0.0
 		 */
 		// CHECK IF PAGE IS REFRESHED in parent class DB/Options.
-		$page_refreshed = $this->isPageRefreshed( $ip, $page_name );
+		$page_refreshed = $this->is_page_refreshed( $ip, $page_name );
 		// ABORT if page is refreshed.
 		if ( $page_refreshed === true ) {
 			// GET PAGE VISITS NR.
-			$page_visits_nr = $this->getVisitsNrByPageName( $page_name );
+			$page_visits_nr = $this->get_visits_nr_by_page_name( $page_name );
 			// Set final response.
 			$final_response['page_visits_on_refresh'] = esc_html( $page_visits_nr );
 			$final_response['msg']                    = esc_html__( 'Not counting - page refreshed!', 'page-visits-counter-lite' );
@@ -222,7 +222,7 @@ class Total_Visits extends Options {
 
 
 		// Increase page visit by one.
-		$final_response['page_visits'] = $this->countVisitsPerPage( $ip, $page_name );
+		$final_response['page_visits'] = $this->count_visits_per_page( $ip, $page_name );
 
 
 

@@ -28,7 +28,7 @@ class Activate {
 	 * Activate the plugin.
 	 *
 	 * This method is responsible for handling the activation of the plugin. It flushes
-	 * rewrite rules to ensure proper URL handling and calls the 'addOptionDeletePluginData()'
+	 * rewrite rules to ensure proper URL handling and calls the 'add_option_delete_plugin_data()'
 	 * method to add an option for managing the deletion of plugin data. This activation
 	 * process prepares the plugin for use and sets up necessary configurations.
 	 *
@@ -36,7 +36,7 @@ class Activate {
 	 */
 	public static function activate() {
 		flush_rewrite_rules();
-		self::addOptionDeletePluginData();
+		self::add_option_delete_plugin_data();
 	}
 
 
@@ -58,7 +58,7 @@ class Activate {
 	 *
 	 * @since 1.0.0
 	 */
-	public static function addOptionDeletePluginData() {
+	public static function add_option_delete_plugin_data() {
 		$option = get_option( STRCPV_OPT_NAME['delete_plugin_data'] );
 		if ( $option === false ) {
 			// Create option with the given name and set its value to "YES".

@@ -51,13 +51,13 @@ class Delete_Pages extends Options {
 
 		// Verify if data is submitted from the corresponding form using wp_nonce.
 		if ( ! check_ajax_referer( 'StrCPVisits_settings', 'security' ) ) {
-			return;
+			return; // Abort.
 		}
 
 
 		// Prevent form data submission for non-admin users.
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return;
+			return; // Abort.
 		}
 
 
@@ -94,12 +94,12 @@ class Delete_Pages extends Options {
 
 
 		// DELETE PAGE-S FROM OPTION VALUE and SEND AJAX RESPONSE.
-		$response = $this->deletePagesFromOptionValue( $page_names_arr );
+		$response = $this->delete_pages_from_option_value( $page_names_arr );
 
 		if ( $response === true ) {
 			wp_send_json_success( esc_html__( 'Pages deleted!', 'page-visits-counter-lite' ) );
 		} else {
-			wp_send_json_error( esc_html__( 'There was an error!', 'page-visits-counter-lite' ) );
+			wp_send_json_error( esc_html__( 'There was an error!', 'page-visits-counter-lite' ) ); // Abort.
 		}
 
 

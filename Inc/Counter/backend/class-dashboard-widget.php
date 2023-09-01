@@ -31,7 +31,7 @@ class Dashboard_Widget extends Base_Controller {
 		wp_add_dashboard_widget(
 			'strongetic_page_visits_counter_light', // Widget slug.
 			'ALL PAGE VISITS', // Widget title.
-			[ $this, 'displayWidgetContent' ] // Function name to display the widget.
+			[ $this, 'display_widget_content' ] // Function name to display the widget.
 		);
 	}
 
@@ -46,12 +46,12 @@ class Dashboard_Widget extends Base_Controller {
 	 *
 	 * @since 1.0.0
 	 */
-	public function displayWidgetContent() {
+	public function display_widget_content() {
 
 		// Get pages data.
 		$pages_data = $this->get_pages_data();
 		// Set default classes for info box and quick info button.
-		$default_classes = $this->getDefaultInfoBoxClass( $pages_data );
+		$default_classes = $this->get_default_info_box_class( $pages_data );
 
 
 
@@ -72,9 +72,9 @@ class Dashboard_Widget extends Base_Controller {
 
 			<!-- TOTAL VISITS BOXES -->
 			<div class="StrCPVisits_db_total_visits_wrapper">
-				<?php $this->displayTotalVisits(); ?>
+				<?php $this->display_total_visits(); ?>
 				<br>
-				<?php $this->displayTotalPageVisits( $pages_data ); ?>
+				<?php $this->display_total_page_visits( $pages_data ); ?>
 			</div>
 
 			<?php
@@ -327,7 +327,7 @@ class Dashboard_Widget extends Base_Controller {
 
 				<!-- INFO BOX -->
 				<div id="StrCPVisits_js_db_info_box" class="StrCPVisits_db_info_box  <?php echo $default_classes['info_box']; ?>">
-					<?php echo $this->getExplanation(); ?>
+					<?php echo $this->get_explanation(); ?>
 				</div>
 
 
@@ -410,7 +410,7 @@ class Dashboard_Widget extends Base_Controller {
 			return $data_arr; // Abort further exec.
 		}
 		// Option has data.
-		return $this->getDataValues( $visits_by_page_data_ser );
+		return $this->get_data_values( $visits_by_page_data_ser );
 	}
 
 
@@ -427,7 +427,7 @@ class Dashboard_Widget extends Base_Controller {
 	 * @return  array
 	 * @since 1.0.0
 	 */
-	public function getDataValues( $visits_by_page_data_ser ) {
+	public function get_data_values( $visits_by_page_data_ser ) {
 		$visits_by_page_data_arr = maybe_unserialize( $visits_by_page_data_ser );
 		$html_visits             = '';
 		$total_page_visits       = 0;
@@ -446,7 +446,7 @@ class Dashboard_Widget extends Base_Controller {
 			}
 
 			// Get page type - (the word before ":" or "All-Others").
-			$page_type = $this->getPageType( $key );
+			$page_type = $this->get_page_type( $key );
 
 			// Count rows.
 			$nr_of_rows = $nr_of_rows + 1;
@@ -458,7 +458,7 @@ class Dashboard_Widget extends Base_Controller {
 			}
 
 			// Set option to Visible or Hidden List.
-			$hidden_report_class = $this->getHiddenReportClass( $key ); // "StrCPVisits-hidden-indicator" || "".
+			$hidden_report_class = $this->get_hidden_report_class( $key ); // "StrCPVisits-hidden-indicator" || "".
 
 			// Prepare input array data as a string - page-type-name, page-name.
 			$input_value_str = json_encode( [ $page_type, $key ] ); // array as a string.
@@ -521,7 +521,7 @@ class Dashboard_Widget extends Base_Controller {
 	 * @return string  '' or 'StrCPVisits-hidden-indicator'
 	 * @since 1.0.0
 	 */
-	public static function getHiddenReportClass( $page_name ) {
+	public static function get_hidden_report_class( $page_name ) {
 		// GET HIDDEN PAGE REPORTS.
 		$hidden_page_reports_ser = get_option( STRCPV_OPT_NAME['hidden_page_reports'] );
 		// CHECK IF REPORTS HAS DATA.
@@ -555,7 +555,7 @@ class Dashboard_Widget extends Base_Controller {
 	 * @return  string
 	 * @since 1.0.0
 	 */
-	public static function getPageType( $page_name ) {
+	public static function get_page_type( $page_name ) {
 		// Default page type.
 		$page_type = 'All-Others';
 		// Check if page name string has ":".
@@ -580,7 +580,7 @@ class Dashboard_Widget extends Base_Controller {
 	 * @return  array
 	 * @since 1.0.0
 	 */
-	public function getDefaultInfoBoxClass( $pages_data ) {
+	public function get_default_info_box_class( $pages_data ) {
 		if ( $pages_data['displ_expl'] === true ) {
 			// There is no data yet - display explanation by default.
 			$info_box_class                = '';
@@ -619,7 +619,7 @@ class Dashboard_Widget extends Base_Controller {
 	 * @param  $pages_data  array
 	 * @since 1.0.0
 	 */
-	public function displayTotalPageVisits( $pages_data ) {
+	public function display_total_page_visits( $pages_data ) {
 		?>
 			<!-- HTML CONTENT -->
 			<div class='StrCPVisits_db_total_page_visits_box'>
@@ -648,7 +648,7 @@ class Dashboard_Widget extends Base_Controller {
 	 *
 	 * @since 1.0.0
 	 */
-	public function displayTotalVisits() {
+	public function display_total_visits() {
 		$option_name = STRCPV_OPT_NAME['total_visits'];
 		$total_visits = ( get_option( $option_name ) === false ) ? 0 : get_option( $option_name ); // Set default value to 0 if there are no data.
 		?>
@@ -657,7 +657,7 @@ class Dashboard_Widget extends Base_Controller {
 				<p id="StrCPVisits_js_db_total_visits_box_nr" class='StrCPVisits_db_total_page_visits'><?php echo $total_visits; ?></p>
 				<!-- Edit icon -->
 				<span id="StrCPVisits_js_db_edit_total_visits_icon" class="StrCPVisits_icon_btn dashicons dashicons-edit"></span>
-				<?php $this->addHiddenEditTotalVisitsBox( $total_visits ); ?>
+				<?php $this->add_hidden_edit_total_visits_box( $total_visits ); ?>
 			</div>
 		<?php
 	}
@@ -674,7 +674,7 @@ class Dashboard_Widget extends Base_Controller {
 	 * @param  $total_visits  string
 	 * @since 1.0.0
 	 */
-	public function addHiddenEditTotalVisitsBox( $total_visits ) {
+	public function add_hidden_edit_total_visits_box( $total_visits ) {
 		?>
 			<div id="StrCPVisits_js_db_edit_total_visits_box" class="StrCPVisits_db_edit_total_visits_box">
 				<!-- Close X icon -->
@@ -710,7 +710,7 @@ class Dashboard_Widget extends Base_Controller {
 	 * @return  string  HTML code
 	 * @since 1.0.0
 	 */
-	public function getExplanation() {
+	public function get_explanation() {
 		// Green text.
 		$html_expl =  "<div class='StrCPVisits_db_counting_text_box'>";
 		$html_expl .=   "<p>A page is <strong>going to appear</strong> here and <br>visit is going to be counted after one of the listed<br>user roles visits the page:</p>";

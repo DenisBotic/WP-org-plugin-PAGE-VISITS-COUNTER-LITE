@@ -51,14 +51,14 @@ class Reset_Page_Type extends Options {
 
 		// Check if data are submitted from corresponding form by using wp_nonce.
 		if ( ! check_ajax_referer( 'StrCPVisits_settings', 'security' ) ) {
-			return;
+			return; // Abort.
 		}
 
 
 
 		// Prevent form data submission for non-admin users.
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return;
+			return; // Abort.
 		}
 
 
@@ -95,7 +95,7 @@ class Reset_Page_Type extends Options {
 
 
 		// UPDATE OPTION VALUE and SEND AJAX RESPONSE.
-		$response = $this->resetPageTypeVisits( $page_names_arr );
+		$response = $this->reset_page_type_visits( $page_names_arr );
 
 		if ( $response === true ) {
 			wp_send_json_success( esc_html__( 'Changes saved!', 'page-visits-counter-lite' ) );

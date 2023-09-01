@@ -50,13 +50,13 @@ class Save_Settings extends Options {
 
 		// Check if data are submitted from corresponding form by using wp_nonce.
 		if ( ! check_ajax_referer( 'StrCPVisits_settings', 'security' ) ) {
-			return;
+			return; // Abort.
 		}
 
 
 		// Prevent form data submission for non-admin users.
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return;
+			return; // Abort.
 		}
 
 
@@ -94,7 +94,7 @@ class Save_Settings extends Options {
 		 *
 		 * INFO: Plugin settings include an option to delete all plugin data from the database upon uninstallation.
 		 */
-		$response = $this->updateOptionValue( STRCPV_OPT_NAME['delete_plugin_data'], $value );
+		$response = $this->update_option_value( STRCPV_OPT_NAME['delete_plugin_data'], $value );
 
 		if ( $response === true ) {
 			$response_data['delete_plugin_data'] = [

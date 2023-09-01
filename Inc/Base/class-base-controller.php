@@ -77,7 +77,7 @@ class Base_Controller {
 	 * @return array An array of plugin data.
 	 * @since 1.0.0
 	 */
-	public function getAllData() {
+	public function get_all_data() {
 		$data = [
 			'plugin_path' => $this->plugin_path,
 			'plugin_url'  => $this->plugin_url,

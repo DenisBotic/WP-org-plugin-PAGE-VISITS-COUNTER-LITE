@@ -52,12 +52,12 @@ class Reset_All extends Options {
 
 		// Verify if data is submitted from the corresponding form using wp_nonce.
 		if ( ! check_ajax_referer( 'StrCPVisits_settings', 'security' ) ) {
-			return;
+			return; // Abort.
 		}
 
 		// Prevent form data submission for non-admin users.
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return;
+			return; // Abort.
 		}
 
 
@@ -69,7 +69,7 @@ class Reset_All extends Options {
 
 			// Abort if value not "RESET ALL".
 			if ( $_POST['data'] !== 'RESET-ALL' ) {
-				wp_send_json_error( esc_html__( 'Reset all error!', 'page-visits-counter-lite' ) );
+				wp_send_json_error( esc_html__( 'Reset all error!', 'page-visits-counter-lite' ) ); // Abort.
 			}
 
 		} else {
@@ -77,12 +77,13 @@ class Reset_All extends Options {
 		}
 
 
+
 		// ====  CONTINUE WITHOUT ANY DATA ====
 
 
 
 		// Update the option value and send AJAX response.
-		$response = $this->resetAllPageVisits();
+		$response = $this->reset_all_page_visits();
 
 		if ( $response === true ) {
 			wp_send_json_success( esc_html__( 'Changes saved!', 'page-visits-counter-lite' ) );

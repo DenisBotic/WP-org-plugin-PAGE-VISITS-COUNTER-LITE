@@ -1,11 +1,13 @@
 <?php
 /**
- * DATABASE MANGE OPTIONS
+ * Database manage options - class
  *
- * DESC: Save settings and respond.
- * INFO: This is used for AJAX requests.
+ * Save settings and respond to AJAX requests.
+ * This class handles various database operations for managing options.
  *
  * @package Strongetic - count page visits
+ * @subpackage StrCPVisits_Inc\DB
+ * @since 1.0.0
  */
 
 namespace StrCPVisits_Inc\DB;
@@ -22,16 +24,16 @@ class Options {
 	/**
 	 * UPDATE OPTION VALUE
 	 *
-	 * DESC: Update option value and respond with TRUE on update success.
-	 *       Else respond with FALSE.
+	 * DESC: Update an option's value and respond with TRUE on success,
+	 *       or FALSE on failure.
 	 *
-	 * @param  $option_name  string
-	 * @param  $value  string
+	 * @param  $option_name  string  Name of the option.
+	 * @param  $value  string  New value to set for the option.
 	 * @return  boolean
 	 * @since 1.0.0
 	 */
 
-	public function updateOptionValue( $option_name, $value ) {
+	public function update_option_value( $option_name, $value ) {
 		$response = update_option( $option_name, $value );
 		return $response; // TRUE || FALSE.
 	}
@@ -42,12 +44,12 @@ class Options {
 	/**
 	 * GET VISITS-BY-PAGE DATA
 	 *
-	 * DESC: Retrieve serialized data from option visits_by_page and unserialize them.
+	 * DESC: Retrieve serialized data from the "visits_by_page" option and unserialize it.
 	 *
-	 * @return  array  ['page-name1' => visits_nr1, 'page-name2'=>visits_nr2, ... ] or []
+	 * @return  array  ['page-name1' => visits_nr1, 'page-name2'=>visits_nr2, ... ] or an empty array.
 	 * @since 1.0.0
 	 */
-	public function getVisitsByPageData() {
+	public function get_visits_by_page_data() {
 		$data_ser = get_option( STRCPV_OPT_NAME['visits_by_page'] );
 		if ( $data_ser === false ) {
 			return [];
@@ -62,17 +64,17 @@ class Options {
 	/**
 	 * SET VISITS-BY-PAGE DATA
 	 *
-	 * DESC: Accept data_array argument and serialize it before updating option visits_by_page.
+	 * DESC: Accept a data_array argument and serialize it before updating the "visits_by_page" option.
 	 *
-	 * @param  $data_arr  ['page-name1' => visits_nr1, 'page-name2'=>visits_nr2, ... ].
-	 * @return boolean
+	 * @param  $data_arr  array  ['page-name1' => visits_nr1, 'page-name2'=>visits_nr2, ... ].
+	 * @return boolean TRUE if successful, FALSE if not.
 	 * @since 1.0.0
 	 */
-	public function setVisitsByPageData( $data_arr ) {
+	public function set_visits_by_page_data( $data_arr ) {
 		// Serialize data.
 		$data_ser = maybe_serialize( $data_arr );
 		// Update option.
-		$response = $this->updateOptionValue( STRCPV_OPT_NAME['visits_by_page'], $data_ser );
+		$response = $this->update_option_value( STRCPV_OPT_NAME['visits_by_page'], $data_ser );
 		return $response; // TRUE || FALSE.
 	}
 
@@ -82,16 +84,16 @@ class Options {
 	/**
 	 * GET VISITS NUMBER BY PAGE NAME
 	 *
-	 * DESC: Retrieve page visits nr. from visits_by_page option.
+	 * DESC: Retrieve the number of visits for a specific page from the "visits_by_page" option.
 	 *
-	 * @param  $page_name  string
-	 * @return Number of visits or Null
+	 * @param  $page_name  string  Name of the page.
+	 * @return int|null  Number of visits or NULL if the page name doesn't exist.
 	 * @since 1.1.0
 	 * Last update: 1.1.0  ( ADDED - if array key exist and if not - return null ).
 	 */
-	public function getVisitsNrByPageName( $page_name ) {
+	public function get_visits_nr_by_page_name( $page_name ) {
 		// Retrieve serialized data from option visits_by_page and unserialize them.
-		$page_visits_arr = $this->getVisitsByPageData();
+		$page_visits_arr = $this->get_visits_by_page_data();
 		if ( array_key_exists( $page_name, $page_visits_arr ) ) {
 			return $page_visits_arr[ $page_name ];
 		}
@@ -104,69 +106,68 @@ class Options {
 
 
 	/**
-	 * DELETE PAGE FROM OPTION VALUE - option "strcpv_visits_by_page"
+	 * DELETE PAGE FROM OPTION VALUE
 	 *
-	 * DESC: Retrieve visits_by_page option data and remove key with page name.
-	 *       Update option value with updated asoc. array.
+	 * DESC: Retrieve data from the "visits_by_page" option and remove a key with the specified page name.
+	 *       Update the option value with the updated associative array.
 	 *
-	 * @param  $page_name  string
-	 * @return boolean
+	 * @param  $page_name  string  Name of the page to delete.
+	 * @return boolean  TRUE if successful, FALSE if not.
 	 * @since 1.0.0
 	 */
-	public function deletePageFromOptionValue( $page_name ) {
+	public function delete_page_from_option_value( $page_name ) {
 
-		// GET VISITS BY PAGE OPTION DATA.
-		$data_arr = $this->getVisitsByPageData();
+		// get "visits_by_page" option data.
+		$data_arr = $this->get_visits_by_page_data();
 
-		// CHECK IF PAGE WITH THAT NAME EXIST IN ASSOC ARRAY.
+		// Check if the page with that name exists in the associative array.
 		if ( ! array_key_exists( $page_name, $data_arr ) ) {
 			return false;
 		}
 
-		// DELETE PAGE NAME FROM ASOC. ARRAY.
+		// Delete the page name from the associative array.
 		unset( $data_arr[ $page_name ] );
 
-		// REMOVE PAGES FROM HIDDEN REPORTS LIST.
-		$this->removeFromHiddenReports( [ $page_name ] );
+		// Remove pages from the hidden reports list.
+		$this->remove_from_hidden_reports( [ $page_name ] );
 
-		// SET DATA.
-		return $this->setVisitsByPageData( $data_arr ); // TRUE || FALSE.
+		// Set the data.
+		return $this->set_visits_by_page_data( $data_arr ); // TRUE || FALSE.
 	}
 
 
 
 
 	/**
-	 * DELETE PAGES FROM OPTION VALUE - option "strcpv_visits_by_page"
+	 * DELETE PAGES FROM OPTION VALUE
 	 *
-	 * DESC: Delete pages by the names provided in the argument.
+	 * DESC: Delete multiple pages by their names provided in the argument from the option "strcpv_visits_by_page".
 	 *
-	 * @param  $page_names_arr  array  ['page-name1', 'page-name2']
-	 * @return  boolean
+	 * @param  $page_names_arr  Array of page names to delete  ['page-name1', 'page-name2'...].
+	 * @return  boolean  TRUE if successful, FALSE if not.
 	 * @since 1.0.0
 	 */
-	public function deletePagesFromOptionValue( $page_names_arr ) {
+	public function delete_pages_from_option_value( $page_names_arr ) {
 
-		// GET VISITS BY PAGE OPTION DATA.
-		$data_arr = $this->getVisitsByPageData();
+		// Get "visits_by_page" option data.
+		$data_arr = $this->get_visits_by_page_data();
 
-		// DELETE PAGES.
+		// delete pages.
 		foreach ( $page_names_arr as $page_name ) {
 
-			// CHECK IF PAGE WITH THAT NAME EXIST IN ASSOC. ARRAY.
+			// Check if the page with that name exists in the associative array.
 			if ( array_key_exists( $page_name, $data_arr ) ) {
 
-				// DELETE PAGE NAME FROM ASOC. ARRAY.
+				// Delete the page name from the associative array.
 				unset( $data_arr[ $page_name ] );
 			}
 		}
 
+		// Remove pages from the hidden reports list.
+		$this->remove_from_hidden_reports( $page_names_arr ); // TRUE ||FALSE.
 
-		// REMOVE PAGES FROM HIDDEN REPORTS LIST.
-		$this->removeFromHiddenReports( $page_names_arr ); // TRUE ||FALSE.
-
-		// SET DATA.
-		return $this->setVisitsByPageData( $data_arr ); // TRUE || FALSE.
+		// Set the data.
+		return $this->set_visits_by_page_data( $data_arr ); // TRUE || FALSE.
 
 	}
 
@@ -176,30 +177,29 @@ class Options {
 	/**
 	 * UPDATE PAGE VISITS NUMBER
 	 *
-	 * DESC: Retrieve visits_by_page option data and find an array key with the page name.
-	 *       Change the visits number.
-	 *       Update option value with updated asoc. array.
+	 * DESC: Retrieve data from the "visits_by_page" option and find an array key with the page name.
+	 *       Update the visits number and update the option value with the updated associative array.
 	 *
-	 * @param  $page_name  string
-	 * @param  $new_number  number
-	 * @return boolean
+	 * @param  $page_name  string  Name of the page to update.
+	 * @param  $new_number  int  New visits number.
+	 * @return boolean  TRUE if successful, FALSE if not.
 	 * @since 1.0.0
 	 */
-	public function updatePageVisitsNr( $page_name, $new_number ) {
+	public function update_page_visits_nr( $page_name, $new_number ) {
 
-		// GET VISITS BY PAGE OPTION DATA.
-		$data_arr = $this->getVisitsByPageData();
+		// Get "visits_by_page" option data.
+		$data_arr = $this->get_visits_by_page_data();
 
-		// CHECK IF PAGE WITH THAT NAME EXIST IN ASSOC ARRAY.
+		// Check if the page with that name exists in the associative array.
 		if ( ! array_key_exists( $page_name, $data_arr ) ) {
 			return false;
 		}
 
-		// UPDATE NUMBER.
+		// Update the visits number.
 		$data_arr[ $page_name ] = $new_number;
 
-		// SET DATA.
-		return $this->setVisitsByPageData( $data_arr ); // TRUE || FALSE.
+		// Set the data.
+		return $this->set_visits_by_page_data( $data_arr ); // TRUE || FALSE.
 	}
 
 
@@ -208,23 +208,23 @@ class Options {
 	/**
 	 * RESET ALL PAGE VISITS
 	 *
-	 * DESC: Reset all page visits number to zero.
+	 * DESC: Reset the visits number to zero for all pages.
 	 *
-	 * @return  boolean
+	 * @return  boolean  TRUE if successful, FALSE if not.
 	 * @since 1.0.0
 	 */
-	public function resetAllPageVisits() {
+	public function reset_all_page_visits() {
 
-		// GET VISITS BY PAGE OPTION DATA.
-		$data_arr = $this->getVisitsByPageData();
+		// Get "visits_by_page" option data.
+		$data_arr = $this->get_visits_by_page_data();
 
-		// RESET each page value to zero.
+		// Reset each page value to zero.
 		foreach ( $data_arr as $page_name => $visits_nr ) {
 			$data_arr[ $page_name ] = 0;
 		}
 
-		// SET DATA.
-		return $this->setVisitsByPageData( $data_arr ); // TRUE || FALSE.
+		// Set the data.
+		return $this->set_visits_by_page_data( $data_arr ); // TRUE || FALSE.
 	}
 
 
@@ -233,25 +233,25 @@ class Options {
 	/**
 	 * RESET PAGE TYPE VISIT
 	 *
-	 * DESC Reset pages by the names provided in argument.
+	 * DESC Reset visits number to zero for pages by the names provided in the argument.
 	 *
-	 * @param  $page_names_arr  array  ['page-name1', 'page-name2']
-	 * @return  boolean
+	 * @param  $page_names_arr  array  Array of page names to reset ['page-name1', 'page-name2'].
+	 * @return  boolean  TRUE if successful, FALSE if not.
 	 * @since 1.0.0
 	 */
-	public function resetPageTypeVisits( $page_names_arr ) {
+	public function reset_page_type_visits( $page_names_arr ) {
 
-		// GET VISITS BY PAGE OPTION DATA.
-		$data_arr = $this->getVisitsByPageData();
+		// Get "visits_by_page" option data.
+		$data_arr = $this->get_visits_by_page_data();
 
-		// RESET each page value to zero.
+		// Reset visits to zero for each page in the array.
 		foreach ( $page_names_arr as $page_name ) {
 			// Set its value to zero.
 			$data_arr[ $page_name ] = 0;
 		}
 
-		// SET DATA.
-		return $this->setVisitsByPageData( $data_arr ); // TRUE || FALSE.
+		// Set the data.
+		return $this->set_visits_by_page_data( $data_arr ); // TRUE || FALSE.
 	}
 
 
@@ -260,27 +260,28 @@ class Options {
 	/**
 	 * COUNT TOTAL VISITS
 	 *
-	 * DESC: Get total_visits option value (nr.), increase it by one and update it.
-	 *       If there is no total_visits option, create it and add value zero.
+	 * DESC: Get the "total_visits" option value (number), increase it by one, and update it.
+	 *       If the "total_visits" option doesn't exist, create it with a value of ONE visit.
 	 *
-	 * @return  array  response
+	 * @return  array  Response with update status (TRUE/FALSE) and the new number of visits.
 	 * @since 1.0.0
 	 */
-	public function countTotalVisits() {
+	public function count_total_visits() {
 
 		$option_name = STRCPV_OPT_NAME['total_visits'];
 
-		// Get counting (option) data.
-		$all_page_visits = get_option( $option_name );
+		// Get the current total visits count.
+		$all_page_visits  = get_option( $option_name );
 		$type_of_response = gettype( $all_page_visits );
 
-		// If there is no option with given name.
+		// If the option doesn't exist, create it with a value of 1.
 		if ( $all_page_visits == false && $type_of_response == 'BOOLEAN' ) {
 			$new_visit = 1;
 			$response  = add_option( $option_name, $new_visit );
 		} else {
+			// Increment the total visits count.
 			$new_visit = (int) $all_page_visits + 1;
-			// ECHO "TOTAL_VISITS: " . $new_visit;
+			// echo "TOTAL_VISITS: " . $new_visit;
 			$response = update_option( $option_name, $new_visit );
 		}
 		// Respond.
@@ -296,47 +297,49 @@ class Options {
 	/**
 	 * IS PAGE REFRESHED - transient option
 	 *
-	 * DESC: On page load save the user ip address and loaded page name into the transient with expiration time of 1h.
-	 *       On page refresh check if there is a user ip address with current page name and if it is,
-	 *       return true - which means that page is refreshed
-	 * INFO: First time visiting, there will be no ip address with current page name.
+	 * DESC: On page load, save the user's IP address and loaded page name into a transient with an expiration time of 1 hour.
+	 *       On page refresh, check if there is a user's IP address hash with the current page name.
+	 *       If it exists, return TRUE, which means the page is refreshed.
+	 * INFO: First-time visitors will not have their IP address hash and current page name in the transient.
 	 *
-	 * @param  $ip_address  string
-	 * @param  $current_page_name  string
+	 * @param  $ip_address  string  User's IP address hashed.
+	 * @param  $current_page_name  string  Name of the current page.
+	 * @return boolean  TRUE if the page is refreshed, FALSE otherwise.
 	 * @since 1.0.0
 	 */
-	public function isPageRefreshed( $ip_address, $current_page_name ) {
-		// Check if there is transient.
+	public function is_page_refreshed( $ip_address, $current_page_name ) {
+		// Check if there is a transient.
 		$page_refreshed_data_arr = get_transient( 'strcpv_page_refreshed_data' );
 		if ( $page_refreshed_data_arr === false ) {
 
-			// THERE IS NO TRANSIENT - SET TRANSIENT with IP address and page name.
+			// There is no transient - set the transient with hashed IP address and page name.
 			$page_refreshed_data_arr = [ $ip_address => $current_page_name ];
 
 		} else {
 
-			// THERE IS TRANSIENT - let's check if IP address is already saved in transient.
+			// There is a transient - check if the hashed IP address is already saved in the transient.
 			if ( ! array_key_exists( $ip_address, $page_refreshed_data_arr ) ) {
-				// IP - doesn't exist in transient.
+				// Hashed IP address - doesn't exist in the transient.
 				$page_refreshed_data_arr = [ $ip_address => $current_page_name ];
 
 			} else {
 
-				// IP already exists in transient.
+				// Hashed IP address - already exists in the transient.
 				$last_page_name = $page_refreshed_data_arr[ $ip_address ];
 
-				// Check if page is refreshed.
+				// Check if the page is refreshed.
 				if ( $last_page_name === $current_page_name ) {
 					// Page is refreshed.
 					return true; // Abort.
 
 				} else {
 
-					// Another page loaded - update transient page name.
+					// Another page is loaded - update the transient page name.
 					$page_refreshed_data_arr[ $ip_address ] = $current_page_name;
 				}
 			}
 		}
+		// Set the transient.
 		set_transient( 'strcpv_page_refreshed_data', $page_refreshed_data_arr, HOUR_IN_SECONDS );
 	}
 
@@ -346,15 +349,16 @@ class Options {
 	/**
 	 * COUNT VISITS PER PAGE
 	 *
-	 * DESC: Check user type and ABORT if not VISITOR, SUBSCRIBER, CUSTOMER, AUTHOR, CONTRIBUTOR, AND PENDING_USER.
-	 *       Create visits by page option if doesn't exist.
-	 *       Update visit number by page name.
-	 * @param  string  $ip
-	 * @param  string  $page_name
-	 * @return  array  response
+	 * DESC: Check the user type and ABORT if not a VISITOR, SUBSCRIBER, CUSTOMER, AUTHOR, CONTRIBUTOR, AND PENDING_USER.
+	 *       Create the "visits_by_page" option if it doesn't exist.
+	 *       Update the visit number by page name.
+	 *
+	 * @param  string  $ip  User's hashed IP address.
+	 * @param  string  $page_name  Name of the current page.
+	 * @return  array  Response with update status (TRUE/FALSE) and the new number of visits.
 	 * @since 1.0.0
 	 */
-	public function countVisitsPerPage( $ip, $page_name ) {
+	public function count_visits_per_page( $ip, $page_name ) {
 
 		$option_name             = STRCPV_OPT_NAME['visits_by_page'];
 		$visits_by_page_data_arr = [];
@@ -363,11 +367,11 @@ class Options {
 		$visits_by_page_data_ser = get_option( $option_name );
 		$type_of_response        = gettype( $visits_by_page_data_ser );
 
-		// If OPTION DOES NOT EXIST with the given name.
+		// If the option doesn't exist.
 		if ( $visits_by_page_data_ser == false && $type_of_response == 'BOOLEAN' ) {
-			// OPTION DOES NOT EXIST.
+			// The option doesn't exist.
 			$visits_by_page_data_arr[ $page_name ] = 1;
-			// Create option with given name and set value to page-name = 1.
+			// Create the option with the given name and set the value to page-name = 1.
 			$response = add_option( $option_name, $visits_by_page_data_arr );
 			// Respond.
 			return [
@@ -377,7 +381,7 @@ class Options {
 
 		} else {
 			/**
-			 * OPTION EXIST - and it holds at least an empty serialized array.
+			 * OPTION EXIST - and holds at least an empty serialized array.
 			 * ( We have some data. )
 			 */
 			$visits_by_page_data_arr = maybe_unserialize( $visits_by_page_data_ser );
@@ -387,12 +391,12 @@ class Options {
 				$visits_by_page_data_arr[ $page_name ] = $new_nr_of_visits;
 
 			} else {
-				// Value doesn't have records - ( Probably deleted ).
+				// Value doesn't have records - probably deleted.
 				$new_nr_of_visits                      = 1;
 				$visits_by_page_data_arr[ $page_name ] = $new_nr_of_visits;
 			}
 		}
-		// UPDATE "visits by page" OPTION.
+		// Update "visits_by_page" option.
 		$visits_by_page_data_ser = maybe_serialize( $visits_by_page_data_arr );
 		$response                = update_option( $option_name, $visits_by_page_data_ser );
 		// Respond.
@@ -413,12 +417,12 @@ class Options {
 	/**
 	 * GET HIDDEN-PAGE-REPORTS DATA
 	 *
-	 * DESC: Retrieve serialized data from option hidden_page_reports and unserialize them.
+	 * DESC: Retrieve serialized data from the "hidden_page_reports" option and unserialize it.
 	 *
-	 * @return array ['page-name1', 'page-name2', ... ] or []
+	 * @return array  List of hidden page names ['page-name1', 'page-name2', ... ] or an empty array.
 	 * @since 1.0.0
 	 */
-	public function getHiddenPageReportsData() {
+	public function get_hidden_page_reports_data() {
 		$data_ser = get_option( STRCPV_OPT_NAME['hidden_page_reports'] );
 		if ( $data_ser !== false ) {
 			return maybe_unserialize( $data_ser );
@@ -433,17 +437,17 @@ class Options {
 	/**
 	 * SET HIDDEN-PAGE-REPORTS DATA
 	 *
-	 * DESC: Accept data_array argument and serialize it before updating option hidden_page_reports.
+	 * DESC: Accept a data_array argument and serialize it before updating the "hidden_page_reports" option.
 	 *
-	 * @param $data_arr  ['page-name1', 'page-name2', ... ]
-	 * @return boolean
+	 * @param $data_arr  List of hidden page names ['page-name1', 'page-name2', ... ].
+	 * @return boolean  TRUE if successful, FALSE if not.
 	 * @since 1.0.0
 	 */
-	public function setHiddenPageReportsData( $data_arr ) {
+	public function set_hidden_page_reports_data( $data_arr ) {
 		// Serialize data.
 		$data_ser = maybe_serialize( $data_arr );
-		// UPDATE OPTION
-		$response = $this->updateOptionValue( STRCPV_OPT_NAME['hidden_page_reports'], $data_ser );
+		// Update the option
+		$response = $this->update_option_value( STRCPV_OPT_NAME['hidden_page_reports'], $data_ser );
 		return $response; // TRUE || FALSE.
 	}
 
@@ -454,19 +458,19 @@ class Options {
 	/**
 	 * SET AS HIDDEN REPORTS
 	 *
-	 * DESC: Set (selected) pages as hidden - add them to "hidden-page-reports" option.
+	 * DESC: Set selected pages as hidden reports by adding them to the "hidden_page_reports" option.
 	 *
-	 * @param $page_names_arr  array  ['page-name1', 'page-name2', ...]
+	 * @param $page_names_arr  array  Array of page names to set as hidden reports ['page-name1', 'page-name2', ...].
 	 * @return boolean
 	 * @since 1.0.0
 	 */
-	public function setAsHiddenReports( $page_names_arr ) {
+	public function set_as_hidden_reports( $page_names_arr ) {
 		// Get hidden-page-reports data.
-		$hidden_page_reports_arr = $this->getHiddenPageReportsData();
+		$hidden_page_reports_arr = $this->get_hidden_page_reports_data();
 		// Merge arrays.
 		$merged_data_arr = array_merge( $hidden_page_reports_arr, $page_names_arr );
-		// Update option is going to create an option if option doesn't exist - no need for add_option().
-		return $this->setHiddenPageReportsData( $merged_data_arr ); // TRUE || FALSE.
+		// Update the option (it will create the option if it doesn't exist).
+		return $this->set_hidden_page_reports_data( $merged_data_arr ); // TRUE || FALSE.
 	}
 
 
@@ -475,19 +479,19 @@ class Options {
 	/**
 	 * REMOVE FROM HIDDEN REPORTS
 	 *
-	 * DESC: Remove (selected) pages from "hidden-page-reports" option.
+	 * DESC: Remove selected pages from the "hidden_page_reports" option.
 	 *
-	 * @param  $page_names_arr  array  ['page-name1', 'page-name2']
-	 * @return  boolean
+	 * @param  $page_names_arr  array  Array of page names to remove from hidden reports ['page-name1', 'page-name2'...].
+	 * @return  boolean  TRUE if successful, FALSE if not.
 	 * @since 1.0.0
 	 */
-	public function removeFromHiddenReports( $page_names_arr ) {
+	public function remove_from_hidden_reports( $page_names_arr ) {
 		// Get hidden-page-reports data.
-		$hidden_page_reports_arr = $this->getHiddenPageReportsData();
-		// Remove selected page-names from retrieved data.
+		$hidden_page_reports_arr = $this->get_hidden_page_reports_data();
+		// Remove selected page names from the retrieved data.
 		$data_arr = array_diff( $hidden_page_reports_arr, $page_names_arr );
-		// Update option is going to create an option if option doesn't exist - no need for add_option().
-		return $this->setHiddenPageReportsData( $data_arr ); // TRUE || FALSE.
+		// Update the option (it will create the option if it doesn't exist).
+		return $this->set_hidden_page_reports_data( $data_arr ); // TRUE || FALSE.
 	}
 
 }
