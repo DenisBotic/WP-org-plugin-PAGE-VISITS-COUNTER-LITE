@@ -13,11 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \StrCPVisits_Inc\Base\BaseController;
+use \StrCPVisits_Inc\Base\Base_Controller;
 
 
 
-class DashboardWidget extends BaseController {
+class Dashboard_Widget extends Base_Controller {
 
 
 	public function register() {

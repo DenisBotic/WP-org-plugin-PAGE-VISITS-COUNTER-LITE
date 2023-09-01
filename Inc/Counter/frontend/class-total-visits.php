@@ -14,11 +14,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use StrCPVisits_Inc\Counter\frontend\CounterBase;
+use StrCPVisits_Inc\Counter\frontend\Counter_Base;
 
 
 
-class TotalVisits extends CounterBase {
+class Total_Visits extends Counter_Base {
 
 
 

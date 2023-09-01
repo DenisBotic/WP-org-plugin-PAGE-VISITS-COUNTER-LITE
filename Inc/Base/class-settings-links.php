@@ -16,9 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \StrCPVisits_Inc\Base\BaseController;
+use \StrCPVisits_Inc\Base\Base_Controller;
 
-class SettingsLinks extends BaseController {
+class Settings_Links extends Base_Controller {
 
 
 
@@ -28,7 +28,7 @@ class SettingsLinks extends BaseController {
 	 * @since 1.0.0
 	 */
 	public function register() {
-		add_filter( "plugin_action_links_$this->plugin", [ $this, 'settings_link' ] ); // No name conflict - use BaseController class instance.
+		add_filter( "plugin_action_links_$this->plugin", [ $this, 'settings_link' ] ); // No name conflict - use Base_Controller class instance.
 	}
 
 

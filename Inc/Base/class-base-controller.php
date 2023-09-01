@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class BaseController {
+class Base_Controller {
 
 
 	/**

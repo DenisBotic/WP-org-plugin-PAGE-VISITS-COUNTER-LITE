@@ -6,11 +6,11 @@
  * It allows administrators to set page-reports as hidden or visible.
  *
  * @package Strongetic - count page visits
- * @subpackage Inc\Ajax\DashboardWidget
+ * @subpackage Inc\Ajax\Dashboard_Widget
  * @since 1.0.0
  */
 
-namespace StrCPVisits_Inc\Ajax\DashboardWidget;
+namespace StrCPVisits_Inc\Ajax\Dashboard_Widget;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use StrCPVisits_Inc\DB\Options;
 
-class ToggleHiddenReports extends Options {
+class Toggle_Hidden_Reports extends Options {
 
 
 

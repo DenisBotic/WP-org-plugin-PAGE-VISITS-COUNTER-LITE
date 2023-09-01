@@ -16,9 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \StrCPVisits_Inc\Base\BaseController;
+use \StrCPVisits_Inc\Base\Base_Controller;
 
-class Enqueue extends BaseController {
+class Enqueue extends Base_Controller {
 
 
 	public function register() {

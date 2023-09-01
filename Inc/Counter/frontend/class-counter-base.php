@@ -7,12 +7,12 @@
 
 namespace StrCPVisits_Inc\Counter\frontend;
 
-use \StrCPVisits_Inc\Base\BaseController;
+use \StrCPVisits_Inc\Base\Base_Controller;
 
 
 
 // PARENT CLASS FOR ALL SUB CLASSES ON FRONTEND.
-class CounterBase extends BaseController {
+class Counter_Base extends Base_Controller {
 
 }
 

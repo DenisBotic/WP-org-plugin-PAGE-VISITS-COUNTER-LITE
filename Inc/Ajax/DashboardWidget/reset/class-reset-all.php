@@ -6,11 +6,11 @@
  * It ensures the action is secure, and only administrators can perform the reset.
  *
  * @package Strongetic - count page visits
- * @subpackage Inc\Ajax\DashboardWidget\reset
+ * @subpackage Inc\Ajax\Dashboard_Widget\reset
  * @since 1.0.0
  */
 
-namespace StrCPVisits_Inc\Ajax\DashboardWidget\reset;
+namespace StrCPVisits_Inc\Ajax\Dashboard_Widget\reset;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use StrCPVisits_Inc\DB\Options;
 
-class ResetAll extends Options {
+class Reset_All extends Options {
 
 
 

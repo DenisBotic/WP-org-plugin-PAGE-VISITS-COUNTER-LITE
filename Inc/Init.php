@@ -36,19 +36,19 @@ final class Init {
 	public static function get_services() {
 		return [
 			Base\Enqueue::class, // Declare a class that you wish to initialize.
-			Base\SettingsLinks::class,
-			Counter\frontend\TotalVisits::class,
-			Counter\backend\DashboardWidget::class,
-			API\SettingsApi::class,
-			Ajax\Counter\TotalVisits::class,
-			Ajax\SettingsPage\SaveSettings::class,
-			Ajax\DashboardWidget\UpdateTotalVisitsNr::class,
-			Ajax\DashboardWidget\UpdatePageData::class,
-			Ajax\DashboardWidget\DeletePages::class,
-			Ajax\DashboardWidget\DeletePage::class,
-			Ajax\DashboardWidget\reset\ResetAll::class,
-			Ajax\DashboardWidget\reset\ResetPageType::class,
-			Ajax\DashboardWidget\ToggleHiddenReports::class,
+			Base\Settings_Links::class,
+			Counter\frontend\Total_Visits::class,
+			Counter\backend\Dashboard_Widget::class,
+			API\Settings_Api::class,
+			Ajax\Counter\Total_Visits::class,
+			Ajax\SettingsPage\Save_Settings::class,
+			Ajax\Dashboard_Widget\Update_Total_Visits_Nr::class,
+			Ajax\Dashboard_Widget\Update_Page_Data::class,
+			Ajax\Dashboard_Widget\Delete_Pages::class,
+			Ajax\Dashboard_Widget\Delete_Page::class,
+			Ajax\Dashboard_Widget\reset\Reset_All::class,
+			Ajax\Dashboard_Widget\reset\Reset_Page_Type::class,
+			Ajax\Dashboard_Widget\Toggle_Hidden_Reports::class,
 		];
 		// From php 5.4 we can use [].
 	}

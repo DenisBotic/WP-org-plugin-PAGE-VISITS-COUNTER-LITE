@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use StrCPVisits_Inc\DB\Options;
 
-class SaveSettings extends Options {
+class Save_Settings extends Options {
 
 
 

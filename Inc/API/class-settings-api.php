@@ -16,9 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use StrCPVisits_Inc\Counter\frontend\CounterBase;
+use StrCPVisits_Inc\Counter\frontend\Counter_Base;
 
-class SettingsApi extends CounterBase {
+class Settings_Api extends Counter_Base {
 
 
 

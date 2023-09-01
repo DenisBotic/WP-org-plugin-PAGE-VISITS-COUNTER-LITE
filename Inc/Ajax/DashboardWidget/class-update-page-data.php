@@ -6,11 +6,11 @@
  * It allows administrators to update the number of visits for a specific page.
  *
  * @package Strongetic - count page visits
- * @subpackage Inc\Ajax\DashboardWidget
+ * @subpackage Inc\Ajax\Dashboard_Widget
  * @since 1.0.0
  */
 
-namespace StrCPVisits_Inc\Ajax\DashboardWidget;
+namespace StrCPVisits_Inc\Ajax\Dashboard_Widget;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use StrCPVisits_Inc\DB\Options;
 
-class UpdatePageData extends Options {
+class Update_Page_Data extends Options {
 
 
 

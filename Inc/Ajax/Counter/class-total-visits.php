@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use StrCPVisits_Inc\DB\Options;
 
-class TotalVisits extends Options {
+class Total_Visits extends Options {
 
 
 
