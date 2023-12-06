@@ -145,4 +145,3 @@ function strongetic_subpage_visits_counter_light( $base_controler_data ) {
 	wp_enqueue_script( 'StrCPVisits_ajax' );
 	// DO NOT WRITE ANYTHING BELOW THIS LINE.
 }
-?>

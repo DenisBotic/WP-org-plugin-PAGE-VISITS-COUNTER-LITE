@@ -57,5 +57,3 @@ if ( file_exists( dirname( __FILE__ ) . '/DashboardWidget/reset/class-reset-page
 if ( file_exists( dirname( __FILE__ ) . '/DashboardWidget/class-toggle-hidden-reports.php' ) ) {
 	require_once dirname( __FILE__ ) . '/DashboardWidget/class-toggle-hidden-reports.php';
 }
-
-?>

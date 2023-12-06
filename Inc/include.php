@@ -38,5 +38,3 @@ if ( file_exists( dirname( __FILE__ ) . '/DB/include.php' ) ) {
 if ( file_exists( dirname( __FILE__ ) . '/Ajax/include.php' ) ) {
 	require_once dirname( __FILE__ ) . '/Ajax/include.php';
 }
-
-?>

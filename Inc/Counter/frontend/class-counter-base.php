@@ -18,4 +18,3 @@ class Counter_Base extends Base_Controller {
 
 
 }
-?>

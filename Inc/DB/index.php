@@ -1,3 +1,2 @@
 <?php
 // Silenece is golden!
-?>

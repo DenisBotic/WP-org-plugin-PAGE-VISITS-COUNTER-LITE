@@ -31,5 +31,3 @@ if ( file_exists( dirname( __FILE__ ) . '/frontend/class-total-visits.php' ) ) {
 if ( file_exists( dirname( __FILE__ ) . '/frontend/Crawlers.php' ) ) {
 	require_once dirname( __FILE__ ) . '/frontend/Crawlers.php';
 }
-
-?>

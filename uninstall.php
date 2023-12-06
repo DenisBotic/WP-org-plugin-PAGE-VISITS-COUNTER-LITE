@@ -46,4 +46,3 @@ function STRCPV_deletePluginData() {
 	// DELETE TRANSIENTS.
 	delete_transient( 'strcpv_page_refreshed_data' );
 }
-?>

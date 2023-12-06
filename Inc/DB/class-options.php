@@ -495,5 +495,3 @@ class Options {
 	}
 
 }
-
-?>

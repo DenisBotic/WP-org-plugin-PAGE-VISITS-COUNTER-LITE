@@ -752,4 +752,3 @@ class Dashboard_Widget extends Base_Controller {
 		return $html_expl;
 	}
 }
-?>

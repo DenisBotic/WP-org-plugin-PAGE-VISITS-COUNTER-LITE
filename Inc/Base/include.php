@@ -32,5 +32,3 @@ if ( file_exists( dirname( __FILE__ ) . '/class-enqueue.php' ) ) {
 if ( file_exists( dirname( __FILE__ ) . '/class-settings-links.php' ) ) {
 	require_once dirname( __FILE__ ) . '/class-settings-links.php';
 }
-
-?>

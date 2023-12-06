@@ -17,5 +17,3 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( file_exists( dirname( __FILE__ ) . '/class-settings-api.php' ) ) {
 	require_once dirname( __FILE__ ) . '/class-settings-api.php';
 }
-
-?>

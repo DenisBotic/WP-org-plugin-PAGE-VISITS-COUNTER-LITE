@@ -152,4 +152,3 @@ class Total_Visits extends Counter_Base {
 		return $page_name;
 	}
 }
-?>
