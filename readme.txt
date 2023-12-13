@@ -178,6 +178,15 @@ Admin dashboard widget has four wp-hooks:
 
 
 
+== LEGAL ==
+
+<a href="https://github.com/DenisBotic/WP-org-plugin-PAGE-VISITS-COUNTER-LITE/blob/main/privacy-policy.txt">Privacy policy</a>
+
+<a href="https://github.com/DenisBotic/WP-org-plugin-PAGE-VISITS-COUNTER-LITE/blob/main/read-me-disclaimer.txt">Disclaimer</a>
+
+
+
+
 == Frequently Asked Questions ==
 
 = Where I can find the page visits report as seen on the screenshot? =
@@ -254,7 +263,6 @@ You have to logout before visiting the page or login with one of the user roles 
 You have probably refreshed the page and the TOTAL VISITS box is counting everything including a page refresh/reload.
 Page visits are not counting page refresh/reload.
 (Please read the plugin documentation under titles "NOT COUNTING" and "COUNTING".)
-
 
 
 
