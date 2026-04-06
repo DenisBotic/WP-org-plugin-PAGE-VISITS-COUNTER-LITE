@@ -4,7 +4,7 @@ Donate link: https://www.fiverr.com/denis555/gladly-accept-5usd-tip-for-my-good-
 Tags: page views, visit stats, page visit counter, wordpress counter, developer tools counter
 Requires at least: 5.0
 Tested up to: 6.9.4
-Stable tag: 1.2.1.
+Stable tag: 1.2.3.
 Requires PHP: 5.6.40
 WC requires at least: 4.9.2
 WC tested up to: 10.6.2
@@ -310,8 +310,9 @@ That visit should be recorded and you should see it in the plugin dashboard widg
 = 1.2.3 - 06.04.2026 =
 
 Tested on WP version 6.9.4
+Tested on WooCommerce version 10.6.2
 
-= 1.2.2 – 06.01.2025 =
+= 1.2.2 - 06.01.2025 =
 
 Tested on WP version 6.7.1
 Fixed WooCommerce HPOS and Remote Logging plugin incompatibility error message by adding a WooCommerce HPOS declaration.
